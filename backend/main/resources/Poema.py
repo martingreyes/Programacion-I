@@ -9,24 +9,32 @@ POEMAS = {
 
 
 class Poema(Resource):
-    def get(self, poema_id):
-        if poema_id in POEMAS:
-            return POEMAS[poema_id]
-        return 'El poema con id:(',poema_id,') es erroneo:',404
+    def get(self, poema_id):        #Obtener
+        if int(poema_id) in POEMAS:
+            return POEMAS[int(poema_id)]
+        return 'El poema con id:(',poema_id,') es erroneo:', 404
 
-    def put(self, poema_id):
-        if poema_id in POEMAS:
-            poema = POEMAS[poema_id]  
+    def put(self, poema_id):        #Editar
+        if int(poema_id) in POEMAS:
+            poema = POEMAS[int(poema_id)]  
             data = request.get_json()
             poema.update(data)
             return poema, 201
         return 'El poema con id:(',poema_id,') es erroneo:', 404
     
-    def delete(self, poema_id):
+    def delete(self, poema_id):     #Eliminar
         if int(poema_id) in POEMAS:
             del POEMAS[int(poema_id)]
             return '', 204
         return 'El poema con id:(',poema_id,') es erroneo:', 404
 
+
 class Poemas(Resource):
-    pass
+    def get(self):      #Obtener
+        return POEMAS
+
+    def post(self):     #Insertar
+        poema = request.get_json()
+        poema_id = int(max(POEMAS.keys())) + 1
+        POEMAS[poema_id] = poema
+        return POEMAS[poema_id], 201

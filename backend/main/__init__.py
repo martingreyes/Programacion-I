@@ -9,8 +9,12 @@ api = Api()
 def create_app():
 	app = Flask(__name__)
 	load_dotenv()
-	api.add_resource(resources.PoemasResource, '/poemas')
-	api.add_resource(resources.PoemaResource, '/proema/<id>'
+
+	api.add_resource(resources.PoemaResource, '/poema/<id>')
+	#api.add_resource(resources.PoemasResource, '/poemas')
+	
+
+
 	api.init_app(app)
 	return app
 

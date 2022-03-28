@@ -13,10 +13,10 @@ def create_app():
 	api.add_resource(resources.PoemaResource, '/poema/<poema_id>')
 	api.add_resource(resources.PoemasResource, '/poemas')
 	
-	api.add_resource(resources.UsuarioResource, '/usuario/<poema_id>')
+	api.add_resource(resources.UsuarioResource, '/usuario/<usuario_id>')
 	api.add_resource(resources.UsuariosResource, '/usuarios')
 
-	api.add_resource(resources.CalificacionResource, '/calificacion/<poema_id>')
+	api.add_resource(resources.CalificacionResource, '/calificacion/<calificacion_id>')
 	api.add_resource(resources.CalificacionesResource, '/calificaciones')
 
 	api.init_app(app)

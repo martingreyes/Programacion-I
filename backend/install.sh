@@ -1,10 +1,11 @@
+#!/usr/bin/bash
 command -v python3 >/dev/null 2>&1 || { echo >&2 "python3 is not installed.  Aborting."; exit 1; }
 
-a=$(sed -n 3p /etc/os-release)
+a=$(cat /etc/os-release | grep ID_LIKE)
 
-if [ echo$a == 'ID_LIKE=debian' ];then
+if [ $a == 'ID_LIKE=debian' ];then
 	dpkg-query -l python3-venv > /dev/null 2>&1 || { echo >&2 "python3-venv is not installed. Aborting.";exit 1;}
-	python3-venv -m .
+	python3 -m venv .
 else
 	virtualenv .
 fi

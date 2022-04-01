@@ -1,39 +1,46 @@
 from flask_restful import Resource
-from flask import request
-
-USUARIOS = {
-    1:{'alias':'alex123','contra':'12345','correo':'alex123@gmail.com'},    #Tipo??
-    2:{'alias':'pepePro','contra':'0012345','correo':'pepepro@gmail.com'},
-    3:{'alias':'Reyes','contra':'0012345','correo':'reyes@gmail.com'}
-}
-
+from flask import jsonify, request, session
+from .. import db
+from main.models import UsuarioModel
 
 class Usuario(Resource):
+
     def get(self,usuario_id):
-        if int(usuario_id) in USUARIOS:
-            return USUARIOS[int(usuario_id)]
-        return '', 404
+        usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
+        return usuario.to_json()
 
     def delete(self,usuario_id):
-        if int(usuario_id) in USUARIOS:
-            del USUARIOS[int(usuario_id)]
-            return '', 204
-        return '', 404
+        usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
+        db.session.delete(usuario)
+        db.session.commit()
+        return '',204
 
     def put(self,usuario_id):
-        if int(usuario_id) in USUARIOS:
-            usuario = USUARIOS[int(usuario_id)]
-            data = request.get_json()
-            usuario.update(data)
-            return usuario, 201
-        return '', 404
+        usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
+        data = request.get_json().items()
+        for clave,valor in data:
+            setattr(usuario,clave,valor)
+        db.session.add(usuario)
+        db.session.commit()
+        return usuario.to_json(),201
+
 
 class Usuarios(Resource):
-    def get(self):              #Obtener
-        return USUARIOS
+    def get(self):
+        usuarios = db.session.query(UsuarioModel).all()
+        return jsonify([usuario.to_json() for usuario in usuarios])
+        
+    '''
+        lista_usuarios = []
+        for usuario in usuarios:
+            lista_usuarios.append(usuario.to_json())
+        return jsonify(lista_usuarios)
+    '''
 
-    def post(self):             #Insertar
-        usuario = request.get_json()
-        usuario_id = int(max(USUARIOS.keys())) + 1
-        USUARIOS[usuario_id] = usuario
-        return USUARIOS[usuario_id], 201
+
+
+    def post(self):
+        usuario = UsuarioModel.from_json(request.get_json())
+        db.session.add(usuario)
+        db.session.commit()
+        return usuario.to_json(), 201

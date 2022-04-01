@@ -1,40 +1,44 @@
 from flask_restful import Resource
-from flask import request
-
-POEMAS = {
-    1:{'titulo':'Poema A','autor':'Juan_123'},     #Autor seria id/nombre del usuario
-    2:{'titulo':'Poema B','autor':'Paco'},
-    3:{'titulo':'Poema C','autor':'Guarnold'}
-}
-
+from flask import jsonify, request
+from .. import db
+from main.models import PoemaModel
 
 class Poema(Resource):
-    def get(self, poema_id):        #Obtener
-        if int(poema_id) in POEMAS:
-            return POEMAS[int(poema_id)]
-        return 'El poema con id:(',poema_id,') es erroneo:', 404
 
-    def put(self, poema_id):        #Editar
-        if int(poema_id) in POEMAS:
-            poema = POEMAS[int(poema_id)]  
-            data = request.get_json()
-            poema.update(data)
-            return poema, 201
-        return 'El poema con id:(',poema_id,') es erroneo:', 404
+    def get(self, poema_id):
+        poema = db.session.query(PoemaModel).get_or_404(poema_id)
+        return poema.to_json()
+
+    def put(self, poema_id):
+        poema = db.session.query(PoemaModel).get_or_404(poema_id)
+        data = request.get_json().items()
+        for clave,valor in data:
+            setattr(poema,clave,valor)
+        db.session.add(poema)
+        db.session.commit()
+        return poema.to_json(),201
     
-    def delete(self, poema_id):     #Eliminar
-        if int(poema_id) in POEMAS:
-            del POEMAS[int(poema_id)]
-            return '', 204
-        return 'El poema con id:(',poema_id,') es erroneo:', 404
+    def delete(self, poema_id):
+        poema = db.session.query(PoemaModel).get_or_404(poema_id)
+        db.session.delete(poema)
+        db.session.commit()
+        return '',204
 
 
 class Poemas(Resource):
-    def get(self):      #Obtener
-        return POEMAS
+    def get(self):
+        poemas = db.session.query(PoemaModel).all()
+        return jsonify([poema.to_json() for poema in poemas])
+        
+    """
+        lista_poema = []
+        for poema in poemas:
+            lista_poema.append(poema.to_json())
+        return jsonify(lista_poema)
+    """
 
-    def post(self):     #Insertar
-        poema = request.get_json()
-        poema_id = int(max(POEMAS.keys())) + 1
-        POEMAS[poema_id] = poema
-        return POEMAS[poema_id], 201
+    def post(self):
+        poema = PoemaModel.from_json(request.get_json())
+        db.session.add(poema)
+        db.session.commit()
+        return poema.to_json(), 201

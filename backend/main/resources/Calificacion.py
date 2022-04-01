@@ -1,34 +1,48 @@
 from flask_restful import Resource
-from flask import request
-
-
-CALIFICACIONES = {
-    1: {"usuario_id": 2, "poema_id":2, "puntaje": 5, "comentario":"GOOOD"},
-    2: {"usuario_id": 8, "poema_id":3, "puntaje": 4, "comentario":"Muy bueno"},
-    3: {"usuario_id": 2, "poema_id":5, "puntaje": 1, "comentario":"Muy malo"},
-}
+from flask import request, jsonify
+from .. import db
+from main.models import CalificacionModel
 
 
 class Calificacion(Resource):
-    def get(self,calificacion_id):
-        if int(calificacion_id) in CALIFICACIONES:
-            return CALIFICACIONES[int(calificacion_id)]
-        return '', 404
-
-
-    def delete(self,calificacion_id):
-        if int(calificacion_id) in CALIFICACIONES:
-            del CALIFICACIONES[int(calificacion_id)]
-            return '', 204
-        return '', 404
+    
+    def get(self, cal_id):
+        calificacion = db.session.query(CalificacionModel).get_or_404(cal_id)
+        return calificacion.to_json()
+    
+    def delete(self, cal_id):
+        calificacion = db.session.query(CalificacionModel).get_or_404(cal_id)
+        db.session.delete(calificacion)
+        db.session.commit()
+        return calificacion.to_json(), 204
+    
+    def put(self, cal_id):
+        calificacion = db.session.query(CalificacionModel).get_or_404(cal_id)
+        data = request.get_json().items()
+        for clave, valor in data:
+            setattr(calificacion, clave, valor)
+        db.session.add(calificacion)
+        db.session.commit()
+        return calificacion.to_json() , 201
 
 
 class Calificaciones(Resource):
+        
     def get(self):
-        return CALIFICACIONES
+        calificaciones = db.session.query(CalificacionModel).all()
+        return jsonify([calificacion.to_json() for calificacion in calificaciones])
 
+    """
+            lista_cal = []
+            for calificacion in calificaciones:
+                lista_cal.append(calificacion.to_json())
+            return jsonify(list_acal)
+    """
+
+
+    
     def post(self):
-        calificacion = request.get_json()
-        calificacion_id = int(max(CALIFICACIONES.keys())) + 1
-        CALIFICACIONES[calificacion_id] = calificacion
-        return CALIFICACIONES[calificacion_id], 201
+        calificacion = CalificacionModel.from_json(request.get_json())
+        db.session.add(calificacion)
+        db.session.commit()
+        return calificacion.to_json(), 201

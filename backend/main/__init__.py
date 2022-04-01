@@ -28,7 +28,7 @@ def create_app():
 	api.add_resource(resources.UsuarioResource, '/usuario/<usuario_id>')
 	api.add_resource(resources.UsuariosResource, '/usuarios')
 
-	api.add_resource(resources.CalificacionResource, '/calificacion/<calificacion_id>')
+	api.add_resource(resources.CalificacionResource, '/calificacion/<cal_id>')
 	api.add_resource(resources.CalificacionesResource, '/calificaciones')
 
 	api.init_app(app)

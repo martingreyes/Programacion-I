@@ -7,14 +7,13 @@ class Usuario(db.Model):
     contra = db.Column(db.String(100),nullable=False)
 
     def __repr__(self) -> str:
-        return '<Usuario: %r >' % (self.nombre)
+        return '<Usuario: %r >' % (self.alias)
 
     def to_json(self):
         json_str = {
             'usuario_id':self.usuario_id,
             'alias':self.alias,
             'correo':self.correo,
-
         }
         return json_str
 

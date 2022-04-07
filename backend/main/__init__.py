@@ -1,4 +1,3 @@
-from codecs import getencoder
 import os
 from flask import Flask
 from dotenv import load_dotenv

@@ -42,3 +42,8 @@ class Poemas(Resource):
         db.session.add(poema)
         db.session.commit()
         return poema.to_json(), 201
+
+class PoemasCalificacion(Resource):
+    def get(self,poema_id):
+        poema = db.session.query(PoemaModel).get_or_404(poema_id)
+        return poema.to_json_poema_calificacion()

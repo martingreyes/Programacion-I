@@ -44,3 +44,13 @@ class Usuarios(Resource):
         db.session.add(usuario)
         db.session.commit()
         return usuario.to_json(), 201
+
+class UsuarioPoema(Resource):
+    def get(self,usuario_id):
+        usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
+        return usuario.to_json_usuario_poema()
+
+class UsuarioCalificacion(Resource):
+    def get(self,usuario_id):
+        usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
+        return usuario.to_json_usuario_calificacion()

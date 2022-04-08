@@ -22,13 +22,18 @@ def create_app():
 	import main.resources as resources
 
 	api.add_resource(resources.PoemaResource, '/poema/<poema_id>')
+	api.add_resource(resources.PoemaCalificacionResource, '/poema-calificacion/<poema_id>')
 	api.add_resource(resources.PoemasResource, '/poemas')
 	
 	api.add_resource(resources.UsuarioResource, '/usuario/<usuario_id>')
+	api.add_resource(resources.UsuarioPoemaResource, '/usuario-poema/<usuario_id>')
+	api.add_resource(resources.UsuarioCalificacionResource, '/usuario-calificacion/<usuario_id>')
 	api.add_resource(resources.UsuariosResource, '/usuarios')
+
 
 	api.add_resource(resources.CalificacionResource, '/calificacion/<cal_id>')
 	api.add_resource(resources.CalificacionesResource, '/calificaciones')
+	
 
 	api.init_app(app)
 	return app

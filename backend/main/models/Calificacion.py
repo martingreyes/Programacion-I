@@ -1,23 +1,54 @@
 from .. import db
+from . import UsuarioModel
+from . import PoemaModel
+
 
 class Calificacion(db.Model):
     cal_id =db.Column(db.Integer,primary_key=True)
-    usuario_id = db.Column(db.Integer, nullable=False)
-    poema_id = db.Column(db.Integer,nullable=False)
     puntaje = db.Column(db.Integer,nullable=False)
     comentario = db.Column(db.String(300),nullable=False)
+    
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.usuario_id'), nullable=False)
+    usuario = db.relationship('Usuario',back_populates="calificaciones",uselist=False,single_parent=True)
+
+    poema_id = db.Column(db.Integer, db.ForeignKey('poema.poema_id'), nullable=False)
+    poema = db.relationship('Poema',back_populates="calificaciones",uselist=False,single_parent=True)
 
     def __repr__(self) -> str:
         return '<Calificacion: %r  >' % (self.cal_id)
 
     def to_json(self):
+        self.usuario = db.session.query(UsuarioModel).get_or_404(self.usuario_id)
+        self.poema = db.session.query(PoemaModel).get_or_404(self.poema_id)
         json_str = {
             'cal_id':self.cal_id,
-            'usuario_id':self.usuario_id,
-            'poema_id':self.poema_id,
             'puntaje':self.puntaje,
-            'comentario':self.comentario
+            'comentario':self.comentario,
+            'usuario': self.usuario.to_json_corto(),
+            'poema': self.poema.to_json_poema(),
+        }
+        return json_str
 
+
+    def to_json_corto(self):
+        self.usuario = db.session.query(UsuarioModel).get_or_404(self.usuario_id)
+        self.poema = db.session.query(PoemaModel).get_or_404(self.poema_id)
+        json_str = {
+            'cal_id':self.cal_id,
+            'puntaje':self.puntaje,
+            'comentario':self.comentario,
+            'poema':self.poema_id
+        }
+        return json_str
+
+
+    def to_json_corto_poema(self):
+        self.usuario = db.session.query(UsuarioModel).get_or_404(self.usuario_id)
+        json_str = {
+            'cal_id':self.cal_id,
+            'puntaje':self.puntaje,
+            'comentario':self.comentario,
+            'usuario_id':self.usuario_id,
         }
         return json_str
 

@@ -7,7 +7,7 @@ class Poema(db.Model):
     poema_id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(100),nullable=False)
     contenido = db.Column(db.String(1000),nullable=False)
-    fecha = db.Column(db.DateTime, nullable=False,default=datetime.now())
+    fecha = db.Column(db.DateTime, nullable=False)
 
     calificaciones = db.relationship("Calificacion", back_populates="poema",cascade="all, delete-orphan")
 
@@ -53,10 +53,12 @@ class Poema(db.Model):
         titulo = json_str.get('titulo')
         contenido = json_str.get('contenido')
         autor_id = json_str.get('autor_id')
+        fecha =  datetime.now()
 
         return Poema(poema_id=poema_id,
                        titulo=titulo,
                        contenido=contenido,
                        autor_id=autor_id,
+                       fecha=fecha
                        )
         

@@ -14,7 +14,7 @@ class Calificacion(Resource):
         calificacion = db.session.query(CalificacionModel).get_or_404(cal_id)
         db.session.delete(calificacion)
         db.session.commit()
-        return calificacion.to_json(), 204
+        return '', 204
     
     def put(self, cal_id):
         calificacion = db.session.query(CalificacionModel).get_or_404(cal_id)

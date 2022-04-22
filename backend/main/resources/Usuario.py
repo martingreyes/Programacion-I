@@ -1,7 +1,8 @@
 from flask_restful import Resource
 from flask import jsonify, request, session
 from .. import db
-from main.models import UsuarioModel
+from main.models import UsuarioModel, PoemaModel, CalificacionModel
+from sqlalchemy import func 
 
 class Usuario(Resource):
 
@@ -27,16 +28,45 @@ class Usuario(Resource):
 
 class Usuarios(Resource):
     def get(self):
-        usuarios = db.session.query(UsuarioModel).all()
-        return jsonify([usuario.to_json() for usuario in usuarios])
-        
-    '''
-        lista_usuarios = []
-        for usuario in usuarios:
-            lista_usuarios.append(usuario.to_json())
-        return jsonify(lista_usuarios)
-    '''
+        pagina = 1
+        por_pagina = 5
+        usuarios = db.session.query(UsuarioModel)
+        if request.get_json():
+            filtros = request.get_json().items()
+            for clave, valor in filtros:
+                if clave == "pagina":
+                    pagina = int(valor)
+                
+                if clave == "por_pagina":
+                    por_pagina = int(valor)
+                
+                if clave == "alias":
+                    usuarios = usuarios.filter(UsuarioModel.alias.like("%"+valor+"%"))
+                
+                if clave == "poemas":               #Usuarios que tengan 'valor' o mas poemas.  
+                    usuarios=usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).having(func.count(PoemaModel.poema_id) >= valor)
+                if clave == "calificaciones":       #Usuarios que tengan 'valor' o mas calificaciones.  
+                    usuarios=usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.usuario_id).having(func.count(CalificacionModel.cal_id) >= valor)
 
+                if clave == "ordenar_por":          #Si no se usa, ordena por id CREO.
+                    if valor == "alias[desc]":      #Ordena por alias descendencia. 
+                        usuarios = usuarios.order_by(UsuarioModel.alias.desc())
+                    elif valor == "alias":
+                        usuarios = usuarios.order_by(UsuarioModel.alias)
+            
+                    # elif valor == 'poemas[desc]':   #Por cantidad de poemas(asc,desc). 
+                    #     usuarios = usuarios.order_by()
+                    # elif valor == "poemas":
+                    #     usuarios = usuarios.order_by(PoemaModel.titulo)
+
+
+        usuarios = usuarios.paginate(pagina, por_pagina, True, 20)
+        return jsonify({
+                'usuarios': [usuario.to_json() for usuario in usuarios.items],
+                'total de usuarios': usuarios.total, 
+                'Total de paginas': usuarios.pages,
+                'Pagina actual': pagina, 
+            })
 
 
     def post(self):
@@ -54,3 +84,5 @@ class UsuarioCalificacion(Resource):
     def get(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
         return usuario.to_json_usuario_calificacion()
+
+        

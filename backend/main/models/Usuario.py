@@ -1,4 +1,5 @@
 from email.policy import default
+from typing import _ProtocolMeta
 from .. import db
 
 class Usuario(db.Model):
@@ -12,10 +13,22 @@ class Usuario(db.Model):
 
     poemas = db.relationship("Poema", back_populates="autor",cascade="all, delete-orphan")
 
-
     def __repr__(self) -> str:
         return '<Usuario: %r >' % (self.alias)
 
+    def to_json(self):
+        poemas = [poema.to_json_poema() for poema in self.poemas]
+        calificaciones =[calificacion.to_json_corto() for calificacion in self.calificaciones]
+        json_str = {
+            'usuario_id':self.usuario_id,
+            'alias':self.alias,
+            'cantidad_poemas': len(poemas),
+            'cantidad_calificacion': len(calificaciones),
+        }
+        return json_str
+
+
+    """
     def to_json(self):                             #get 1
         json_str = {
             'usuario_id':self.usuario_id,
@@ -24,6 +37,8 @@ class Usuario(db.Model):
             'admin':self.admin,
         }
         return json_str
+    """
+
 
     def to_json_corto(self):
         json_str = {

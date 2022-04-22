@@ -8,10 +8,9 @@ class Poema(db.Model):
     titulo = db.Column(db.String(100),nullable=False)
     contenido = db.Column(db.String(1000),nullable=False)
     fecha = db.Column(db.DateTime, nullable=False)
-
-    calificaciones = db.relationship("Calificacion", back_populates="poema",cascade="all, delete-orphan")
-
     autor_id = db.Column(db.Integer, db.ForeignKey('usuario.usuario_id'), nullable=False)
+    
+    calificaciones = db.relationship("Calificacion", back_populates="poema",cascade="all, delete-orphan")
     autor = db.relationship('Usuario',back_populates="poemas",uselist=False,single_parent=True)
 
 

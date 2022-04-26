@@ -66,10 +66,12 @@ class Poemas(Resource):
 
                 #TODO
                 if clave == "ordenar_por":          #Si no se usa, ordena por id CREO.
-                    # if valor == "calificacion[desc]":      #Ordena por calificacion descendencia. 
-                    #     poemas = poemas.order_by(PoemaModel.calificacion.desc())
-                    # elif valor == "calificaion":
-                    #     poemas = poemas.order_by(PoemaModel.calificacion)
+                    if valor == "calificacion[desc]":      #Ordena por calificacion descendencia. 
+                        poemas = poemas.order_by(func.count(PoemaModel.calificacion).desc())
+                    elif valor == "calificaion":
+                        poemas = poemas.order_by(func.count(PoemaModel.calificacion))
+
+                        #professors =professors.order_by(func.count(PoemaModel.id).desc())
                     
                     if valor == "fecha[desc]":      #Ordena por fecha descendencia. 
                         poemas = poemas.order_by(PoemaModel.fecha.desc())

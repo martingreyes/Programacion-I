@@ -1,4 +1,5 @@
 from ast import alias
+from itertools import groupby
 from flask_restful import Resource
 from flask import jsonify, request
 from .. import db
@@ -42,43 +43,31 @@ class Poemas(Resource):
                 if clave == "por_pagina":
                     por_pagina = int(valor)
                 
-                if clave == "titulo":           #SI ANDA
+                if clave == "titulo":
                     poemas = poemas.filter(PoemaModel.titulo.like("%"+valor+"%"))
 
-                if clave == 'autor':            #Los poemas que tienen el 'valor' autor.
-                    poemas = poemas.join(UsuarioModel).filter_by(alias = valor)
-                    
-                    """
-                        TODOS andan:
-                        poemas = poemas.join(PoemaModel.autor).group_by(PoemaModel.autor).having(UsuarioModel.alias == valor)
-                        poemas = poemas.join(PoemaModel.autor).group_by(PoemaModel.autor).filter_by(alias = valor)
-                        poemas = poemas.join(UsuarioModel).group_by(PoemaModel.autor).filter_by(alias = valor)
-                    """
+                if clave == 'autor':                        #Los poemas que tienen el 'valor' autor.
+                    poemas = poemas.outerjoin(PoemaModel.autor).filter(UsuarioModel.alias.like("%"+valor+"%"))         
+
+                if clave == "calificacion":
+                    poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.autor_id).having(func.avg(CalificacionModel.puntaje) == valor)
                 
-                #TODO          
-                # if clave == "calificacion":     #
-                #     poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.usuario_id).having(func.count(CalificacionModel.cal_id) >= valor)
-                
-                #TODO
                 if clave == "fecha":
-                #     poemas = poemas.outerjoin(PoemaModel.fecha).group_by(PoemaModel.poema_id).having(func.count(PoemaModel.poema_id) == valor)
-                    poemas = poemas.filter(fecha = valor)
+                    poemas = poemas.filter(PoemaModel.fecha.like("%"+valor+"%"))
 
-                #TODO
-                if clave == "ordenar_por":          #Si no se usa, ordena por id CREO.
-                    if valor == "calificacion[desc]":      #Ordena por calificacion descendencia. 
-                        poemas = poemas.order_by(func.count(PoemaModel.calificacion).desc())
-                    elif valor == "calificaion":
-                        poemas = poemas.order_by(func.count(PoemaModel.calificacion))
 
-                        #professors =professors.order_by(func.count(PoemaModel.id).desc())
-                    
-                    if valor == "fecha[desc]":      #Ordena por fecha descendencia. 
+                if clave == "ordenar_por":                  #Si no se usa, ordena por id
+                    if valor == "calificacion[desc]":       #Ordena por calificacion descendencia. 
+                        poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.poema_id).order_by(func.count(CalificacionModel.poema_id).desc())
+                    elif valor == "calificacion":
+                        poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.poema_id).order_by(func.count(CalificacionModel.poema_id))
+
+                    elif valor == "fecha[desc]":            #Ordena por fecha descendencia. 
                         poemas = poemas.order_by(PoemaModel.fecha.desc())
                     elif valor == "fecha":
                         poemas = poemas.order_by(PoemaModel.fecha)
                     
-                    if valor == "titulo[desc]":      #Ordena por titulo descendencia. 
+                    elif valor == "titulo[desc]":           #Ordena por titulo descendencia. 
                         poemas = poemas.order_by(PoemaModel.titulo.desc())
                     elif valor == "titulo":
                         poemas = poemas.order_by(PoemaModel.titulo)
@@ -91,7 +80,6 @@ class Poemas(Resource):
                 'Total de paginas': poemas.pages,
                 'Pagina actual': pagina, 
             })
-
 
 
     def post(self):

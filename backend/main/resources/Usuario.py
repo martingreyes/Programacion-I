@@ -56,10 +56,10 @@ class Usuarios(Resource):
                         usuarios = usuarios.order_by(UsuarioModel.alias)
                                 
                     elif valor == 'poemas[desc]':   #Por cantidad de poemas(asc,desc). 
-                        usuarios = usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.usuario_id).order_by(func.count(CalificacionModel.usuario_id).desc())
-                    elif valor == "poemas":
-                        usuarios = usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.usuario_id).order_by(func.count(CalificacionModel.usuario_id))
-
+                        usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id).desc())
+                    elif valor == "poemas":                        
+                        usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id))
+                        
 
 
         usuarios = usuarios.paginate(pagina, por_pagina, True, 20)

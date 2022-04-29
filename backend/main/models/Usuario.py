@@ -13,10 +13,6 @@ class Usuario(db.Model):
 
     poemas = db.relationship("Poema", back_populates="autor",cascade="all, delete-orphan")
 
-
-
-
-
     @property
     def contra_plana(self):
         raise AttributeError("No  permitido.")
@@ -67,6 +63,18 @@ class Usuario(db.Model):
             'usuario_id':self.usuario_id,
             'alias':self.alias,
             'calificaciones': calificaciones
+        }
+        return json_str
+
+    def to_json_admin(self):
+        poemas = [poema.to_json_poema() for poema in self.poemas]
+        calificaciones =[calificacion.to_json_corto() for calificacion in self.calificaciones]
+        json_str = {
+            'usuario_id':self.usuario_id,
+            'alias':self.alias,
+            "correo": self.correo,
+            'cantidad_poemas': len(poemas),
+            'cantidad_calificacion': len(calificaciones),
         }
         return json_str
 

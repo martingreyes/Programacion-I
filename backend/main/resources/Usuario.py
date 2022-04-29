@@ -4,7 +4,7 @@ from .. import db
 from main.models import UsuarioModel, PoemaModel, CalificacionModel
 from sqlalchemy import func 
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from main.auth.decorators import admin_required
+from main.auth.decorators import admin_required, mismo_usuario
 
 
 class Usuario(Resource):
@@ -14,22 +14,24 @@ class Usuario(Resource):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
         return usuario.to_json()
 
+
     @admin_required
     def delete(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
         db.session.delete(usuario)
         db.session.commit()
-        return '',204
+        return '', 204
         
-    @jwt_required()
+    # @admin_required
+    @mismo_usuario
     def put(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
         data = request.get_json().items()
-        for clave,valor in data:
+        for clave, valor in data:
             setattr(usuario,clave,valor)
         db.session.add(usuario)
         db.session.commit()
-        return usuario.to_json(),201
+        return usuario.to_json(), 201
 
 
 class Usuarios(Resource):
@@ -76,7 +78,7 @@ class Usuarios(Resource):
                 'Pagina actual': pagina, 
             })
 
-    # @admin_required
+    @admin_required
     def post(self):
         usuario = UsuarioModel.from_json(request.get_json())
         db.session.add(usuario)

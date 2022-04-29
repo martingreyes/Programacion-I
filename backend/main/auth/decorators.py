@@ -11,12 +11,24 @@ def admin_required(fn):
         if claims['admin'] == 1 :
             return fn(*args, **kwargs)
         else:
-            return 'Only admins can access', 403
+            return 'Acceso unico para administradores', 403
     return wrapper
 
 @jwt.user_identity_loader
 def user_identity_lookup(usuario):
     return usuario.usuario_id
+
+def mismo_usuario(fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        verify_jwt_in_request()
+        claims = get_jwt()
+        if claims['usuario_id'] == 9:
+            return fn(*args, **kwargs)
+        else:
+            return "Solamente podes modificar tus datos", 403
+    return wrapper
+
 
 #Define que atributos se guardarán dentro del token
 @jwt.additional_claims_loader

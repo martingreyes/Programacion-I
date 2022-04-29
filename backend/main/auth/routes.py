@@ -3,9 +3,7 @@ from .. import db
 from main.models import UsuarioModel
 from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 
-print("++++++++++++++++++++++++++++++++++++")
 auth = Blueprint('auth', __name__, url_prefix='/auth')
-print("+++++++++++++++++++++++++++++++++++++++++++++++++")
 
 @auth.route('/login', methods=['POST'])
 def login():

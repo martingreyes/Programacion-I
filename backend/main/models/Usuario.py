@@ -1,7 +1,3 @@
-from email.policy import default
-from typing import _ProtocolMeta
-
-# from pyrfc3339 import generate 
 from .. import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -19,7 +15,7 @@ class Usuario(db.Model):
 
     @property
     def contra_plana(self):
-        raise AttributeError ("No  permitido.")
+        raise AttributeError("No  permitido.")
 
     @contra_plana.setter
     def contra_plana(self, c):

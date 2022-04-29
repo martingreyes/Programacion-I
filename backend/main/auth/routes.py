@@ -10,7 +10,7 @@ print("+++++++++++++++++++++++++++++++++++++++++++++++++")
 @auth.route('/login', methods=['POST'])
 def login():
     usuario = db.session.query(UsuarioModel).filter(UsuarioModel.correo == request.get_json().get("correo")).first_or_404()
-    if usuario.validate_pass(request.get_json().get("password")):
+    if usuario.validate_pass(request.get_json().get("contra")):
         access_token = create_access_token(identity=usuario)
         data = {
             'id': str(usuario.usuario_id),

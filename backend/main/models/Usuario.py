@@ -1,6 +1,9 @@
 from email.policy import default
 from typing import _ProtocolMeta
+
+# from pyrfc3339 import generate 
 from .. import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class Usuario(db.Model):
     usuario_id = db.Column(db.Integer, primary_key=True)
@@ -13,7 +16,20 @@ class Usuario(db.Model):
 
     poemas = db.relationship("Poema", back_populates="autor",cascade="all, delete-orphan")
 
-    def __repr__(self) -> str:
+
+    @property
+    def contra_plana(self):
+        raise AttributeError ("No  permitido.")
+
+    @contra_plana.setter
+    def contra_plana(self, c):
+        self.contra = generate_password_hash(c)
+
+    def validacion_contra(self, c):
+        return check_password_hash(self.contra, c)
+
+
+    def __repr__(self):
         return '<Usuario: %r >' % (self.alias)
 
     def to_json(self):
@@ -26,19 +42,6 @@ class Usuario(db.Model):
             'cantidad_calificacion': len(calificaciones),
         }
         return json_str
-
-
-    """
-    def to_json(self):                             #get 1
-        json_str = {
-            'usuario_id':self.usuario_id,
-            'alias':self.alias,
-            'correo':self.correo,
-            'admin':self.admin,
-        }
-        return json_str
-    """
-
 
     def to_json_corto(self):
         json_str = {
@@ -79,7 +82,7 @@ class Usuario(db.Model):
         return Usuario(usuario_id=usuario_id,
                        alias=alias,
                        correo=correo,
-                       contra=contra,
+                       contra_plana=contra,
                        admin=admin
                        )
         

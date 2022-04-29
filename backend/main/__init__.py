@@ -3,9 +3,13 @@ from flask import Flask
 from dotenv import load_dotenv
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager
+
 
 api = Api()
 db = SQLAlchemy()
+jwt = JWTManager()
+
 
 def create_app():
 	app = Flask(__name__)
@@ -15,7 +19,7 @@ def create_app():
 		os.mknod(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME'))
 
 	app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-	app.config[ 'SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')
+	app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')
 
 	db.init_app(app)
 
@@ -30,11 +34,16 @@ def create_app():
 	api.add_resource(resources.UsuarioCalificacionResource, '/usuario-calificacion/<usuario_id>')
 	api.add_resource(resources.UsuariosResource, '/usuarios')
 
-
 	api.add_resource(resources.CalificacionResource, '/calificacion/<cal_id>')
 	api.add_resource(resources.CalificacionesResource, '/calificaciones')
 	
-
 	api.init_app(app)
+	
+	app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+	app.config['JWT_ACCESS_TOKEN_EXPIRES'] = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES'))
+
+	jwt.init_app(app)
+	
+
 	return app
 

@@ -1,6 +1,5 @@
-from click import option
 from flask_restful import Resource
-from flask import jsonify, request, session
+from flask import request, jsonify, session
 from .. import db
 from main.models import UsuarioModel, PoemaModel, CalificacionModel
 from sqlalchemy import func 
@@ -22,7 +21,7 @@ class Usuario(Resource):
         db.session.commit()
         return '',204
         
-    @jwt_required
+    @jwt_required()
     def put(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
         data = request.get_json().items()

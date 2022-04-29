@@ -16,14 +16,14 @@ def admin_required(fn):
 
 @jwt.user_identity_loader
 def user_identity_lookup(usuario):
-    return usuario.id
+    return usuario.usuario_id
 
 #Define que atributos se guardarán dentro del token
 @jwt.additional_claims_loader
 def add_claims_to_access_token(usuario):
     claims = {
-        'role': usuario.admin,
-        'id': usuario.usuario_id,
+        'admin': usuario.admin,
+        'usuario_id': usuario.usuario_id,
         'correo': usuario.correo
     }
     return claims

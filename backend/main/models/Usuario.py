@@ -1,6 +1,7 @@
 from .. import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
+
 class Usuario(db.Model):
     usuario_id = db.Column(db.Integer, primary_key=True)
     alias = db.Column(db.String(100),nullable=False)
@@ -11,6 +12,9 @@ class Usuario(db.Model):
     calificaciones = db.relationship("Calificacion", back_populates="usuario",cascade="all, delete-orphan")
 
     poemas = db.relationship("Poema", back_populates="autor",cascade="all, delete-orphan")
+
+
+
 
 
     @property
@@ -79,6 +83,6 @@ class Usuario(db.Model):
                        alias=alias,
                        correo=correo,
                        contra_plana=contra,
-                       admin=admin
+                       admin=admin,
                        )
         

@@ -2,43 +2,59 @@ from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
 from main.models import CalificacionModel
+from main.auth.decorators import admin_required  
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 
 
 class Calificacion(Resource):
     
+    @jwt_required(optional=True)
     def get(self, cal_id):
         calificacion = db.session.query(CalificacionModel).get_or_404(cal_id)
         return calificacion.to_json()
     
+    @admin_required
     def delete(self, cal_id):
         calificacion = db.session.query(CalificacionModel).get_or_404(cal_id)
         db.session.delete(calificacion)
         db.session.commit()
-        return '', 204
+        return 'Calificacion eliminada.', 204
     
+    @jwt_required()
     def put(self, cal_id):
         calificacion = db.session.query(CalificacionModel).get_or_404(cal_id)
         data = request.get_json().items()
-        for clave, valor in data:
-            setattr(calificacion, clave, valor)
-        db.session.add(calificacion)
-        db.session.commit()
-        return calificacion.to_json() , 201
+        token_id = get_jwt_identity()
+        claims = get_jwt()
+        if token_id == calificacion.usuario_id or claims["admin"]:
+            for clave, valor in data:
+                setattr(calificacion, clave, valor)
+            db.session.add(calificacion)
+            db.session.commit()
+            return calificacion.to_json() , 201
+        else:
+            return "Error, debe loguearse", 403
 
 
 class Calificaciones(Resource):
-        
+
+    @admin_required
     def get(self):
         calificaciones = db.session.query(CalificacionModel).all()
         return jsonify([calificacion.to_json() for calificacion in calificaciones])
 
-  # ----------- Nuevo ---------------  
+
     @jwt_required()
+    #El mismo usario no puede hacer 2 calificaciones a un mismo poema. 
     def post(self):
-        calificacion = CalificacionModel.from_json(request.get_json())
-        usuario_id = get_jwt_identity()
-        calificacion.usuario_id = usuario_id 
-        db.session.add(calificacion)
+        calificacion_nueva = CalificacionModel.from_json(request.get_json())
+        calificacion_nueva.usuario_id = get_jwt_identity()
+
+        calificaciones = db.session.query(CalificacionModel).all()
+        for calificacion in calificaciones:
+            if calificacion.usuario_id == get_jwt_identity() and calificacion.poema_id == calificacion_nueva.poema_id :
+                return "Ya comentaste este poema",403
+
+        db.session.add(calificacion_nueva)
         db.session.commit()
-        return calificacion.to_json(), 201
+        return calificacion_nueva.to_json(), 201

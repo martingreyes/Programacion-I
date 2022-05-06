@@ -33,6 +33,8 @@ class Poema(Resource):
                 setattr(poema,clave,valor)
             db.session.add(poema)
             db.session.commit()
+        else:
+            return "Error, debe loguearse", 403
         if claims["admin"]:
             return poema.to_json(admin=True), 201
         else:
@@ -40,12 +42,11 @@ class Poema(Resource):
 
     
 
-    #NUEVO++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @jwt_required
     #Hay que usar el id del usuario en el token
     def delete(self, poema_id):
-        usuario_id = get_jwt_identity()              #Extrae el id del token
         poema = db.session.query(PoemaModel).get_or_404(poema_id)
+        usuario_id = get_jwt_identity()              #Extrae el id del token
         claims = get_jwt()
         if not claims:
             claims['admin'] = 1
@@ -109,19 +110,18 @@ class Poemas(Resource):
                         elif valor == "titulo":
                             poemas = poemas.order_by(PoemaModel.titulo)
 
-                else:                   #NUEVO+++++++++++++++++++++++++++++++++++++++++++++++++++++
+                else:                   
                     poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.poema_id).order_by(PoemaModel.fecha, func.count(CalificacionModel.puntaje))
 
 
         poemas = poemas.paginate(pagina, por_pagina, True, 20)
         return jsonify({
-                'usuarios': [poema.to_json_poema() for poema in poemas.items],
+                'usuarios': [poema.to_json() for poema in poemas.items],
                 'Total de poema': poemas.total, 
                 'Total de paginas': poemas.pages,
                 'Pagina actual': pagina, 
             })
 
-    #NUEVO++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @jwt_required
     def post(self):
         poema = PoemaModel.from_json(request.get_json())

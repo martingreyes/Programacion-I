@@ -39,13 +39,6 @@ class Poema(db.Model):
             json_str["poema_id"]=self.poema_id
         return json_str
 
-    def to_json_poema(self):
-        self.autor = db.session.query(UsuarioModel).get_or_404(self.autor_id)
-        json_str = {
-            'poema_id':self.poema_id,
-            'titulo':self.titulo,
-        }
-        return json_str
 
 
     def to_json_poema_calificacion(self):

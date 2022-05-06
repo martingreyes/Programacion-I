@@ -17,15 +17,26 @@ class Poema(db.Model):
     def __repr__(self) -> str:
         return '<Poema: %r %r %r>' % (self.poema_id, self.titulo, self.contenido)
 
-    def to_json(self):
+    def to_json(self,admin=False):
         self.autor = db.session.query(UsuarioModel).get_or_404(self.autor_id)
+        calificaciones = [calificacion.to_json_corto_poema() for calificacion in self.calificaciones]
+        puntaje_total = 0 
+        if len(calificaciones) > 0:
+            for calificacion in calificaciones:
+                puntaje_total += calificacion["puntaje"]
+            promedio = puntaje_total / len(calificaciones)
+        else: 
+            promedio = "No hay calificaciones"
         json_str = {
-            'poema_id':self.poema_id,
             'titulo':self.titulo,
             'contenido':self.contenido,
-            'autor': self.autor.to_json_corto(),
+            'autor': self.autor.alias,
             'fecha': self.fecha.strftime("%Y-%m-%d %H:%M:%S"),
+            'promedio calificaciones': promedio
         }
+
+        if admin:
+            json_str["poema_id"]=self.poema_id
         return json_str
 
     def to_json_poema(self):
@@ -36,10 +47,10 @@ class Poema(db.Model):
         }
         return json_str
 
+
     def to_json_poema_calificacion(self):
         calificaciones = [calificacion.to_json_corto_poema() for calificacion in self.calificaciones]
         json_str = {
-            'poema_id':self.poema_id,
             'titulo':self.titulo,
             'calificaciones':calificaciones
         }

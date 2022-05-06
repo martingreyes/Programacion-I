@@ -3,16 +3,24 @@ from flask import request, jsonify, session
 from .. import db
 from main.models import UsuarioModel, PoemaModel, CalificacionModel
 from sqlalchemy import func 
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from main.auth.decorators import admin_required, mismo_usuario
+from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
+from main.auth.decorators import admin_required  
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class Usuario(Resource):
 
+    #NUEVO++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @jwt_required(optional=True)
     def get(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
-        return usuario.to_json()
+        token_id = get_jwt_identity()
+        claims = get_jwt()
+        if token_id == None:
+            return usuario.to_json()
+        elif token_id == usuario.usuario_id or claims["admin"]:
+            return usuario.to_json(admin=True)
+            
 
 
     @admin_required
@@ -20,25 +28,36 @@ class Usuario(Resource):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
         db.session.delete(usuario)
         db.session.commit()
-        return '', 204
+        return 'Usuario eliminado', 204
         
-    # @admin_required
-    @mismo_usuario
+    #Modificar
+    @jwt_required()
     def put(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
         data = request.get_json().items()
-        for clave, valor in data:
-            setattr(usuario,clave,valor)
-        db.session.add(usuario)
-        db.session.commit()
-        return usuario.to_json(), 201
+        token_id = get_jwt_identity()
+        claims = get_jwt()
+        if token_id == usuario.usuario_id or claims["admin"]:
+            for clave, valor in data:
+                if clave == "contra":
+                    valor = generate_password_hash(valor)   # Lo deberia hacer UsuarioModel
+                setattr(usuario,clave,valor)
+            db.session.add(usuario)
+            db.session.commit()
+            return usuario.to_json(), 201
+        else:
+            return 'No permitido', 405
 
 
 class Usuarios(Resource):
+    
+    @jwt_required(optional=True)
     def get(self):
         pagina = 1
         por_pagina = 5
         usuarios = db.session.query(UsuarioModel)
+        token_id = get_jwt_identity()
+        claims = get_jwt()
         if request.get_json():
             filtros = request.get_json().items()
             for clave, valor in filtros:
@@ -69,14 +88,23 @@ class Usuarios(Resource):
                         usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id))
                         
 
-
         usuarios = usuarios.paginate(pagina, por_pagina, True, 20)
-        return jsonify({
-                'usuarios': [usuario.to_json() for usuario in usuarios.items],
-                'total de usuarios': usuarios.total, 
-                'Total de paginas': usuarios.pages,
-                'Pagina actual': pagina, 
-            })
+        if token_id == None or not claims["admin"]:
+            return jsonify({
+                    'usuarios': [usuario.to_json() for usuario in usuarios.items],
+                    'total de usuarios': usuarios.total, 
+                    'Total de paginas': usuarios.pages,
+                    'Pagina actual': pagina, 
+                })
+
+        elif claims["admin"]:
+            return jsonify({
+                    'usuarios': [usuario.to_json(admin=True) for usuario in usuarios.items],
+                    'total de usuarios': usuarios.total, 
+                    'Total de paginas': usuarios.pages,
+                    'Pagina actual': pagina, 
+                })
+
 
     @admin_required
     def post(self):
@@ -86,11 +114,14 @@ class Usuarios(Resource):
         return usuario.to_json(), 201
 
 class UsuarioPoema(Resource):
+
+    @jwt_required(optional=True)
     def get(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
         return usuario.to_json_usuario_poema()
 
 class UsuarioCalificacion(Resource):
+    @jwt_required(optional=True)
     def get(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
         return usuario.to_json_usuario_calificacion()

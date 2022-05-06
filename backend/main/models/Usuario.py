@@ -1,7 +1,6 @@
 from .. import db
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 class Usuario(db.Model):
     usuario_id = db.Column(db.Integer, primary_key=True)
     alias = db.Column(db.String(100),nullable=False)
@@ -24,19 +23,22 @@ class Usuario(db.Model):
     def validacion_contra(self, c):
         return check_password_hash(self.contra, c)
 
-
     def __repr__(self):
         return '<Usuario: %r >' % (self.alias)
 
-    def to_json(self):
+
+    def to_json(self, admin=0):
         poemas = [poema.to_json_poema() for poema in self.poemas]
         calificaciones =[calificacion.to_json_corto() for calificacion in self.calificaciones]
         json_str = {
-            'usuario_id':self.usuario_id,
+            # 'usuario_id':self.usuario_id,
             'alias':self.alias,
             'cantidad_poemas': len(poemas),
             'cantidad_calificacion': len(calificaciones),
         }
+        if admin:
+            json_str["correo"]=self.correo
+            json_str["Usuario_id"]=self.usuario_id
         return json_str
 
     def to_json_corto(self):
@@ -50,7 +52,6 @@ class Usuario(db.Model):
     def to_json_usuario_poema(self):                #otro get
         poemas = [poema.to_json_poema() for poema in self.poemas]
         json_str = {
-            'usuario_id':self.usuario_id,
             'alias':self.alias,
             'poemas':poemas
         }
@@ -60,24 +61,10 @@ class Usuario(db.Model):
     def to_json_usuario_calificacion(self):
         calificaciones = [calificacion.to_json_corto() for calificacion in self.calificaciones]
         json_str = {
-            'usuario_id':self.usuario_id,
             'alias':self.alias,
             'calificaciones': calificaciones
         }
         return json_str
-
-    def to_json_admin(self):
-        poemas = [poema.to_json_poema() for poema in self.poemas]
-        calificaciones =[calificacion.to_json_corto() for calificacion in self.calificaciones]
-        json_str = {
-            'usuario_id':self.usuario_id,
-            'alias':self.alias,
-            "correo": self.correo,
-            'cantidad_poemas': len(poemas),
-            'cantidad_calificacion': len(calificaciones),
-        }
-        return json_str
-
     
 
     @staticmethod

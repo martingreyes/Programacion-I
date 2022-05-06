@@ -2,6 +2,7 @@ from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
 from main.models import CalificacionModel
+from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 
 
 class Calificacion(Resource):
@@ -32,17 +33,12 @@ class Calificaciones(Resource):
         calificaciones = db.session.query(CalificacionModel).all()
         return jsonify([calificacion.to_json() for calificacion in calificaciones])
 
-    """
-            lista_cal = []
-            for calificacion in calificaciones:
-                lista_cal.append(calificacion.to_json())
-            return jsonify(list_acal)
-    """
-
-
-    
+  # ----------- Nuevo ---------------  
+    @jwt_required()
     def post(self):
         calificacion = CalificacionModel.from_json(request.get_json())
+        usuario_id = get_jwt_identity()
+        calificacion.usuario_id = usuario_id 
         db.session.add(calificacion)
         db.session.commit()
         return calificacion.to_json(), 201

@@ -28,7 +28,7 @@ class Usuario(db.Model):
 
 
     def to_json(self, admin=0):
-        poemas = [poema.to_json_poema() for poema in self.poemas]
+        poemas = [poema.to_json() for poema in self.poemas]
         calificaciones =[calificacion.to_json_corto() for calificacion in self.calificaciones]
         json_str = {
             # 'usuario_id':self.usuario_id,
@@ -50,7 +50,7 @@ class Usuario(db.Model):
 
 
     def to_json_usuario_poema(self):                #otro get
-        poemas = [poema.to_json_poema() for poema in self.poemas]
+        poemas = [poema.to_json() for poema in self.poemas]
         json_str = {
             'alias':self.alias,
             'poemas':poemas

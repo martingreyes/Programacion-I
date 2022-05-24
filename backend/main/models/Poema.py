@@ -14,7 +14,7 @@ class Poema(db.Model):
     autor = db.relationship('Usuario',back_populates="poemas",uselist=False,single_parent=True)
 
 
-    def __repr__(self) -> str:
+    def __repr__(self):
         return '<Poema: %r %r %r>' % (self.poema_id, self.titulo, self.contenido)
 
     def to_json(self,admin=False):

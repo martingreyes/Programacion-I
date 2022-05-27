@@ -4,6 +4,7 @@ from .. import db
 from main.models import CalificacionModel
 from main.auth.decorators import admin_required  
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
+from main.mail.funciones import sendMail
 
 
 class Calificacion(Resource):
@@ -55,6 +56,12 @@ class Calificaciones(Resource):
             if calificacion.usuario_id == get_jwt_identity() and calificacion.poema_id == calificacion_nueva.poema_id :
                 return "Ya comentaste este poema",403
 
-        db.session.add(calificacion_nueva)
-        db.session.commit()
-        return calificacion_nueva.to_json(), 201
+        try:
+            db.session.add(calificacion_nueva)
+            db.session.commit()
+            result = sendMail([calificacion_nueva.poema.autor.correo], "Nueva calificacion!", "nuevo_comentario", calificacion = calificacion_nueva )
+            return calificacion_nueva.to_json(), 201
+        except Exception as error:
+            return str(error), 409
+            # db.session.rollback()   
+        

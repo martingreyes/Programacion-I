@@ -1,0 +1,8 @@
+Hola {{calificacion.poema.autor.alias}} !
+Han calificado tu poema: "{{calificacion.poema.titulo}}"
+
+    Usuario: {{calificacion.usuario.alias}}
+    Opinion: "{{calificacion.comentario}}"
+    Puntaje: {{calificacion.puntaje}}
+    
+    

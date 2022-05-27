@@ -62,6 +62,6 @@ class Calificaciones(Resource):
             result = sendMail([calificacion_nueva.poema.autor.correo], "Nueva calificacion!", "nuevo_comentario", calificacion = calificacion_nueva )
             return calificacion_nueva.to_json(), 201
         except Exception as error:
-            return str(error), 409
             # db.session.rollback()   
+            return str(error), 409
         

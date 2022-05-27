@@ -10,7 +10,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class Usuario(Resource):
 
-    #NUEVO++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @jwt_required(optional=True)
     def get(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)

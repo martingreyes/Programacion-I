@@ -26,13 +26,34 @@ body{
     
 }
 
+#poema-card {
+    margin: auto;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 10px ;
+    border-bottom-right-radius: 10px ;
+    height: fit-content ;
+}
+
+#poema-card-body {
+    padding:0px;
+    padding-inline: 5px;
+}
+
+#poema-card-text {
+    text-align: center;
+    padding-inline: 25px;
+}
 
 .card_header {
-    width: 100%;
+    width: 96%;
     height: 80px;
     background: #47B6AF;
     position: relative;
     border-radius: 50px;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .calificacion{
@@ -46,9 +67,12 @@ body{
 }
 
 .card-fecha{
+    margin: 0px;
+    margin-bottom: 5px;
+    border: 0px;
     background-color: #47B6AF;
     width: 100%;
-    border-radius: 50px;
+    border-radius: 10px;
     text-align: center;
     color: white;
     font-family: serif;
@@ -119,9 +143,6 @@ body{
      margin: 0 .25rem
  }
  
- .pagination-rounded-flat{
-     
- }
 
  .pagination-success .page-item.active .page-link,
  a {
@@ -181,9 +202,6 @@ body{
     border: 1px solid #000; /* Borde color negro y de 1 píxel de grosor */
 }
 
-#ModalCheck {
-    
-}
 
 #ModalText {
     text-align: left;
@@ -201,3 +219,79 @@ body{
     height: 100%;
     color: white;
 }    
+
+.form-post {
+    width: 400px;
+    height: auto;
+    background: white;
+    padding: 30px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 4px;
+    font-family: 'calibri';
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+  }
+
+#poema-col{
+    text-align: center;
+    height:fit-content;
+}
+
+  
+.form-register h4 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+
+/* Ver mas  */
+
+#module {
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+  
+  #module #collapseExample.collapse:not(.show) {
+    display: block;
+    height: 6rem;
+    overflow: hidden;
+  }
+  
+  #module #collapseExample.collapsing {
+    height: 3rem;
+  }
+  
+  .container {
+    display:block;
+  }
+  
+  #module a.collapsed:after {
+    content: 'Ver más';
+  }
+  
+  #module a:not(.collapsed):after {
+    content: 'Ver menos';
+  }
+
+
+  /* Range Slider */
+
+
+  #slider22 .slider-selection {
+	background: #81bfde;
+}
+
+#slider22 .slider-rangeHighlight {
+	background: #f70616;
+}
+
+#slider22 .slider-rangeHighlight.category1 {
+    background: #FF9900;
+}
+
+#slider22 .slider-rangeHighlight.category2 {
+    background: #99CC00;
+}
+

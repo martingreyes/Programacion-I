@@ -230,11 +230,15 @@
                                 <td style="color: white; font-size:small;">
                                     <!-- https://www.youtube.com/watch?v=YE10hytBBho -->
                                     <!-- http://seiyria.com/bootstrap-slider/ -->
-                                    <div class="slider-container">
-                                        <span id="demo">5</span>
-                                        <div class="value-container">
+                                    <!-- https://codepen.io/mayuMPH/pen/ZjxGEY -->
+                                    <div class="container">
+
+                                        <div class="range-slider">
+
+                                            <span class="rs-label" id="demo">5</span>  
+                                                             
                                         </div>
-                                        <input style="margin-right: 0%;" type="range" min = "1" max="10" value="5" class="slider" id="myRange">
+                                        <input style="margin-right: 0%;" type="range" min = "1" max="10" value="1" class="slider" id="myRange">
                                     </div>
                                 </td>  
                             </tr>
@@ -428,6 +432,7 @@
                 .on('slide', DemoChange)
                 .data('slider');
     </script>
+
     
 </body>
 </html>

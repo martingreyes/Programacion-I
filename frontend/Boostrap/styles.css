@@ -275,26 +275,27 @@ body{
     content: 'Ver menos';
   }
 
+ /* ---------------------------------------- */
 
   /* Range Slider */
 
-  .slider-container {
+  /* .slider-container {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-  }
+  } */
 
   .value-container {
     margin-bottom: 25px;
   }
 
-  #demo {
+  /* #demo {
     color: white;
     font-size: 50px;
     font-family:Georgia, 'Times New Roman', Times, serif
-  }
+  } */
 
   .slider {
     width: 60%;
@@ -319,7 +320,44 @@ body{
     box-shadow: 2px 8px 13px -3px rgb(143, 134, 100);
     -webkit-box-shadow: 2px 8px 13px -3px rgb(143, 134, 100);
     -moz-box-shadow: 2px 8px 13px -3px rgb(143, 134, 100);
-
   }
 
 
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+  .range-slider {
+    margin-top: 3vh;
+    
+}
+
+
+/* .rs-label {
+    
+  position: relative;
+  transform-origin: center center;
+  display: block;
+  width: 98px;
+  height: 98px;
+  background: transparent;
+  border-radius: 50%;
+  line-height: 30px;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 22px;
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  margin-top: 20px;
+  margin-left: -38px;
+  left: attr(value);
+  color: #fff;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 36px;
+ 
+  
+} */

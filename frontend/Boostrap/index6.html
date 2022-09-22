@@ -6,26 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-
-
     <link rel="stylesheet" href="/styles.css"> 
     <title>Ver Poema: Usuario con Login</title>
-
-    <script>
-        $('#ex22').slider({
-    id: 'slider22',
-    min: 0,
-    max: 20,
-    step: 1,
-    value: 14,
-    rangeHighlights: [{ "start": 2, "end": 5, "class": "category1" },
-                      { "start": 7, "end": 8, "class": "category2" },
-                      { "start": 17, "end": 19 },
-                      { "start": 17, "end": 24 },
-                      { "start": -3, "end": 19 }]});
-    </script>
-
-   
 
 </head>
 
@@ -235,8 +217,10 @@
                                 <td style="width:80px ; height: 80px; text-align: center;" rowspan="1"><img style="border-radius: 50%;" src="Imagenes/FotoPerfilKick.png" height="65px"></td> 
                                 <td width="auto" style="text-align:justify; color: white; padding-left: 4%;"rowspan="1">
                                 <form class="d-flex">
-                                    <input class="form-control me-2" style="border-radius:50px; padding-inline-end: 10px;" type="text" id="password" placeholder="Escribe tu comentario aquí ..." >
-                                    <button class="btn  btn-main" style="border-radius: 50px; width:25%;" ; type="submit" ><img src="Imagenes/"  width="auto" name="contraseña" ></button>
+                                    <input class="form-control me-2" style="border-radius:50px; padding-inline-end: 10px;" type="text" id="text" placeholder="Escribe tu comentario aquí ..." >
+                                    <!-- <button class="btn  btn-main" style="border-radius: 50px; width:25%;" ; type="submit" ><img src="Imagenes/"  width="auto" name="contraseña" ></button> -->
+                                    
+                                    <span id="demo">5</span>
                                 </form> 
                                 
                                 </td>
@@ -244,22 +228,13 @@
                             <tr>
                                 <td style="color: white; font-size:small;"><b> Kick Buttowski</b></td> 
                                 <td style="color: white; font-size:small;">
+                                    <!-- https://www.youtube.com/watch?v=YE10hytBBho -->
                                     <!-- http://seiyria.com/bootstrap-slider/ -->
-                                    Aca va el Slider Range
-
-
-                                    <input id="ex22" type="range"
-                                    data-slider-id="slider22"
-                                    data-slider-min="0"
-                                    data-slider-max="20"
-                                    data-slider-step="1"
-                                    data-slider-value="14"
-                                    data-slider-rangeHighlights='[{ "start": 2, "end": 5, "class": "category1" },
-                                                                  { "start": 7, "end": 8, "class": "category2" },
-                                                                  { "start": 17, "end": 19 },
-                                                                  { "start": 17, "end": 24 }, //not visible -  out of slider range
-                                                                  { "start": -3, "end": 19 }]' />
-
+                                    <div class="slider-container">
+                                        <div class="value-container">
+                                        </div>
+                                        <input style="margin-right: 0%;" type="range" min = "1" max="10" value="5" class="slider" id="myRange">
+                                    </div>
                                 </td>  
                             </tr>
                         </table>
@@ -429,10 +404,29 @@
         </div>
     </div>
 
-    
-    
+    <!-- Slider Script -->
+    <!-- <input style="margin-right: 16%;" type="range" min = "1" max="10" value="5" class="slider" id="myRange"> -->
+    <script>
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value; // Display the default slider value
 
-   
+        // Update the current slider value (each time you drag the slider handle)
+        slider.oninput = function() {
+        output.innerHTML = this.value;
+}
+    </script>   
+
+    <script>
+        var DemoChange = function() {
+            $('#demo').css('background', 'rgb('+myRange.getValue()+')')
+           
+        };
+
+        var myRange = $('#myRange').slider()
+                .on('slide', DemoChange)
+                .data('slider');
+    </script>
     
 </body>
 </html>

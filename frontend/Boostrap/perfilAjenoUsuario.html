@@ -1,0 +1,778 @@
+-<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+
+        <link rel="stylesheet" href="/styles.css"> 
+        <title>Ver Perfil Ajeno Usuario</title>  
+
+
+    </head>
+    <body>
+
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+        
+            <div class="container-fluid" style="background-color: #47B6AF">
+                <a class="navbar-brand" href="#"></a>
+                <h1>CHIMICHANGA.NET</h1>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header" style="background-color: #47B6AF">
+                    
+                   <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                
+                <div class="offcanvas-body" style="background-color: #47B6AF; padding: 0;">
+                    
+                    <form class="d-flex" role="search" style="padding-inline: 5%; padding-top: 10px ;">
+                        <input class="form-control me-2" style="border-radius:50px; padding-inline-end: 5px; border-color: #4E7079; " type="text" placeholder="Buscar poema o autor">
+                        
+    
+                        <div class="btn-group dropstart">
+                            
+                            <!-- <button class="btn btn-secondary"  -->
+                            <button type="button" 
+                                    id="btn-abrir-popup" 
+                                    class="btn btn primary"                         
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#ModalFiltros"
+                                    style="background: white; border-radius: 50px"
+                                    data-toggle="dropdown">
+    
+                                <img src="/Imagenes/Filtro.png"  width="40" href="">
+                            
+                            </button>
+                            
+                        </div>
+    
+                    </form>
+    
+                    <br>
+    
+                    <center> <img style="border-radius: 50%;" src="Imagenes/FotoPerfilKick.png" height="110px"><center> 
+                    
+                    <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif ;" >Kick Buttowski</h3>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/perfil_lista.html"><img src="Imagenes/mi_perfil.png" width="15%" > Mi perfil</a>
+                    </li>
+                    <br>
+    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index_usuario.html"><img src="Imagenes/poemas.png" width="15%">   Poemas</a>
+                    </li>
+                    <br>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="/crearPoema.html" ><img src="Imagenes/nuevo_poema.png" width="15%">   Nuevo Poema</a>
+                    </li>
+                    <br>
+    
+                    
+                    <li class="nav-item"style="position: absolute; bottom: 200px">
+                        <a class="nav-link" href="/index.html"><img src="Imagenes/cerrar_sesion.png" width="15%">  Cerrar sesión</a>
+                    </li>
+                    <br>
+    
+    
+    
+                    <li class="nav-item"style="position: absolute; bottom: 100px">
+                        <a class="nav-link" href="link"><img src="Imagenes/ayuda.png" width="15%">  Ayuda</a>
+                    </li>
+                    <br>
+            
+                    
+                    <li class="nav-item" style="position: absolute; bottom: 0">
+                        <a class="nav-link" href="https://www.youtube.com/watch?v=UmAgbJps6js" target="_blank"><img src="Imagenes/sobre_nosotros.png" width="15%">      Sobre nosotros</a>
+                    </li>
+                    <br>
+                
+    
+                </div>
+                </div>
+            </div>
+            </nav>
+      
+        
+            <br>
+            <br>
+            <br>
+            <br>
+        
+            
+    
+
+<!-- ----------------------------------------------------------------------------------------------------------------->
+    
+    <div class="container-fluid" style="background-color: transparent;"> 
+
+        <div class="row cols-lg g-4">
+
+            <div class="col justify-content-center" id="estadisticas-col">
+                <div style="background-color :#47B6AF ; 
+                                                height: 100% ; 
+                                                height: 100% ;
+                                                padding: 10px ; 
+                                                border-radius: 15px ;">
+
+
+                    <table>
+                        <tr> 
+                            <td style="width:200px ; height: 100px; text-align: center;" rowspan="2">
+                                <img style="border-radius: 50%;" src="Imagenes/FotoPerfil.jpeg" height="65px">
+                            </td> 
+
+
+
+                            <td style="width: 100% ;
+                                       text-align:center;
+                                       align-items: center;">
+                                <h4 class="nick" style="margin: 0px; font-weight: 700; color: white">Perfil:<br> Nombre de usuario</h4>
+                            </td>           
+                        </tr> 
+                    </table>
+
+                </div>
+            </div>
+
+
+            <div class="col col justify-content-center col-lg-10" id="estadisticas-col">
+
+                    <div style="background-color :#47B6AF;
+                                                      height: 100% ;
+                                                      padding: 10px ; 
+                                                      border-radius: 15px ;" >
+
+                        <div class="row row-cols-1 g-2">
+
+                            <div class="col-6 col-lg-3" >
+                                <div class="count-data text-center" id="datacell">
+                                    <h6 class="count h2" data-to="500" data-speed="500">500</h6>
+                                    <p class="m-0px font-w-600">Poemas</p>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <div class="count-data text-center" id="datacell">
+                                    <h6 class="count h2" data-to="150" data-speed="150"> <img src="/Imagenes/promedio.png" width="7%" alt=""> 7.5 <img src="/Imagenes/promedio.png" width="7%" alt=""></h6>
+                                    <p class="m-0px font-w-600">Promedio</p>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <div class="count-data text-center" id="datacell">
+                                    <h6 class="count h2" data-to="850"  data-speed="850">850</h6>
+                                    <p class="m-0px font-w-600">Calificaciones hechas</p>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3">
+                                <div class="count-data text-center" id="datacell" style=>
+                                    <h6 class="count h2" data-to="190" data-speed="190">190</h6>
+                                    <p class="m-0px font-w-600">Calificaciones recibidas</p>
+                                </div>
+                            </div>
+                        </div>
+    
+                </div>
+            </div>
+
+            
+        </div>
+
+        <br>
+        <br>
+        <!-- ----------------------------------------------------------------------------------------------------------------->
+
+        <div class="container-fluid" style="background-color: #4E7079"> 
+            
+            <div class="row cols-lg g-4">  
+            
+
+                <!-- ----------------------------------------------Poema-------------------------------------- -->
+                <div class="col justify-content-center " id="poema-col">
+
+                    <div class="card" id="poema-card">
+                        
+                        <div id="#poema-card-body">
+                        
+                            <div class = "card-title">
+                                <table class="tabla1" width="100%" height="80px">
+                                    <tr>
+
+                                        <td style="width:100px ; height: 100px; text-align: center;" rowspan="2">
+                                            <img style="border-radius: 50%;" src="Imagenes/FotoPerfil.jpeg" height="65px">
+                                        </td> 
+                                        
+                                        <td width="auto">
+                                            <b style="color: white;">Titulo</b>
+                                        </td>
+                                        
+                                        <td style="width:100px ; height: 100px; text-align: center;" rowspan="2">
+                                            <div class="calificacion">
+                                                <p style="color:white">7.5</p>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 50px;">
+                                            <p style="color:white">Autor</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <div id="module" class="container">
+                                <table>
+                                    <tr>
+                                        <p class="collapse" id="collapseExample" aria-expanded="false">
+                                            1Some quick example text to buildwea
+                                            <br>2on the card title and make up
+                                            <br>3the bulk of the card's content.
+                                            <br>4Some quick example text to build 
+                                            <br>
+                                            <br>5title and make up the
+                                            <br>6on the card title and make up
+                                            <br>Some quick example text to build
+                                            <br>on the card title and make up
+                                            <br>
+                                            <br>title and make up the
+                                            <br>on the card title and make up
+                                            <br>Some quick example text to build
+                                            <br>on the card title and make up
+                                            <br>
+                                            <br>of the card's content
+                                            <br>on the card title and make up
+                                            <br>on the card title and make up
+                                            <br>the bulk of the card's content.
+                                            <br>title and make up the bulk
+                                            <br>of the card's content
+                                        </p>     
+                                    </tr>
+                                    
+                                    <tr>
+                                        <button type="button" onclick="location.href='/verPoemaUsuario.html'" class="btn" role="button" style="background-color: none ; border: none ; color: black;">
+                                            Ver mas
+                                        </button> 
+                                        <br>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                            <h6 class="card-fecha">Fecha</h6>
+                        
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ----------------------------------------------Poema-------------------------------------- -->
+                <div class="col justify-content-center " id="poema-col">
+
+                    <div class="card" id="poema-card">
+                        
+                        <div id="#poema-card-body">
+                        
+                            <div class = "card-title">
+                                <table class="tabla1" width="100%" height="80px">
+                                    <tr>
+
+                                        <td style="width:100px ; height: 100px; text-align: center;" rowspan="2">
+                                            <img style="border-radius: 50%;" src="Imagenes/FotoPerfil.jpeg" height="65px">
+                                        </td> 
+                                        
+                                        <td width="auto">
+                                            <b style="color: white;">Titulo</b>
+                                        </td>
+                                        
+                                        <td style="width:100px ; height: 100px; text-align: center;" rowspan="2">
+                                            <div class="calificacion">
+                                                <p style="color:white">7.5</p>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 50px;">
+                                            <p style="color:white">Autor</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <div id="module" class="container">
+                                <table>
+                                    <tr>
+                                        <p class="collapse" id="collapseExample" aria-expanded="false">
+                                            1Some quick example text to buildwea
+                                            <br>2on the card title and make up
+                                            <br>3the bulk of the card's content.
+                                            <br>4Some quick example text to build 
+                                            <br>
+                                            <br>5title and make up the
+                                            <br>6on the card title and make up
+                                            <br>Some quick example text to build
+                                            <br>on the card title and make up
+                                            <br>
+                                            <br>title and make up the
+                                            <br>on the card title and make up
+                                            <br>Some quick example text to build
+                                            <br>on the card title and make up
+                                            <br>
+                                            <br>of the card's content
+                                            <br>on the card title and make up
+                                            <br>on the card title and make up
+                                            <br>the bulk of the card's content.
+                                            <br>title and make up the bulk
+                                            <br>of the card's content
+                                        </p>     
+                                    </tr>
+                                    
+                                    <tr>
+                                        <button type="button" onclick="location.href='/verPoemaUsuario.html'" class="btn" role="button" style="background-color: none ; border: none ; color: black;">
+                                            Ver mas
+                                        </button> 
+                                        <br>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                            <h6 class="card-fecha">Fecha</h6>
+                        
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ----------------------------------------------Poema-------------------------------------- -->
+                <div class="col justify-content-center " id="poema-col">
+
+                    <div class="card" id="poema-card">
+                        
+                        <div id="#poema-card-body">
+                        
+                            <div class = "card-title">
+                                <table class="tabla1" width="100%" height="80px">
+                                    <tr>
+
+                                        <td style="width:100px ; height: 100px; text-align: center;" rowspan="2">
+                                            <img style="border-radius: 50%;" src="Imagenes/FotoPerfil.jpeg" height="65px">
+                                        </td> 
+                                        
+                                        <td width="auto">
+                                            <b style="color: white;">Titulo</b>
+                                        </td>
+                                        
+                                        <td style="width:100px ; height: 100px; text-align: center;" rowspan="2">
+                                            <div class="calificacion">
+                                                <p style="color:white">7.5</p>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 50px;">
+                                            <p style="color:white">Autor</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <div id="module" class="container">
+                                <table>
+                                    <tr>
+                                        <p class="collapse" id="collapseExample" aria-expanded="false">
+                                            1Some quick example text to buildwea
+                                            <br>2on the card title and make up
+                                            <br>3the bulk of the card's content.
+                                            <br>4Some quick example text to build 
+                                            <br>
+                                            <br>5title and make up the
+                                            <br>6on the card title and make up
+                                            <br>Some quick example text to build
+                                            <br>on the card title and make up
+                                            <br>
+                                            <br>title and make up the
+                                            <br>on the card title and make up
+                                            <br>Some quick example text to build
+                                            <br>on the card title and make up
+                                            <br>
+                                            <br>of the card's content
+                                            <br>on the card title and make up
+                                            <br>on the card title and make up
+                                            <br>the bulk of the card's content.
+                                            <br>title and make up the bulk
+                                            <br>of the card's content
+                                        </p>     
+                                    </tr>
+                                    
+                                    <tr>
+                                        <button type="button" onclick="location.href='/verPoemaUsuario.html'" class="btn" role="button" style="background-color: none ; border: none ; color: black;">
+                                            Ver mas
+                                        </button> 
+                                        <br>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                            <h6 class="card-fecha">Fecha</h6>
+                        
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ----------------------------------------------Poema-------------------------------------- -->
+                <div class="col justify-content-center " id="poema-col">
+
+                    <div class="card" id="poema-card">
+                        
+                        <div id="#poema-card-body">
+                        
+                            <div class = "card-title">
+                                <table class="tabla1" width="100%" height="80px">
+                                    <tr>
+
+                                        <td style="width:100px ; height: 100px; text-align: center;" rowspan="2">
+                                            <img style="border-radius: 50%;" src="Imagenes/FotoPerfil.jpeg" height="65px">
+                                        </td> 
+                                        
+                                        <td width="auto">
+                                            <b style="color: white;">Titulo</b>
+                                        </td>
+                                        
+                                        <td style="width:100px ; height: 100px; text-align: center;" rowspan="2">
+                                            <div class="calificacion">
+                                                <p style="color:white">7.5</p>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 50px;">
+                                            <p style="color:white">Autor</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <div id="module" class="container">
+                                <table>
+                                    <tr>
+                                        <p class="collapse" id="collapseExample" aria-expanded="false">
+                                            1Some quick example text to buildwea
+                                            <br>2on the card title and make up
+                                            <br>3the bulk of the card's content.
+                                            <br>4Some quick example text to build 
+                                            <br>
+                                            <br>5title and make up the
+                                            <br>6on the card title and make up
+                                            <br>Some quick example text to build
+                                            <br>on the card title and make up
+                                            <br>
+                                            <br>title and make up the
+                                            <br>on the card title and make up
+                                            <br>Some quick example text to build
+                                            <br>on the card title and make up
+                                            <br>
+                                            <br>of the card's content
+                                            <br>on the card title and make up
+                                            <br>on the card title and make up
+                                            <br>the bulk of the card's content.
+                                            <br>title and make up the bulk
+                                            <br>of the card's content
+                                        </p>     
+                                    </tr>
+                                    
+                                    <tr>
+                                        <button type="button" onclick="location.href='/verPoemaUsuario.html'" class="btn" role="button" style="background-color: none ; border: none ; color: black;">
+                                            Ver mas
+                                        </button> 
+                                        <br>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                            <h6 class="card-fecha">Fecha</h6>
+                        
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ----------------------------------------------Poema-------------------------------------- -->
+                <div class="col justify-content-center " id="poema-col">
+
+                    <div class="card" id="poema-card">
+                        
+                        <div id="#poema-card-body">
+                        
+                            <div class = "card-title">
+                                <table class="tabla1" width="100%" height="80px">
+                                    <tr>
+
+                                        <td style="width:100px ; height: 100px; text-align: center;" rowspan="2">
+                                            <img style="border-radius: 50%;" src="Imagenes/FotoPerfil.jpeg" height="65px">
+                                        </td> 
+                                        
+                                        <td width="auto">
+                                            <b style="color: white;">Titulo</b>
+                                        </td>
+                                        
+                                        <td style="width:100px ; height: 100px; text-align: center;" rowspan="2">
+                                            <div class="calificacion">
+                                                <p style="color:white">7.5</p>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 50px;">
+                                            <p style="color:white">Autor</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            <div id="module" class="container">
+                                <table>
+                                    <tr>
+                                        <p class="collapse" id="collapseExample" aria-expanded="false">
+                                            1Some quick example text to buildwea
+                                            <br>2on the card title and make up
+                                            <br>3the bulk of the card's content.
+                                            <br>4Some quick example text to build 
+                                            <br>
+                                            <br>5title and make up the
+                                            <br>6on the card title and make up
+                                            <br>Some quick example text to build
+                                            <br>on the card title and make up
+                                            <br>
+                                            <br>title and make up the
+                                            <br>on the card title and make up
+                                            <br>Some quick example text to build
+                                            <br>on the card title and make up
+                                            <br>
+                                            <br>of the card's content
+                                            <br>on the card title and make up
+                                            <br>on the card title and make up
+                                            <br>the bulk of the card's content.
+                                            <br>title and make up the bulk
+                                            <br>of the card's content
+                                        </p>     
+                                    </tr>
+                                    
+                                    <tr>
+                                        <button type="button" onclick="location.href='/verPoemaUsuario.html'" class="btn" role="button" style="background-color: none ; border: none ; color: black;">
+                                            Ver mas
+                                        </button> 
+                                        <br>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                            <h6 class="card-fecha">Fecha</h6>
+                        
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>            
+
+        </div>
+       
+
+        <!-- ----------------------------------------------------------------------------------------------------------------->
+        
+        <!-- The Modal -->
+        <div class="modal fade" id="ModalFiltros" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="width: 100% ;">
+            <div class="modal-dialog" style="width: 100% ; max-width: 50%;">
+              <div class="modal-content" style="width: 100% ;">
+                <div class="modal-header">
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <div class="container-fluid">
+                    <div class="row">
+                        <div class="row row-cols-1 row-cols-xl-2">
+
+                            
+                                <div class="col">
+                                    <h3>Filtrar Por:</h3>
+                                    <br>
+                                    <li class="list-group-item">
+                                        <form class="d-flex">
+                                            <input class="form-check-input me-1" id="ModalCheck" type="checkbox" value="" >
+                                            <label class="form-check-label" id="ModalText" for="titulo" >Titulo:</label>    
+                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="text" placeholder="Ingrese título" >
+                                        </form>
+
+                                    </li>
+                                    
+                                    <li class="list-group-item">
+                                        <form class="d-flex">
+                                            <input class="form-check-input me-1" id="ModalCheck" type="checkbox" value="" >
+                                            <label class="form-check-label" id="ModalText" for="autor">Autor:</label>  
+                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="text" placeholder="Ingrese autor" >
+                                        </form>
+            
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <form class="d-flex">
+                                            <input class="form-check-input me-1" id="ModalCheck" type="checkbox" value="" >
+                                            <label class="form-check-label" id="ModalText" for="promedio">Promedio:</label>
+                                            <input class="form-control me-2"  id="ModalInput" style="border-radius:50px ; width: 50%; " type="number" placeholder="Ingrese promedio" >
+                                        </form>
+
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <form class="d-flex">
+                                            <input class="form-check-input me-1" id="ModalCheck"  type="checkbox" value="">
+                                            <label class="form-check-label" id="ModalText" for="fecha">Fecha:</label>
+                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="date" placeholder="Ingrese fecha" >
+                                        </form>
+
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <form class="d-flex">
+                                            <input class="form-check-input me-1" id="ModalCheck"  type="checkbox" value="">
+                                            <label class="form-check-label" id="ModalText" for="alias">Alias:</label> 
+                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="text" placeholder="Ingrese alias" > 
+                                        </form>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <form class="d-flex">
+                                            <input class="form-check-input me-1" id="ModalCheck" type="checkbox" value="">
+                                            <label class="form-check-label" id="ModalText" for="min_cantidad_poemas">Minima cantidad de poemas:</label>
+                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="number" placeholder="Ingrese número" >
+                                        </form>
+
+                                    </li>
+                    
+                                    <li class="list-group-item">
+                                        <form class="d-flex">
+                                            <input class="form-check-input me-1" id="ModalCheck"  type="checkbox" value="" id="min_cantidad_cal">
+                                            <label class="form-check-label" id="ModalText" for="min_cantidad_cal">Minima cantidad de calificaciones</label>
+                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="number" placeholder="Ingrese número" >
+                                    </form>
+                                    </li> 
+                                </div>
+                            
+        
+                                <div class="col">                           
+                                    <h3>Ordernar Por:</h3> 
+                                    <br>
+                                    <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="" id="cal_asc">
+                                            <label class="form-check-label" for="cal_asc">Cantidad de calificaciones ascendente</label>    
+                                    </li>
+                                    
+                                    <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="" id="cal_des">
+                                            <label class="form-check-label" for="cal_des">Cantidad de calificaciones descendente</label>  
+                                    </li>
+
+                                    <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="" id="fecha_asc">
+                                            <label class="form-check-label" for="fecha_des">Fecha ascendente</label>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="" id="fecha_des">
+                                            <label class="form-check-label" for="fecha_des">Fecha descendente</label>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="" id="titulo_asc">
+                                            <label class="form-check-label" for="titulo_asc">Título ascendente</label> 
+                                    </li>
+                                    <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="" id="titulo_des">
+                                            <label class="form-check-label" for="titulo_des">Título descendente</label>
+                                    </li>
+                    
+                                    <li class="list-group-item">
+                                            <input class="form-check-input me-1" type="checkbox" value="" id="alias_asc">
+                                            <label class="form-check-label" for="alias_asc">Alias ascendente</label>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" value="" id="alias_des">
+                                        <label class="form-check-label" for="alias_des">Alias descendente</label>
+                                    </li>
+
+                                    <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" value="" id="cant_asc">
+                                        <label class="form-check-label" for="cant_asc">Cantidad de poemas ascendente</label>  
+                                    </li>
+                                    <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" value="" id="cant_des">
+                                        <label class="form-check-label" for="cant_des">Cantidad de poemas descendente</label>  
+                                    </li>
+                                </div>
+
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+                
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+            </div>
+            </div>
+        </div>
+
+        
+        
+<!-- -------------------------------------------------------------------- -->
+        
+
+    </div>
+        <br>
+        
+        <div class="text-center" id="paginacion-fondo">
+            <div class="capsula" id="capsula-paginacion" >
+                <ul class="pagination d-flex justify-content-center flex-wrap pagination-rounded-flat pagination-success" id="paginacion">
+                    <li class="page-item"><a class="page-link" href="#" data-abc="true"><</i></a></li>
+                    <li class="page-item"><a class="page-link" href="#" data-abc="true">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#" data-abc="true">2</a></li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#" data-abc="true">
+                            Pagina 3
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#" data-abc="true">4</a></li>
+                    <li class="page-item"><a class="page-link" href="#" data-abc="true">5</a></li>
+                    <li class="page-item"><a class="page-link" href="#" data-abc="true">></i></a></li>
+                </ul>
+            </div> 
+        </div>
+
+    
+    </body>
+</html>

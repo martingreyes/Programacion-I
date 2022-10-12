@@ -1,0 +1,69 @@
+/* .pagination, .jsgrid .jsgrid-pager {
+    display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem
+} */
+
+/* .page-link {
+    color: black
+} */
+
+/* .pagination.pagination-rounded-flat .page-item {
+    margin: 0 .25rem
+} */
+
+
+.page-item.active a {
+    font-weight: 700;
+    background: #47B6AF;
+    border-color: #47B6AF;
+    color: white;
+}
+
+/* .page-item.active{
+width: auto;
+} */
+
+/* .pagination.pagination-rounded-flat .page-item .page-link, a {
+    border: none;
+    border-radius: 50px;
+} */
+
+#paginacion-fondo{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#paginacion {
+    margin: 0px;
+    padding-inline: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#capsula-paginacion {
+    width: auto; 
+    margin-inline: auto; 
+    margin-bottom: 10px; 
+    background-color: #2D9994;
+    border-radius: 50px;
+}
+
+.page-link {
+    color: black;
+    font-weight: 700;
+}
+
+.pagination.pagination-rounded-flat .page-item {
+    margin-inline: 5px;
+}
+
+.pagination.pagination-rounded-flat .page-item .page-link, a {
+    border: none;
+    border-radius: 50px;
+}

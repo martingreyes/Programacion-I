@@ -1,0 +1,23 @@
+<app-menu-con-usuario></app-menu-con-usuario>
+    
+<a class="nav-link" routerLink="/HomeUsuario" style="border-radius:50px; background-color: #47B6AF; width: 10%; margin-left: 2% ; color: white; margin-top: 0%; font-size: 100%; ">
+    <img src="./assets/Imagenes/volver.png" width="30%" > Volver 
+</a>
+
+<div class="container-fluid">
+    <div class="row  justify-content-center" >
+        <div class="row row row-cols-1 row-cols-xl-2 g-3" style="text-align: center;padding-left: 15%; padding-right: 15%;">
+            <app-tarjeta-poema-grande></app-tarjeta-poema-grande>
+        
+
+            <div class="col justify-content-center " id="poema-col" style="height:auto;">
+                <app-tarjeta-calificaciones-usuario></app-tarjeta-calificaciones-usuario>
+            </div>  
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+
+<router-outlet></router-outlet>

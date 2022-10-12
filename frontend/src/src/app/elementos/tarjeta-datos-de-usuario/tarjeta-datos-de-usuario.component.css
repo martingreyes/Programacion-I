@@ -1,0 +1,44 @@
+#poema-col{
+    text-align: center;
+    height:fit-content;
+}
+
+#poema-card {
+    margin: auto;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 10px ;
+    border-bottom-right-radius: 10px ;
+    height: fit-content ;
+}
+
+#poema-card-body {
+    padding:0px;
+    padding-inline: 5px;
+}
+
+.tabla1 td {
+    border: black 2px solid; 
+} 
+
+.nav-link {
+    background-color: #2D9994;
+    text-align: left;
+}
+
+.form-control me-2 {
+    width: 100%;
+}
+
+.d-flex{
+    text-align: center;
+    padding-inline: 0%;
+    width:100%
+}
+
+#datacell {
+    border-radius: 10px;
+    background-color: #2D9994;
+    height: 100%;
+    color: white;
+}  

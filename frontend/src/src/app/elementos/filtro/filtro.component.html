@@ -1,0 +1,142 @@
+<div class="modal fade" id="ModalFiltros" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="width: 100%;">
+    <div class="modal-dialog" style="width: 100% ; max-width: 50%;">
+        <div class="modal-content" style="width: 100% ;">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="row row-cols-1 row-cols-xl-2">
+
+                        
+                            <div class="col">
+                                <h3>Filtrar Por:</h3>
+                                <br>
+                                <li class="list-group-item">
+                                    <form class="d-flex">
+                                        <input class="form-check-input me-1" id="ModalCheck" type="checkbox" value="" >
+                                        <label class="form-check-label" id="ModalText" for="titulo" >Titulo:</label>    
+                                        <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="text" placeholder="Ingrese título" >
+                                    </form>
+
+                                </li>
+                                
+                                <li class="list-group-item">
+                                    <form class="d-flex">
+                                        <input class="form-check-input me-1" id="ModalCheck" type="checkbox" value="" >
+                                        <label class="form-check-label" id="ModalText" for="autor">Autor:</label>  
+                                        <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="text" placeholder="Ingrese autor" >
+                                    </form>
+        
+                                </li>
+
+                                <li class="list-group-item">
+                                    <form class="d-flex">
+                                        <input class="form-check-input me-1" id="ModalCheck" type="checkbox" value="" >
+                                        <label class="form-check-label" id="ModalText" for="promedio">Promedio:</label>
+                                        <input class="form-control me-2"  id="ModalInput" style="border-radius:50px ; width: 50%; " type="number" placeholder="Ingrese promedio" >
+                                    </form>
+
+                                </li>
+
+                                <li class="list-group-item">
+                                    <form class="d-flex">
+                                        <input class="form-check-input me-1" id="ModalCheck"  type="checkbox" value="">
+                                        <label class="form-check-label" id="ModalText" for="fecha">Fecha:</label>
+                                        <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="date" placeholder="Ingrese fecha" >
+                                    </form>
+
+                                </li>
+
+                                <li class="list-group-item">
+                                    <form class="d-flex">
+                                        <input class="form-check-input me-1" id="ModalCheck"  type="checkbox" value="">
+                                        <label class="form-check-label" id="ModalText" for="alias">Alias:</label> 
+                                        <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="text" placeholder="Ingrese alias" > 
+                                    </form>
+                                </li>
+                                <li class="list-group-item">
+                                    <form class="d-flex">
+                                        <input class="form-check-input me-1" id="ModalCheck" type="checkbox" value="">
+                                        <label class="form-check-label" id="ModalText" for="min_cantidad_poemas">Minima cantidad de poemas:</label>
+                                        <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="number" placeholder="Ingrese número" >
+                                    </form>
+
+                                </li>
+                
+                                <li class="list-group-item">
+                                    <form class="d-flex">
+                                        <input class="form-check-input me-1" id="ModalCheck"  type="checkbox" value="" id="min_cantidad_cal">
+                                        <label class="form-check-label" id="ModalText" for="min_cantidad_cal">Minima cantidad de calificaciones</label>
+                                        <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="number" placeholder="Ingrese número" >
+                                </form>
+                                </li> 
+                            </div>
+                        
+    
+                            <div class="col">                           
+                                <h3>Ordernar Por:</h3> 
+                                <br>
+                                <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" value="" id="cal_asc">
+                                        <label class="form-check-label" for="cal_asc">Cantidad de calificaciones ascendente</label>    
+                                </li>
+                                
+                                <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" value="" id="cal_des">
+                                        <label class="form-check-label" for="cal_des">Cantidad de calificaciones descendente</label>  
+                                </li>
+
+                                <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" value="" id="fecha_asc">
+                                        <label class="form-check-label" for="fecha_des">Fecha ascendente</label>
+                                </li>
+
+                                <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" value="" id="fecha_des">
+                                        <label class="form-check-label" for="fecha_des">Fecha descendente</label>
+                                </li>
+
+                                <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" value="" id="titulo_asc">
+                                        <label class="form-check-label" for="titulo_asc">Título ascendente</label> 
+                                </li>
+                                <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" value="" id="titulo_des">
+                                        <label class="form-check-label" for="titulo_des">Título descendente</label>
+                                </li>
+                
+                                <li class="list-group-item">
+                                        <input class="form-check-input me-1" type="checkbox" value="" id="alias_asc">
+                                        <label class="form-check-label" for="alias_asc">Alias ascendente</label>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="alias_des">
+                                    <label class="form-check-label" for="alias_des">Alias descendente</label>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="cant_asc">
+                                    <label class="form-check-label" for="cant_asc">Cantidad de poemas ascendente</label>  
+                                </li>
+                                <li class="list-group-item">
+                                    <input class="form-check-input me-1" type="checkbox" value="" id="cant_des">
+                                    <label class="form-check-label" for="cant_des">Cantidad de poemas descendente</label>  
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+    </div>
+</div>

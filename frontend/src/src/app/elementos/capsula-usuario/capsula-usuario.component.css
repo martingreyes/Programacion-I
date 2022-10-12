@@ -1,0 +1,15 @@
+.capsula{
+    border-radius: 50px;
+    background-color: #F24726;
+    height: fit-content;
+    /* min-width: 420px; */
+  
+  }
+  
+  .tabla-capsula td {
+    border: black 2px solid;
+  }
+  
+  #capsula-col {
+    min-width: 600;
+  }

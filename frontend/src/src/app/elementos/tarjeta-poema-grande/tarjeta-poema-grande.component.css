@@ -1,0 +1,97 @@
+#poema-card {
+    margin: auto;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 10px ;
+    border-bottom-right-radius: 10px ;
+    height: fit-content ;
+    max-width: 600px;
+    width: 100%; 
+}
+
+#poema-card-body {
+    padding:0PX;
+    background-color: white; 
+    text-align: center; 
+    border-top-right-radius:50px;
+    border-top-left-radius:50px;
+    
+}
+
+#poema-card-text {
+    text-align: center;
+    padding-inline: 25px;
+}
+
+.card {
+    height: auto
+}
+
+.card-title {
+  background-color: #47B6AF;
+  border-top-right-radius:50px;
+  border-top-left-radius:50px;
+}
+
+.card_header {
+    width: 96%;
+    height: 80px;
+    background: #47B6AF;
+    position: relative;
+    border-radius: 50px;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.calificacion{
+    border-radius: 50%;
+    display: inline-block;
+    width: 70%;
+    height: 70%;
+    padding: 10% 10%;
+    border: solid 7px yellow;
+    text-align: center;
+    color: black;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.card-fecha{
+    border-bottom-left-radius: 10px ;
+    border-bottom-right-radius: 10px ;
+    margin: 0px;
+    height: 25px ;
+    border: 0px;
+    background-color: #47B6AF;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: serif;
+}
+
+#module {
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+  
+#module #collapseExample.collapse:not(.show) {
+    display: block;
+    height: 20rem;
+    overflow: hidden;
+  }
+  
+#module #collapseExample.collapsing {
+    height: 3rem;
+  }
+
+.container {
+    display:block;
+  }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

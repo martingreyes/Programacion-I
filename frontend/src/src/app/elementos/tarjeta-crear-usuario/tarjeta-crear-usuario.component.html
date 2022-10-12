@@ -1,0 +1,36 @@
+<section class="form-register" style="border-radius: 50px;">
+    <div class="container" style="text-align: center;">
+      <h4>
+        <img src="./assets/Imagenes/SinFotoPerfil.png" >
+      </h4>
+    
+    <input class="nav-link"  data-bs-toggle="modal" data-bs-target="#exampleModal" type=image style="border-radius: 50%; margin-top: -20%; margin-left: 50%;" src="./assets/Imagenes/editar.png" width="70px">
+    
+
+    <br>
+
+      <input class="form-control me-2" style="border-radius:50px " type="Alias" placeholder="Ingrese Alias" required>
+      <br>
+      <input class="form-control me-2" style="border-radius:50px " type="email" placeholder="Ingrese email" required>
+      <br>
+      <input class="form-control me-2" style="border-radius:50px " type="password" placeholder="Ingrese password" required>
+      <br>
+      <br>
+      <br>
+      
+    </div>
+    <a class="nav-link" routerLink="/PerfilLista" style="border-radius:50px; background-color: white; width: 50%; color: black; margin-left: 80%; margin-top: -13%; font-size: 125%;" >
+      <img src="./assets/Imagenes/guardar.png" width="25%">    Crear 
+    </a>
+
+    <br>
+
+    <a class="nav-link" routerLink="/PerfilLista" style="border-radius:50px; background-color: white; width: 50%; color: black; margin-left: 80%; margin-top: 0%; font-size: 125%;">
+      <img src="./assets/Imagenes/cancelar2.png" width="25%" >     Cancelar
+    </a>
+</section>
+    
+
+
+<app-ventana-cargar-archivo></app-ventana-cargar-archivo>
+<router-outlet></router-outlet>

@@ -1,0 +1,168 @@
+/* You can add global styles to this file, and also import other style files */
+#poema-col{
+    text-align: center;
+    height:fit-content;
+    min-width: 410px;
+}
+
+.nav-item {
+    list-style-type: none;
+    text-align: center;
+    padding-inline: 10%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #2D9994;
+}
+
+.nav-link {
+    background-color: #2D9994;
+    text-align: left;
+}
+
+.d-flex{
+    text-align: center;
+    padding-inline: 0%;
+    width:100%
+}
+
+.form-control me-2 {
+    width: 100%;
+}
+
+#titulo {
+    color: white;
+    background-color: #47B6AF;
+    height: auto; 
+    font-family:"GRADUATE REGULAR"; 
+    text-align:center
+}
+
+#barra_lateral {
+    padding: 0
+}
+
+#estadisticas-col{
+    text-align: center;
+    height:fit-content;
+    min-width: 410px;
+}
+
+#datacell {
+    border-radius: 10px;
+    background-color: #2D9994;
+    height: 100%;
+    color: white;
+}
+
+.card-title {
+    background-color: #47B6AF;
+    border-top-right-radius:50px;
+    border-top-left-radius:50px;
+}
+
+.calificacion{
+    border-radius: 50%;
+    display: inline-block;
+    width: 70%;
+    height: 70%;
+    padding: 10% 10%;
+    border: solid 7px yellow;
+    text-align: center;
+    color: black;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+
+.btn-flotante {
+    text-decoration: none;
+    width: 150px;
+    font-size: 16px; 
+    text-transform: uppercase; 
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 2px; 
+    background-color: #2D9994; 
+    padding: 10px; 
+    border-radius: 25px;
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    transition: all 300ms ease 0ms;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    z-index: 99;
+}
+
+.btn-flotante:hover {
+    background-color: #2D9994; /* Color de fondo al pasar el cursor */
+    box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-7px);
+}
+@media only screen and (max-width: 600px) {
+.btn-flotante {
+    font-size: 14px;
+    padding: 12px 20px;
+    bottom: 20px;
+    right: 20px;
+    }
+} 
+
+#poema-card {
+    margin: auto;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 10px ;
+    border-bottom-right-radius: 10px ;
+    height: fit-content ;
+    max-width: 600px;
+    width: 100%; 
+}
+
+#module #collapseExample.collapse:not(.show) {
+    display: block;
+    height: 6rem;
+    overflow: hidden;
+}
+
+#module #collapseExample.collapsing {
+    height: 3rem;
+}
+
+#collapseExample {
+    text-align: center;
+}
+.container {
+    display:block;
+}
+
+#module a.collapsed:after {
+    content: 'Ver más';
+}
+
+#module a:not(.collapsed):after {
+    content: 'Ver menos';
+} 
+
+.card-fecha-abm{
+
+    margin: 0px;
+    height: 50px ;
+    border: 0px;
+    background-color: #47B6AF;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: serif;
+}
+
+.card-fecha{
+    border-bottom-left-radius: 10px ;
+    border-bottom-right-radius: 10px ;
+    margin: 0px;
+    height: 25px ;
+    border: 0px;
+    background-color: #47B6AF;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: serif;
+}

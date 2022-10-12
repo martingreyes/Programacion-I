@@ -1,0 +1,77 @@
+<nav class="navbar navbar fixed-top" id="barra_lateral">
+            
+    <div class="container-fluid" style="background-color: #47B6AF">
+        <a class="navbar-brand" href="#"></a>
+        <h1 id="titulo">CHIMICHANGA.NET</h1>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header" style="background-color: #47B6AF">
+            
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        
+        <div class="offcanvas-body" style="background-color: #47B6AF; padding: 0;">
+            
+            <form class="d-flex" role="search" style="padding-inline: 5%; padding-top: 10px ;">
+                <input class="form-control me-2" style="border-radius:50px; padding-inline-end: 5px; border-color: #4E7079; " type="text" placeholder="Buscar poema o autor">
+                
+
+                <div class="btn-group dropstart">
+                    
+                    <button type="button" 
+                                id="btn-abrir-popup" 
+                                class="btn btn primary"                         
+                                data-bs-toggle="modal" 
+                                data-bs-target="#ModalFiltros"
+                                style="background: white; border-radius: 50px"
+                                data-toggle="dropdown">
+
+                            <img src="./assets/Imagenes/Filtro.png"  width="40" href="">
+                        
+                    </button>
+
+                </div>
+
+            </form>
+
+            <br>
+
+            <div style="position: relative; text-align : center">
+                <img style="border-radius: 50%;" src="./assets/Imagenes/FotoPerfilKick.png" height="110px"  ><a routerLink="/ModificarDatos"> 
+                <img src="./assets/Imagenes/editar.png" width="15%" style="position: absolute; margin-top: 14%;  margin-left: -8%;"></a>   
+            </div>
+
+            <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif ;" >Kick Buttowski</h3>
+            
+            
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/PerfilGrilla"><img src="./assets/Imagenes/mi_perfil.png" width="15%">   Mi Perfil</a>
+            </li>
+            <br>
+            
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/CrearPoema" ><img src="./assets/Imagenes/nuevo_poema.png" width="15%">   Nuevo Poema</a>
+            </li>
+            <br>
+            
+            <li class="nav-item" style="position: absolute; bottom: 0px; width: 100%;">
+                <a class="nav-link" routerLink="/"><img src="./assets/Imagenes/cerrar_sesion.png" width="15%">  Cerrar sesión</a>
+            </li>
+            <br>
+
+        </div>
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+
+
+<app-filtro></app-filtro>
+<router-outlet></router-outlet>

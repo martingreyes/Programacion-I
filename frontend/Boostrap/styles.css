@@ -3,15 +3,6 @@
 } */
 
 
-
-h1{
-    color: white;
-    background-color: #47B6AF;
-    height: auto; 
-    font-family:"GRADUATE REGULAR"; 
-    text-align:center
-}
-
 body{
     background-color: #4E7079; 
 }
@@ -38,11 +29,11 @@ body{
 }
 
 
-.card-title {
+/* .card-title {
   background-color: #47B6AF;
   border-top-right-radius:50px;
   border-top-left-radius:50px;
-}
+} */
 
 #poema-card-body {
   padding:0PX;
@@ -111,36 +102,11 @@ body{
 }
 
 
-.nav-item {
-    list-style-type: none;
-    text-align: center;
-    padding-inline: 10%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: #2D9994;
-    width:100%
-}
-
-.nav-link {
-    background-color: #2D9994;
-    text-align: left;
-}
-
 
 .separador {
     height: 100%;
 }
 
-
-.form-control me-2 {
-    width: 100%;
-}
-
-.d-flex{
-    text-align: center;
-    padding-inline: 0%;
-    width:100%
-}
 
 
 /* .pagination {
@@ -243,12 +209,12 @@ body{
 }
 
 
-#datacell {
+/* #datacell {
     border-radius: 10px;
     background-color: #2D9994;
     height: 100%;
     color: white;
-}    
+}     */
 
 .form-post {
     width: 400px;
@@ -401,11 +367,11 @@ margin-top: 2%;
 margin-left: 2%;
 margin-right: 2%; */
 
-#estadisticas-col{
+/* #estadisticas-col{
   text-align: center;
   height:fit-content;
   min-width: 410px;
-}
+} */
 
 
 #paginacion-fondo{
@@ -418,7 +384,7 @@ margin-right: 2%; */
 }
 
 #paginacion {
-  margin: 0px;
+  margin: 0px;demo
   padding: 10px;
 }
 

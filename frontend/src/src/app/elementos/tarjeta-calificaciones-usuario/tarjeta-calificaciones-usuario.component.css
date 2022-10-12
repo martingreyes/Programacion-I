@@ -1,0 +1,61 @@
+#poema-col{
+    text-align: center;
+    height:fit-content;
+    min-width: 410px;
+}
+
+.card-title {
+    background-color: #47B6AF;
+    border-top-right-radius:50px;
+    border-top-left-radius:50px;
+} 
+
+.card {
+    height: auto
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.range-slider {
+    margin-top: 0px;
+    text-align: left;
+    
+}
+
+.value-container {
+    margin-bottom: 25px;
+}
+
+#demo {
+    color: black;
+    font-size: 30px;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.slider {
+    width: 100%;
+    background: linear-gradient(to right, #b52020 27%, #e7f031 27%, #e7f031 70%, #238b36 35%) ;
+    height: 10px;
+    transition: background 450ms ease-in;
+    -webkit-appearance: none;
+    border-radius: 25px;
+    box-shadow: 2px 8px 13px -3px rgb(143, 134, 100);
+    -webkit-box-shadow: 2px 8px 13px -3px rgb(143, 134, 100);
+    -moz-box-shadow: 2px 8px 13px -3px rgb(143, 134, 100);
+}
+
+.slider::-webkit-slider-thumb{
+    cursor: pointer;
+    appearance: none;
+    height: 15px;
+    width: 15px;
+    background-color: gray;
+    border-radius: 50%;
+    border: 7px solid rgb(255,255,255);
+    box-shadow: 2px 8px 13px -3px rgb(143, 134, 100);
+    -webkit-box-shadow: 2px 8px 13px -3px rgb(143, 134, 100);
+    -moz-box-shadow: 2px 8px 13px -3px rgb(143, 134, 100);
+}

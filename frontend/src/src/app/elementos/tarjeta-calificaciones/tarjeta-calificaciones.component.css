@@ -1,0 +1,15 @@
+#poema-col{
+    text-align: center;
+    height:fit-content;
+    min-width: 410px;
+}
+
+.card-title {
+    background-color: #47B6AF;
+    border-top-right-radius:50px;
+    border-top-left-radius:50px;
+} 
+
+.card {
+    height: auto
+}

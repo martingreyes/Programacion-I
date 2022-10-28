@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-capsula-usuario-pendiente',
@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CapsulaUsuarioPendienteComponent implements OnInit {
 
+  @Input() usuario!: string;
+
+  @Input() email!: string;
   constructor() { }
 
   ngOnInit(): void {

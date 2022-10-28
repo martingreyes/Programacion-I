@@ -45,7 +45,7 @@ import { TarjetaPoemaMedianaComponent } from './elementos/tarjeta-poema-mediana/
 import { ComentarioComponent } from './elementos/comentario/comentario.component';
 import { TarjetaCalificacionesUsuarioComponent } from './elementos/tarjeta-calificaciones-usuario/tarjeta-calificaciones-usuario.component'; 
 
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({

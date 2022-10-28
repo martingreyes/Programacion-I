@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tarjeta-calificaciones',
@@ -6,6 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tarjeta-calificaciones.component.css']
 })
 export class TarjetaCalificacionesComponent implements OnInit {
+
+  @Input() usuario!: string;
+
+  @Input() calificacion!: number;
+
+  @Input() texto!: string;
+
 
   constructor() { }
 

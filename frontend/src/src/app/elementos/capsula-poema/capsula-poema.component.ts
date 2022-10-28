@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-capsula-poema',
@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CapsulaPoemaComponent implements OnInit {
 
+  @Input() titulo!: string;
+
+  @Input() autor!: string;
+
+  @Input() calificacion!: number;
+
+  @Input() texto!: string;
+
+  @Input() fecha!: string;
+  
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
+
 
 }

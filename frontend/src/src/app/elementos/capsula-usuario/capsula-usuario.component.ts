@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-capsula-usuario',
@@ -6,6 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./capsula-usuario.component.css']
 })
 export class CapsulaUsuarioComponent implements OnInit {
+
+  @Input() usuario!: string;
+
+  @Input() email!: string;
 
   constructor() { }
 

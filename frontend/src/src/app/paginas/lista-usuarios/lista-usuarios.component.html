@@ -4,20 +4,19 @@
 <div class="container-fluid" style="background-color: #4E7079"> 
         
     <div class="row cols-lg g-4">
-        <app-capsula-usuario-pendiente></app-capsula-usuario-pendiente>
-        <app-capsula-usuario-pendiente></app-capsula-usuario-pendiente>
-        <app-capsula-usuario-pendiente></app-capsula-usuario-pendiente>
-        <app-capsula-usuario-pendiente></app-capsula-usuario-pendiente>
-        <app-capsula-usuario-pendiente></app-capsula-usuario-pendiente>
-        <app-capsula-usuario></app-capsula-usuario>
-        <app-capsula-usuario></app-capsula-usuario>
-        <app-capsula-usuario></app-capsula-usuario>
-        <app-capsula-usuario></app-capsula-usuario>
-        <app-capsula-usuario></app-capsula-usuario>
-        <app-capsula-usuario></app-capsula-usuario>
-        <app-capsula-usuario></app-capsula-usuario>
-    
+        <div  *ngFor="let usuarios of arrayusuarios">
+            <div class="col" id="capsula-col">
+                <app-capsula-usuario-pendiente [usuario]="usuarios.usuario" [email]="usuarios.email"></app-capsula-usuario-pendiente>
+            </div>
+        </div>
+        <div  *ngFor="let usuarios of arrayusuarios">
+            <div class="col" id="capsula-col">
+                <app-capsula-usuario [usuario]="usuarios.usuario" [email]="usuarios.email"> </app-capsula-usuario>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <app-paginado-de-poemas></app-paginado-de-poemas>
+

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-datos-perfil-usuario-ajeno',
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatosPerfilUsuarioAjenoComponent implements OnInit {
 
+  @Input() usuario_id!: string;
+  
   constructor() { }
 
   ngOnInit(): void {

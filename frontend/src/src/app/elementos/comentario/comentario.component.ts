@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-comentario',
@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comentario.component.css']
 })
 export class ComentarioComponent implements OnInit {
+
+  @Input() usuario!: string;
+
+  @Input() calificacion!: number;
+
+  @Input() texto!: string;
 
   constructor() { }
 

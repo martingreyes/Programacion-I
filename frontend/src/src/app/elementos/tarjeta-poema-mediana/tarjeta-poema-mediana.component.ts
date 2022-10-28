@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tarjeta-poema-mediana',
@@ -7,6 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TarjetaPoemaMedianaComponent implements OnInit {
 
+  @Input() titulo!: string;
+
+  @Input() calificacion!: number;
+
+  @Input() fecha!: string;
+  
+  @Input() texto!: string;
+  
+  @Input() autor!: string;
   constructor() { }
 
   ngOnInit(): void {

@@ -7,12 +7,22 @@
 <div class="container-fluid">
   <div class="row row-cols-1 row-cols-xl-2 g-3" style="text-align: center; padding-left: 10%; padding-right: 10%;">
 
-      <div class="col" id="poema-col" style="padding: 0;">
-        <app-tarjeta-poema-grande></app-tarjeta-poema-grande>
+      <div class="col" id="poema-col" style="padding: 0;" *ngFor="let poema of arrayPoemas">
+        <app-tarjeta-poema-grande
+        [autor]="poema.autor" 
+        [titulo]="poema.titulo"  
+        [calificacion]="poema.calificacion"
+        [texto]="poema.texto"
+        [fecha]="poema.fecha">
+      </app-tarjeta-poema-grande>
       </div>
 
       <div class="col justify-content-center " id="poema-col" style="height:auto;">
-        <app-tarjeta-calificaciones></app-tarjeta-calificaciones>
+
+        <!-- Le tenemos que pasar arraycomentarios al componente <app-tarjeta-calificaciones > pero no sabemos como -->
+
+        <app-tarjeta-calificaciones >
+        </app-tarjeta-calificaciones>
       </div>
     </div>
   </div>

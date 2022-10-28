@@ -17,6 +17,7 @@ export class TarjetaPoemaChicaComponent implements OnInit {
 
   @Input() fecha!: string;
   
+  @Input() link_foto!: string;
   constructor() { }
 
   ngOnInit(): void { }

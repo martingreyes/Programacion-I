@@ -12,7 +12,30 @@ export class VerPoemaComponent implements OnInit {
       titulo:"Poema1",
       calificacion: 7,
       autor:"Autor 1",
-      texto: "1Some quick example text to buildwea<br>2on the card title and make up<br>3the bulk of the card's content.",
+      texto: `1Some quick example text to buildwea
+              2on the card title and make up
+              3the bulk of the card's content.
+              1Some quick example text to buildwea
+              2on the card title and make up
+              3the bulk of the card's content.
+              1Some quick example text to buildwea
+              2on the card title and make up
+              3the bulk of the card's content.
+              1Some quick example text to buildwea
+              2on the card title and make up
+              3the bulk of the card's content.
+              1Some quick example text to buildwea
+              2on the card title and make up
+              3the bulk of the card's content.
+              1Some quick example text to buildwea
+              2on the card title and make up
+              3the bulk of the card's content.
+              1Some quick example text to buildwea
+              2on the card title and make up
+              3the bulk of the card's content.
+              1Some quick example text to buildwea
+              2on the card title and make up
+              3the bulk of the card's content.`,
       fecha: "DD/MM/YYYY"
     }
   ]

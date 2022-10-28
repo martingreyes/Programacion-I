@@ -1,4 +1,4 @@
-<app-menu-admin></app-menu-admin>
+<app-menu-admin [usuario_id]="usuario_id"></app-menu-admin>
 
 <a class="nav-link" routerLink="/HomeUsuario" style="border-radius:50px; background-color: #47B6AF; width: 10%; margin-left: 2% ; color: white; margin-top: 0%; font-size: 100%; ">
   <img src="./assets/Imagenes/volver.png" width="30%" > Volver 
@@ -8,8 +8,14 @@
   <div class="row  justify-content-center" >
     <div class="row row row-cols-1 row-cols-xl-2 g-3" style="text-align: center;padding-left: 15%; padding-right: 15%;">
 
-      <div class="col" id="poema-col" style="padding: 0;">
-      <app-tarjeta-poema-grande></app-tarjeta-poema-grande>
+      <div class="col" id="poema-col" style="padding: 0;" *ngFor="let poema of arrayPoemas">
+        <app-tarjeta-poema-grande
+        [autor]="poema.autor" 
+        [titulo]="poema.titulo"  
+        [calificacion]="poema.calificacion"
+        [texto]="poema.texto"
+        [fecha]="poema.fecha">
+      </app-tarjeta-poema-grande>
       </div>
 
       <div class="col justify-content-center " id="poema-col" style="height:auto;">

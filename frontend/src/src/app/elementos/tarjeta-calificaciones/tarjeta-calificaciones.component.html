@@ -3,14 +3,16 @@
         <h5 class="card-title" style="background-color:white; padding: 2%; border-top-right-radius:50px; border-top-left-radius:50px;">Comentarios</h5>
 
         <!-- arraycomentarios tiene que recibirlo de ver-poema pero no sabemos como pasarselo-->
-        <div data-spy="scroll" data-target="#scrollspy" data-offset="0" style="overflow-y: scroll; height: 85%;" *ngFor="let comentario of arraycomentarios">
+        <div data-spy="scroll" data-target="#scrollspy" data-offset="0" style="overflow-y: scroll; height: 85%;">
+            <div *ngFor="let comentario of arraycomentarios">
 
-        <app-comentario
-        [usuario]="comentario.usuario" 
-        [texto]="comentario.texto"
-        [calificacion]="comentario.calificacion" >
-        </app-comentario>
-        </div>   
+                <app-comentario
+                [usuario]="comentario.usuario" 
+                [texto]="comentario.texto"
+                [calificacion]="comentario.calificacion" >
+                </app-comentario>
+            </div>
+        </div> 
 
 
         <app-paginado-de-calificaciones></app-paginado-de-calificaciones>

@@ -34,8 +34,8 @@ const routes: Routes = [
   { path: 'PerfilAjenoAdmin/:id', component: PerfilAjenoAdminComponent },
   { path: 'PerfilAjenoUsuario/:id', component: PerfilAjenoUsuarioComponent },
   { path: 'VerPoema', component: VerPoemaComponent },
-  { path: 'VerPoemaAdmin', component: VerPoemaAdminComponent },
-  { path: 'VerPoemaUsuario', component: VerPoemaUsuarioComponent }
+  { path: 'VerPoemaAdmin/:id', component: VerPoemaAdminComponent },
+  { path: 'VerPoemaUsuario/:id', component: VerPoemaUsuarioComponent }
 ];
 
 @NgModule({

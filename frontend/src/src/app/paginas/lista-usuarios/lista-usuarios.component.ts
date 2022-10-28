@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PostUsuariosService } from './../../servicios/post.service';
+
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaUsuariosComponent implements OnInit {
 
-
+  // arrayusuarios:any;
   arrayusuarios = [
     {usuario:"usuario1",
      email:"eperez@gmial.com"},
@@ -21,9 +23,16 @@ export class ListaUsuariosComponent implements OnInit {
      {usuario:"usuario4",
      email:"luisma@gmial.com"},
   ]
-  constructor() { }
+  constructor(
+    private postUsuariosService: PostUsuariosService
+  ) { }
 
   ngOnInit(): void {
+
+    // this.postUsuariosService.getUsuarios().subscribe((data:any) =>{
+    //   console.log('JSON data: ', data);
+    // this.arrayusuarios = data.data;})
+
   }
 
 }

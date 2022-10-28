@@ -3,11 +3,15 @@
         <h5 class="card-title" style="background-color:white; padding: 2%; border-top-right-radius:50px; border-top-left-radius:50px;">Comentarios</h5>
 
         
-        <div data-spy="scroll" data-target="#scrollspy" data-offset="0" style="overflow-y: scroll; height: 80%;">
-        <app-comentario></app-comentario>
-        <app-comentario></app-comentario>
-        <app-comentario></app-comentario>
-        <app-comentario></app-comentario>
+        <div data-spy="scroll" data-target="#scrollspy" data-offset="0" style="overflow-y: scroll; height: 60%;">
+            <div *ngFor="let comentario of arraycomentarios">
+
+                <app-comentario
+                [usuario]="comentario.usuario" 
+                [texto]="comentario.texto"
+                [calificacion]="comentario.calificacion" >
+                </app-comentario>
+            </div>
         </div>       
 
         <app-paginado-de-calificaciones></app-paginado-de-calificaciones>
@@ -26,7 +30,7 @@
                 </td>
             </tr>
             <tr >
-                <td style="color: white; font-size:small;"><b> Kick Buttowski</b></td> 
+                <td style="color: white; font-size:small;"><b> Kick Buttowski {{usuario_id}}</b></td> 
                 <td style="color: white; font-size:small">
                 
                     <div class="container" style=" align-items: left">
@@ -44,31 +48,6 @@
         </table>
         <br>
 
+    
     </div>
 </div>
-
-
-<!-- Slider Script -->
-    <!-- <script>
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value; // Display the default slider value
-
-        // Update the current slider value (each time you drag the slider handle)
-        slider.oninput = function() {
-        output.innerHTML = this.value;
-        }
-    </script>    -->
-
-    <!-- <script>
-        var RGBChange = function() {
-            if (r.getValue() < 5) {
-              $('#demo').css('color', "rgb(0,255,0)")  
-            } 
-            
-        };
-
-        var r = $('#myRange').slider()
-                .on('slide', RGBChange)
-                .data('slider');
-    </script> -->

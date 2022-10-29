@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class PostPoemasService {
   // url = 'https://reqres.in/api/users?page=2'
-  url = "http://127.0.0.1:5000/poema/2"
+  url = 'poemas'
 
   constructor(
     private httpClient: HttpClient
@@ -19,7 +19,6 @@ export class PostPoemasService {
 }
 
 
-
 export class PostUsuariosService {
   url = "http://127.0.0.1:5000/usuarios"
 
@@ -27,7 +26,7 @@ export class PostUsuariosService {
     private httpClient: HttpClient
   ) { }
   
-  getUsuarios() {
+  getUsuarios() { 
     return this.httpClient.get(this.url);
   }  
 }

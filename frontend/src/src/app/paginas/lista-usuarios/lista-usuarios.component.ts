@@ -9,29 +9,17 @@ import { PostUsuariosService } from './../../servicios/post.service';
 })
 export class ListaUsuariosComponent implements OnInit {
 
-  // arrayusuarios:any;
-  arrayusuarios = [
-    {usuario:"usuario1",
-     email:"eperez@gmial.com"},
+  arrayusuarios:any;
 
-     {usuario:"usuario2",
-     email:"martin@gmial.com"},
-
-     {usuario:"usuario3",
-     email:"facu@gmial.com"},
-
-     {usuario:"usuario4",
-     email:"luisma@gmial.com"},
-  ]
   constructor(
     private postUsuariosService: PostUsuariosService
   ) { }
 
   ngOnInit(): void {
 
-    // this.postUsuariosService.getUsuarios().subscribe((data:any) =>{
-    //   console.log('JSON data: ', data);
-    // this.arrayusuarios = data.data;})
+    this.postUsuariosService.getUsuarios().subscribe((data:any) =>{
+      console.log('JSON data: ', data);
+    this.arrayusuarios = data.usuarios;})
 
   }
 

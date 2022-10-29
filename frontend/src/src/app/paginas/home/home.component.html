@@ -1,28 +1,25 @@
-<!-- <app-menu-sin-usuario></app-menu-sin-usuario> -->
+<app-menu-sin-usuario></app-menu-sin-usuario>
 
 
 <div class="container-lg" style="background-color: #4E7079; height: 20px;"> 
             
     <div class="row cols-lg g-4">  
-
     
-        <!-- <div class="col justify-content-center " id="poema-col" *ngFor="let poema of arrayPoemas">
+    
+        <div class="col justify-content-center " id="poema-col" *ngFor="let poema of arrayPoemas">
             <app-tarjeta-poema-chica 
-                [autor]="poema.first_name"
-                [texto]="poema.avatar"
-                [titulo]="poema.last_name"
-                [calificacion]="poema.id"
-                [fecha]="poema.id"
-                [link_foto]="poema.avatar">
+                [autor]="poema.autor"
+                [texto]="poema.contenido"
+                [titulo]="poema.titulo"
+                [calificacion]="poema.promedio"
+                [fecha]="poema.fecha">
             </app-tarjeta-poema-chica>
-        </div> -->
-        <p>Driccionario aca -> {{arrayPoemas}}</p>
+        </div>
     </div>
-        
+
 </div>
 
 
 <app-paginado-de-poemas></app-paginado-de-poemas>
 
 <app-filtro></app-filtro>
-

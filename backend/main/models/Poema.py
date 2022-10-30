@@ -26,13 +26,13 @@ class Poema(db.Model):
                 puntaje_total += calificacion["puntaje"]
             promedio = puntaje_total / len(calificaciones)
         else: 
-            promedio = "No hay calificaciones"
+            promedio = ":("
         json_str = {
             'titulo':self.titulo,
             'contenido':self.contenido,
             'autor': self.autor.alias,
             'fecha': self.fecha.strftime("%Y-%m-%d %H:%M:%S"),
-            'promedio calificaciones': promedio
+            'promedio': promedio
         }
 
         if admin:
@@ -45,7 +45,7 @@ class Poema(db.Model):
         calificaciones = [calificacion.to_json_corto_poema() for calificacion in self.calificaciones]
         json_str = {
             'titulo':self.titulo,
-            'calificaciones':calificaciones
+            'promedio':calificaciones
         }
         return json_str      
 

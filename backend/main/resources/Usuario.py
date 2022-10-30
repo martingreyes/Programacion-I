@@ -50,59 +50,66 @@ class Usuario(Resource):
 
 class Usuarios(Resource):
     
-    @jwt_required(optional=True)
+    @admin_required
     def get(self):
         pagina = 1
         por_pagina = 5
         usuarios = db.session.query(UsuarioModel)
-        token_id = get_jwt_identity()
-        claims = get_jwt()
-        if request.get_json():
-            filtros = request.get_json().items()
-            for clave, valor in filtros:
-                if clave == "pagina":
-                    pagina = int(valor)
-                
-                if clave == "por_pagina":
-                    por_pagina = int(valor)
-                
-                if clave == "alias":
-                    usuarios = usuarios.filter(UsuarioModel.alias.like("%"+valor+"%"))
-                
-                if clave == "poemas":               #Usuarios que tengan 'valor' o mas poemas.  
-                    usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).having(func.count(PoemaModel.poema_id) >= valor)
 
-                if clave == "calificaciones":       #Usuarios que tengan 'valor' o mas calificaciones.  
-                    usuarios=usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.usuario_id).having(func.count(CalificacionModel.cal_id) >= valor)
 
-                if clave == "ordenar_por":          #Si no se usa, ordena por id CREO.
-                    if valor == "alias[desc]":      #Ordena por alias descendencia. 
-                        usuarios = usuarios.order_by(UsuarioModel.alias.desc())
-                    elif valor == "alias":
-                        usuarios = usuarios.order_by(UsuarioModel.alias)
-                                
-                    elif valor == 'poemas[desc]':   #Por cantidad de poemas(asc,desc). 
-                        usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id).desc())
-                    elif valor == "poemas":                        
-                        usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id))
+        claves = [
+            'pagina',
+            'por_pagina',
+            'alias',
+            'poemas',
+            'calificaciones',
+            'ordenar_por'
+        ]
+        
+        filtros = {}
+        for clave in claves:
+            arg = request.args.get(clave)
+            if arg != None:
+                filtros.update({clave: int(arg) if arg.isnumeric() else arg})
+                
+        if filtros == {}:
+            filtros = {'ordenar_por': 'alias'}
+            
+        for clave, valor in filtros.items():
+            if clave == "pagina":
+                pagina = int(valor)
+            
+            if clave == "por_pagina":
+                por_pagina = int(valor)
+            
+            if clave == "alias":
+                usuarios = usuarios.filter(UsuarioModel.alias.like("%"+valor+"%"))
+            
+            if clave == "poemas":               #Usuarios que tengan 'valor' o mas poemas.  
+                usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).having(func.count(PoemaModel.poema_id) >= valor)
+
+            if clave == "calificaciones":       #Usuarios que tengan 'valor' o mas calificaciones.  
+                usuarios=usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.usuario_id).having(func.count(CalificacionModel.cal_id) >= valor)
+
+            if clave == "ordenar_por":          #Si no se usa, ordena por id CREO.
+                if valor == "alias[desc]":      #Ordena por alias descendencia. 
+                    usuarios = usuarios.order_by(UsuarioModel.alias.desc())
+                elif valor == "alias":
+                    usuarios = usuarios.order_by(UsuarioModel.alias)
+                            
+                elif valor == 'poemas[desc]':   #Por cantidad de poemas(asc,desc). 
+                    usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id).desc())
+                elif valor == "poemas":                        
+                    usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id))
                         
 
         usuarios = usuarios.paginate(pagina, por_pagina, True, 20)
-        if token_id == None or not claims["admin"]:
-            return jsonify({
-                    'usuarios': [usuario.to_json() for usuario in usuarios.items],
-                    'total de usuarios': usuarios.total, 
-                    'Total de paginas': usuarios.pages,
-                    'Pagina actual': pagina, 
-                })
-
-        elif claims["admin"]:
-            return jsonify({
-                    'usuarios': [usuario.to_json(admin=True) for usuario in usuarios.items],
-                    'total de usuarios': usuarios.total, 
-                    'Total de paginas': usuarios.pages,
-                    'Pagina actual': pagina, 
-                })
+        return jsonify({
+                'Usuarios': [usuario.to_json(admin=True) for usuario in usuarios.items],
+                'Total_de_usuarios': usuarios.total, 
+                'Total_de_paginas': usuarios.pages,
+                'Paginaa-ctual': pagina, 
+            })
 
 
     @admin_required

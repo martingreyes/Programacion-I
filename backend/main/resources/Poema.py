@@ -57,70 +57,85 @@ class Poema(Resource):
         else:
             return 'Error de autenticacion', 403
 
-
 class Poemas(Resource):
     @jwt_required(optional=True)        #No hace falta estar logueado
     def get(self):
+        # http://127.0.0.1:5000/poemas?ordenar_por=titulo&pagina=1&autor=emaperez1
         pagina = 1 
         por_pagina = 5
-        usuario_id = get_jwt_identity()
         poemas = db.session.query(PoemaModel)
         
-        if request.get_json().items():
-            filtros = request.get_json().items()
-            for clave, valor in filtros:
-                if clave == "pagina":
-                    pagina = int(valor)
+        claves = [
+            'pagina',
+            'por_pagina',
+            'titulo',
+            'autor',
+            'fecha',
+            'fecha[desc]',
+            'calificacion',
+            'calificacion[desc]',
+            'ordenar_por'
+        ]
+        
+        filtros = {}
+        for clave in claves:
+            arg = request.args.get(clave)
+            if arg != None:
+                filtros.update({clave: int(arg) if arg.isnumeric() else arg})
                 
-                if clave == "por_pagina":
-                    por_pagina = int(valor)
+        if filtros == {}:
+            filtros = {'ordenar_por': 'fecha[desc]'}
+        
+        for clave, valor in filtros.items():
+            if clave == "pagina":
+                pagina = int(valor)
+            
+            if clave == "por_pagina":
+                por_pagina = int(valor)
+            
+            if clave == "titulo":
+                poemas = poemas.filter(PoemaModel.titulo.like("%"+valor+"%"))
+
+            if clave == 'autor':                        #Los poemas que tienen el 'valor' autor.
+                poemas = poemas.outerjoin(PoemaModel.autor).filter(UsuarioModel.alias.like("%"+valor+"%"))         
+
+            if clave == "calificacion[menor]":
+                poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.autor_id).having(func.avg(CalificacionModel.puntaje) <= valor)
+            
+            if clave == "calificacion[mayor]":
+                poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.autor_id).having(func.avg(CalificacionModel.puntaje) >= valor)
+
+            if clave == "fecha[antes]":
+                poemas = poemas.filter(PoemaModel.fecha <= datetime.strptime(valor, '%Y-%m-%d') + timedelta(days=1))
+
+            if clave == "fecha[despues]":
+                poemas = poemas.filter(PoemaModel.fecha >= datetime.strptime(valor, '%Y-%m-%d')) 
                 
-                if not usuario_id:      #NUEVO+++++++++++++++++++++++++++++++++++++++++++++++++++++
-                    if clave == "titulo":
-                        poemas = poemas.filter(PoemaModel.titulo.like("%"+valor+"%"))
+            if clave == "ordenar_por":                  #Si no se usa, ordena por id
+                if valor == "calificacion[desc]":       #Ordena por calificacion descendencia. 
+                    poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.poema_id).order_by(func.count(CalificacionModel.poema_id).desc())
+                elif valor == "calificacion":
+                    poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.poema_id).order_by(func.count(CalificacionModel.poema_id))
 
-                    if clave == 'autor':                        #Los poemas que tienen el 'valor' autor.
-                        poemas = poemas.outerjoin(PoemaModel.autor).filter(UsuarioModel.alias.like("%"+valor+"%"))         
+                elif valor == "fecha[desc]":            #Ordena por fecha descendencia. 
+                    poemas = poemas.order_by(PoemaModel.fecha.desc())
+                elif valor == "fecha":
+                    poemas = poemas.order_by(PoemaModel.fecha)
+                
+                elif valor == "titulo[desc]":           #Ordena por titulo descendencia. 
+                    poemas = poemas.order_by(PoemaModel.titulo.desc())
+                elif valor == "titulo":
+                    poemas = poemas.order_by(PoemaModel.titulo)
 
-                    if clave == "calificacion[menor]":
-                        poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.autor_id).having(func.avg(CalificacionModel.puntaje) <= valor)
-                    
-                    if clave == "calificacion[mayor]":
-                        poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.autor_id).having(func.avg(CalificacionModel.puntaje) >= valor)
-
-                    if clave == "fecha[antes]":
-                        poemas = poemas.filter(PoemaModel.fecha <= datetime.strptime(valor, '%Y-%m-%d') + timedelta(days=1))
-
-                    if clave == "fecha[despues]":
-                        poemas = poemas.filter(PoemaModel.fecha >= datetime.strptime(valor, '%Y-%m-%d')) 
-                        
-                    if clave == "ordenar_por":                  #Si no se usa, ordena por id
-                        if valor == "calificacion[desc]":       #Ordena por calificacion descendencia. 
-                            poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.poema_id).order_by(func.count(CalificacionModel.poema_id).desc())
-                        elif valor == "calificacion":
-                            poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.poema_id).order_by(func.count(CalificacionModel.poema_id))
-
-                        elif valor == "fecha[desc]":            #Ordena por fecha descendencia. 
-                            poemas = poemas.order_by(PoemaModel.fecha.desc())
-                        elif valor == "fecha":
-                            poemas = poemas.order_by(PoemaModel.fecha)
-                        
-                        elif valor == "titulo[desc]":           #Ordena por titulo descendencia. 
-                            poemas = poemas.order_by(PoemaModel.titulo.desc())
-                        elif valor == "titulo":
-                            poemas = poemas.order_by(PoemaModel.titulo)
-
-                else:                   
-                    poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.poema_id).order_by(PoemaModel.fecha, func.count(CalificacionModel.puntaje))
-
-
+        
         poemas = poemas.paginate(pagina, por_pagina, True, 20)
         return jsonify({
-                'usuarios': [poema.to_json() for poema in poemas.items],
-                'Total de poema': poemas.total, 
-                'Total de paginas': poemas.pages,
-                'Pagina actual': pagina, 
+                'Poemas': [poema.to_json() for poema in poemas.items],
+                'Total_de_poema': poemas.total, 
+                'Total_de_paginas': poemas.pages,
+                'Pagina_actual': pagina, 
             })
+
 
     @jwt_required
     def post(self):

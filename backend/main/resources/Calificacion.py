@@ -39,10 +39,16 @@ class Calificacion(Resource):
 
 class Calificaciones(Resource):
 
-    @admin_required
     def get(self):
+        pagina = 1 
+        por_pagina = 3
+        arg = request.args.get('titulo')
         calificaciones = db.session.query(CalificacionModel).all()
+
+        poemas = poemas.filter(CalificacionModel.titulo.like(arg))
+
         return jsonify([calificacion.to_json() for calificacion in calificaciones])
+
 
 
     @jwt_required()

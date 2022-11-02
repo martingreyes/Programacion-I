@@ -17,17 +17,16 @@ class Calificacion(db.Model):
     def __repr__(self) -> str:
         return '<Calificacion: %r  >' % (self.cal_id)
 
-    def to_json(self, admin=False):
+    def to_json(self):
         self.usuario = db.session.query(UsuarioModel).get_or_404(self.usuario_id)
         self.poema = db.session.query(PoemaModel).get_or_404(self.poema_id)
         json_str = {
+            'Cal_id':self.cal_id,
             'puntaje':self.puntaje,
             'comentario':self.comentario,
             'usuario': self.usuario.alias,
             'poema': self.poema.titulo,
         }
-        if admin:
-            json_str["Cal_id"]=self.cal_id
         return json_str
 
 
@@ -61,9 +60,10 @@ class Calificacion(db.Model):
         poema_id = json_str.get('poema_id')
         puntaje = json_str.get('puntaje')
         comentario = json_str.get('comentario')
-        return Calificacion(cal_id=cal_id,
-                       usuario_id=usuario_id,
-                       poema_id=poema_id,
-                       puntaje=puntaje,
-                       comentario=comentario)
-        
+        return Calificacion(
+            cal_id=cal_id,
+            usuario_id=usuario_id,
+            poema_id=poema_id,
+            puntaje=puntaje,
+            comentario=comentario
+        )

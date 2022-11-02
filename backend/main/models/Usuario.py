@@ -7,6 +7,7 @@ class Usuario(db.Model):
     correo = db.Column(db.String(100),nullable=False)
     contra = db.Column(db.String(100),nullable=False)
     admin = db.Column(db.Boolean,nullable=False,default=False)
+    pendiente = db.Column(db.Boolean,nullable=False,default=1)
 
     calificaciones = db.relationship("Calificacion", back_populates="usuario",cascade="all, delete-orphan")
 
@@ -27,7 +28,7 @@ class Usuario(db.Model):
         return '<Usuario: %r >' % (self.alias)
 
 
-    def to_json(self, admin=0):
+    def to_json(self):
         poemas = [poema.to_json() for poema in self.poemas]
         calificaciones =[calificacion.to_json_corto() for calificacion in self.calificaciones]
         json_str = {
@@ -35,10 +36,9 @@ class Usuario(db.Model):
             'alias':self.alias,
             'cantidad_poemas': len(poemas),
             'cantidad_calificacion': len(calificaciones),
+            'correo':self.correo,
+            'Usuario_id':self.usuario_id
         }
-        if admin:
-            json_str["correo"]=self.correo
-            json_str["Usuario_id"]=self.usuario_id
         return json_str
 
     def to_json_corto(self):
@@ -74,10 +74,11 @@ class Usuario(db.Model):
         correo = json_str.get('correo')
         contra = json_str.get('contra')
         admin = json_str.get('admin')
-        return Usuario(usuario_id=usuario_id,
-                       alias=alias,
-                       correo=correo,
-                       contra_plana=contra,
-                       admin=admin,
-                       )
+        return Usuario(
+            usuario_id=usuario_id,
+            alias=alias,
+            correo=correo,
+            contra_plana=contra,
+            admin=admin,
+            )
         

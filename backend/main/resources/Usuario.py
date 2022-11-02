@@ -22,7 +22,7 @@ class Usuario(Resource):
             
 
 
-    @admin_required
+    # @admin_required
     def delete(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
         db.session.delete(usuario)
@@ -50,7 +50,7 @@ class Usuario(Resource):
 
 class Usuarios(Resource):
     
-    @admin_required
+    #@admin_required
     def get(self):
         pagina = 1
         por_pagina = 5
@@ -105,14 +105,14 @@ class Usuarios(Resource):
 
         usuarios = usuarios.paginate(pagina, por_pagina, True, 20)
         return jsonify({
-                'Usuarios': [usuario.to_json(admin=True) for usuario in usuarios.items],
+                'Usuarios': [usuario.to_json() for usuario in usuarios.items],
                 'Total_de_usuarios': usuarios.total, 
                 'Total_de_paginas': usuarios.pages,
-                'Paginaa-ctual': pagina, 
+                'Pagina-actual': pagina, 
             })
 
 
-    @admin_required
+    # @admin_required
     def post(self):
         usuario = UsuarioModel.from_json(request.get_json())
         db.session.add(usuario)

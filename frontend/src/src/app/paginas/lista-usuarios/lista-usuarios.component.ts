@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostUsuariosService } from './../../servicios/post.service';
 
-
 @Component({
   selector: 'app-lista-usuarios',
   templateUrl: './lista-usuarios.component.html',
@@ -9,17 +8,23 @@ import { PostUsuariosService } from './../../servicios/post.service';
 })
 export class ListaUsuariosComponent implements OnInit {
 
-  arrayusuarios:any;
+  arrayUsuarios:any
+// arrayUsuarios=[
+//   {
+//     'usuario':'u1',
+//     'email':'email`1'
+//   }
+//]
 
   constructor(
-    private postUsuariosService: PostUsuariosService
+    private postUsuariosService: PostUsuariosService,
   ) { }
 
   ngOnInit(): void {
 
     this.postUsuariosService.getUsuarios().subscribe((data:any) =>{
       console.log('JSON data: ', data);
-    this.arrayusuarios = data.usuarios;})
+    this.arrayUsuarios = data.Usuarios;})
 
   }
 

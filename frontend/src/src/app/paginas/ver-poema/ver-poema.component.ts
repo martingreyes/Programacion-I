@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PostPoemaService } from './../../servicios/post.service'
 
 @Component({
   selector: 'app-ver-poema',
@@ -7,68 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VerPoemaComponent implements OnInit {
 
-  arrayPoemas = [
-    {
-      titulo:"Poema1",
-      calificacion: 7,
-      autor:"Autor 1",
-      texto: `1Some quick example text to buildwea
-              2on the card title and make up
-              3the bulk of the card's content.
-              1Some quick example text to buildwea
-              2on the card title and make up
-              3the bulk of the card's content.
-              1Some quick example text to buildwea
-              2on the card title and make up
-              3the bulk of the card's content.
-              1Some quick example text to buildwea
-              2on the card title and make up
-              3the bulk of the card's content.
-              1Some quick example text to buildwea
-              2on the card title and make up
-              3the bulk of the card's content.
-              1Some quick example text to buildwea
-              2on the card title and make up
-              3the bulk of the card's content.
-              1Some quick example text to buildwea
-              2on the card title and make up
-              3the bulk of the card's content.
-              1Some quick example text to buildwea
-              2on the card title and make up
-              3the bulk of the card's content.`,
-      fecha: "DD/MM/YYYY"
-    }
-  ]
+  poema_id!: string;
+  poema!: any;
 
-  arraycomentarios = [
+  constructor(
+    private route:ActivatedRoute,
+    private postPoemaService: PostPoemaService,
+  ) { }
 
-    {
-      calificacion: 2,
-      usuario:"Autor 5",
-      texto: "Nefa",
-    },
-    {
-      calificacion: 10,
-      usuario:"Autor 4",
-      texto: "God",
-    },
-    {
-      calificacion: 11,
-      usuario:"Autor 2",
-      texto: "Maso",
-    }
-
-  ]
-  constructor() { }
 
   ngOnInit(): void {
+    this.poema_id = this.route.snapshot.paramMap.get('id') || '';
+    
+    this.postPoemaService.getPoema(this.poema_id).subscribe((data:any) =>{
+        console.log('JSON data: ', data);
+        this.poema = data;
+      }
+    )
   }
-
-  // script de Deslizador
-  // slider = document.getElementById("myRange");
-  // output = document.getElementById("demo");
-  // output.innerHTML = slider.value; 
-  // slider.oninput = function() {
-  // output.innerHTML = this.value;
-  // }
 }

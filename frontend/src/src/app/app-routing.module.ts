@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'PerfilAjeno/:id', component: PerfilAjenoComponent },
   { path: 'PerfilAjenoAdmin/:id', component: PerfilAjenoAdminComponent },
   { path: 'PerfilAjenoUsuario/:id', component: PerfilAjenoUsuarioComponent },
-  { path: 'VerPoema', component: VerPoemaComponent },
+  { path: 'VerPoema/:id', component: VerPoemaComponent },
   { path: 'VerPoemaAdmin/:id', component: VerPoemaAdminComponent },
   { path: 'VerPoemaUsuario/:id', component: VerPoemaUsuarioComponent }
 ];

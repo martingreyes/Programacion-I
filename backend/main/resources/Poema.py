@@ -1,11 +1,9 @@
-from ast import alias
 from datetime import datetime, timedelta 
-from itertools import groupby
 from flask_restful import Resource
 from flask import jsonify, request
 from .. import db
 from main.models import PoemaModel,UsuarioModel, CalificacionModel
-from sqlalchemy import func, true 
+from sqlalchemy import func 
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 
 
@@ -14,12 +12,7 @@ class Poema(Resource):
     @jwt_required(optional=True)
     def get(self, poema_id):
         poema = db.session.query(PoemaModel).get_or_404(poema_id)
-        token_id = get_jwt_identity()
-        claims = get_jwt()
-        if token_id == None or not claims["admin"]:
-            return poema.to_json()
-        elif claims["admin"]:
-            return poema.to_json(admin=True)
+        return poema.to_json()
 
 
     @jwt_required()
@@ -40,7 +33,7 @@ class Poema(Resource):
         else:
             return poema.to_json(), 201
 
-    
+
 
     @jwt_required
     #Hay que usar el id del usuario en el token
@@ -139,23 +132,25 @@ class Poemas(Resource):
 
     @jwt_required
     def post(self):
-        poema = PoemaModel.from_json(request.get_json())
-        usuario_id = get_jwt_identity()
-        poema.autor_id = usuario_id         #El que esta logueado es el autor
+        print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
         
-        usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
-        cantidad_poema = len(usuario.poemas)                #REvisar usario.poemas
-        cantidad_comentarios = len(usuario.calificaciones)
+        # poema = PoemaModel.from_json(request.get_json())
+        # usuario_id = get_jwt_identity()
+        # poema.autor_id = usuario_id         #El que esta logueado es el autor
+        
+        # usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
+        # cantidad_poema = len(usuario.poemas)                #REvisar usario.poemas
+        # cantidad_comentarios = len(usuario.calificaciones)
 
-        if cantidad_poema != 0:
-            div = cantidad_comentarios/cantidad_poema
+        # if cantidad_poema != 0:
+        #     div = cantidad_comentarios/cantidad_poema
         
-        if cantidad_poema == 0 or div >= 3:
-            db.session.add(poema)
-            db.session.commit()
-            return poema.to_json(), 201
-        else:
-            return 'No permitido', 405
+        # if cantidad_poema == 0 or div >= 3:
+        #     db.session.add(poema)
+        #     db.session.commit()
+        #     return poema.to_json(), 201
+        # else:
+        #     return 'No permitido', 405
 
 class PoemasCalificacion(Resource):
     @jwt_required(optional=True)

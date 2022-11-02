@@ -4,14 +4,14 @@
 <div class="container-fluid" style="background-color: #4E7079"> 
         
     <div class="row cols-lg g-4">
-        <div  *ngFor="let usuarios of arrayusuarios">
+        <div  *ngFor="let usuarios of arrayUsuarios">
             <div class="col" id="capsula-col">
-                <app-capsula-usuario-pendiente [usuario]="usuarios.usuario" [email]="usuarios.email"></app-capsula-usuario-pendiente>
+                <app-capsula-usuario-pendiente [usuario]="usuarios.alias" [email]="usuarios.correo"></app-capsula-usuario-pendiente>
             </div>
         </div>
-        <div  *ngFor="let usuarios of arrayusuarios">
+        <div  *ngFor="let usuarios of arrayUsuarios">
             <div class="col" id="capsula-col">
-                <app-capsula-usuario [usuario]="usuarios.usuario" [email]="usuarios.email"> </app-capsula-usuario>
+                <app-capsula-usuario [usuario]="usuarios.alias" [email]="usuarios.correo"> </app-capsula-usuario>
             </div>
         </div>
     </div>
@@ -19,4 +19,3 @@
 </div>
 
 <app-paginado-de-poemas></app-paginado-de-poemas>
-

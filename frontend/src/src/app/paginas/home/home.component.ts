@@ -21,7 +21,5 @@ export class HomeComponent implements OnInit {
         this.arrayPoemas = data.Poemas;
       }
     )
-
   }
-
 }

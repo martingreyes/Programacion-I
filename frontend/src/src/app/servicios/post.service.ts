@@ -2,7 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
+})
+
+//No tocar
+export class PostService {
+  url = 'https://reqres.in/api/users?page=1'
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+
+  getUsers() {
+    return this.httpClient.get(this.url);
+  }
+}
+//No tocar
+
+@Injectable({
+  providedIn: "root",
 })
 
 export class PostPoemasService {
@@ -18,9 +36,29 @@ export class PostPoemasService {
   } 
 }
 
+@Injectable({
+  providedIn: "root",
+})
+
+export class PostPoemaService {
+  // url = 'https://reqres.in/api/users?page=2'
+  url = 'poema'
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  getPoema(id_poema: string) {
+    return this.httpClient.get(this.url + "/" + id_poema.toString());
+  } 
+}
+
+@Injectable({
+  providedIn: "root",
+})
 
 export class PostUsuariosService {
-  url = "http://127.0.0.1:5000/usuarios"
+  url = 'usuarios'
 
   constructor(
     private httpClient: HttpClient
@@ -28,6 +66,22 @@ export class PostUsuariosService {
   
   getUsuarios() { 
     return this.httpClient.get(this.url);
+  }  
+}
+
+@Injectable({
+  providedIn: "root",
+})
+
+export class PostPoemaCalificacionService {
+  url = "poema-calificacion"
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  getPoemaCalificacion(id_poema: string) { 
+    return this.httpClient.get(this.url + "/" + id_poema.toString());
   }  
 }
 

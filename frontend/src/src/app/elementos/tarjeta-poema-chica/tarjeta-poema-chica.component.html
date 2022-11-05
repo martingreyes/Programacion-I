@@ -38,9 +38,24 @@
                 </tr>
                 
                 <tr>
-                    <button type="button" routerLink="/VerPoema" class="btn" role="button" style="background-color: none ; border: none ; color: black;">
-                        Ver mas
-                    </button> 
+                    <div *ngIf="desde === 'home'">
+                        <button type="button" routerLink="/VerPoema/{{poema_id}}" class="btn" role="button" style="background-color: none ; border: none ; color: black;">
+                            Ver mas
+                        </button> 
+                    </div>
+                    <div *ngIf="desde === 'homeAdmin'">
+                        <button type="button" routerLink="/VerPoemaAdmin/{{poema_id}}" class="btn" role="button" style="background-color: none ; border: none ; color: black;">
+                            Ver mas
+                        </button> 
+                    </div>
+                    <!-- TODO Pasar ID Usuario-->
+                    <div *ngIf="desde === 'homeUsuario'">
+                        <button type="button" routerLink="/VerPoemaUsuario/{{poema_id}}" class="btn" role="button" style="background-color: none ; border: none ; color: black;">
+                            Ver mas
+                        </button> 
+                    </div>
+
+
                     <br>
                 </tr>
                 

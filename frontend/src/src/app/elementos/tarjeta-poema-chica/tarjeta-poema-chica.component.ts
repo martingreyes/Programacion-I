@@ -7,6 +7,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TarjetaPoemaChicaComponent implements OnInit {
 
+  @Input() desde!: string;
+
+  @Input() usuario_id!: string;
+
+  @Input() poema_id!: string;
+
   @Input() titulo!: string;
 
   @Input() autor!: string;
@@ -18,6 +24,7 @@ export class TarjetaPoemaChicaComponent implements OnInit {
   @Input() fecha!: string;
   
   @Input() link_foto!: string;
+
   constructor() { }
 
   ngOnInit(): void { }

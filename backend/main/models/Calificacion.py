@@ -22,6 +22,7 @@ class Calificacion(db.Model):
         self.poema = db.session.query(PoemaModel).get_or_404(self.poema_id)
         json_str = {
             'Cal_id':self.cal_id,
+            'Poema_id':self.poema_id,
             'puntaje':self.puntaje,
             'comentario':self.comentario,
             'usuario': self.usuario.alias,
@@ -30,27 +31,27 @@ class Calificacion(db.Model):
         return json_str
 
 
-    def to_json_corto(self):
-        self.usuario = db.session.query(UsuarioModel).get_or_404(self.usuario_id)
-        self.poema = db.session.query(PoemaModel).get_or_404(self.poema_id)
-        json_str = {
-            'cal_id':self.cal_id,
-            'puntaje':self.puntaje,
-            'comentario':self.comentario,
-            'poema':self.poema_id
-        }
-        return json_str
+    # def to_json_corto(self):
+    #     self.usuario = db.session.query(UsuarioModel).get_or_404(self.usuario_id)
+    #     self.poema = db.session.query(PoemaModel).get_or_404(self.poema_id)
+    #     json_str = {
+    #         'cal_id':self.cal_id,
+    #         'puntaje':self.puntaje,
+    #         'comentario':self.comentario,
+    #         'poema':self.poema_id
+    #     }
+    #     return json_str
 
 
-    def to_json_corto_poema(self):
-        self.usuario = db.session.query(UsuarioModel).get_or_404(self.usuario_id)
-        json_str = {
-            'cal_id':self.cal_id,
-            'puntaje':self.puntaje,
-            'comentario':self.comentario,
-            'usuario_id':self.usuario_id,
-        }
-        return json_str
+    # def to_json_corto_poema(self):
+    #     self.usuario = db.session.query(UsuarioModel).get_or_404(self.usuario_id)
+    #     json_str = {
+    #         'cal_id':self.cal_id,
+    #         'puntaje':self.puntaje,
+    #         'comentario':self.comentario,
+    #         'usuario_id':self.usuario_id,
+    #     }
+    #     return json_str
 
 
     @staticmethod

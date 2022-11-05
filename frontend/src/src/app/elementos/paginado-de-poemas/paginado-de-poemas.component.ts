@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-paginado-de-poemas',
@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaginadoDePoemasComponent implements OnInit {
 
-  constructor() { }
+  @Input() desde!: string;
+  
+  @Input() num!: number;
+  @Input() actual!: number;
+  arrayNum : any;
+  
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  array() {
+    return this.arrayNum = Array.from(Array(this.num)).map((e,i)=>i+1);
+  }
+
+  pag_act(i: number) {
+    return this.actual === i;
   }
 
 }

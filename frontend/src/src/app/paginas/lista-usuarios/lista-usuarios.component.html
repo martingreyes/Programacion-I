@@ -5,17 +5,21 @@
         
     <div class="row cols-lg g-4">
         <div  *ngFor="let usuarios of arrayUsuarios">
+
+            
+
             <div class="col" id="capsula-col">
-                <app-capsula-usuario-pendiente [usuario]="usuarios.alias" [email]="usuarios.correo"></app-capsula-usuario-pendiente>
-            </div>
-        </div>
-        <div  *ngFor="let usuarios of arrayUsuarios">
-            <div class="col" id="capsula-col">
-                <app-capsula-usuario [usuario]="usuarios.alias" [email]="usuarios.correo"> </app-capsula-usuario>
+
+                <div *ngIf="usuarios.Pendiente; else elseBlock">
+                    <app-capsula-usuario-pendiente [usuario]="usuarios.alias" [email]="usuarios.correo"></app-capsula-usuario-pendiente>
+                </div>
+
+                <ng-template #elseBlock>
+                    <app-capsula-usuario [usuario]="usuarios.alias" [email]="usuarios.correo"> </app-capsula-usuario>
+                </ng-template>
+
             </div>
         </div>
     </div>
 
 </div>
-
-<app-paginado-de-poemas></app-paginado-de-poemas>

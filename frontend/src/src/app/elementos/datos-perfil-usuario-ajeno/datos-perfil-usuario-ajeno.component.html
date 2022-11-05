@@ -21,7 +21,7 @@
                         <td style="width: 100% ;
                                 text-align:center;
                                 align-items: center;">
-                            <h4 class="nick" style="margin: 0px; font-weight: 700; color: white">Perfil:<br> Nombre de usuario {{usuario_id}}</h4>
+                            <h4 class="nick" style="margin: 0px; font-weight: 700; color: white">Perfil:<br>{{datos.alias}}</h4>
                         </td>           
                     </tr> 
                 </table>
@@ -39,28 +39,23 @@
 
                     <div class="row row-cols-1 g-2">
 
-                        <div class="col-6 col-lg-3" >
+                        <div class="col-6 col-lg-4" >
                             <div class="count-data text-center" id="datacell">
-                                <h6 class="count h2" data-to="500" data-speed="500">500</h6>
+                                <h6 class="count h2" data-to="500" data-speed="500">{{datos.cantidad_poemas}}</h6>
                                 <p class="m-0px font-w-600">Poemas</p>
                             </div>
                         </div>
-                        <div class="col-6 col-lg-3">
+                        <div class="col-6 col-lg-4">
                             <div class="count-data text-center" id="datacell">
-                                <h6 class="count h2" data-to="150" data-speed="150"> <img src="./assets/Imagenes/promedio.png" width="7%" alt=""> 7.5 <img src="/Imagenes/promedio.png" width="7%" alt=""></h6>
+                                <h6 class="count h2" data-to="150" data-speed="150"> <img src="./assets/Imagenes/promedio.png" width="7%" alt=""> {{datos.Promedio_poema}} <img src="./assets/Imagenes/promedio.png" width="7%" alt=""></h6>
                                 <p class="m-0px font-w-600">Promedio</p>
                             </div>
                         </div>
-                        <div class="col-6 col-lg-3">
+                        
+                        <div class="col-6 col-lg-4">
                             <div class="count-data text-center" id="datacell">
-                                <h6 class="count h2" data-to="850"  data-speed="850">850</h6>
+                                <h6 class="count h2" data-to="850"  data-speed="850"> {{datos.cantidad_calificacion}} </h6>
                                 <p class="m-0px font-w-600">Calificaciones hechas</p>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-3">
-                            <div class="count-data text-center" id="datacell" style=>
-                                <h6 class="count h2" data-to="190" data-speed="190">190</h6>
-                                <p class="m-0px font-w-600">Calificaciones recibidas</p>
                             </div>
                         </div>
                     </div>

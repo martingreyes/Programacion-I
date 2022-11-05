@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DatosPerfilUsuarioAjenoComponent implements OnInit {
 
-  @Input() usuario_id!: string;
+  @Input() datos!: any;
   
   constructor() { }
 

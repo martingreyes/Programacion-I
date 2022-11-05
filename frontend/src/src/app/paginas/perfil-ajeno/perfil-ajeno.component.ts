@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PostPerfilUsuarioService } from './../../servicios/post.service'
+import { PostUsuarioService } from './../../servicios/post.service'
+
+
 
 @Component({
   selector: 'app-perfil-ajeno',
@@ -8,53 +12,29 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PerfilAjenoComponent implements OnInit {
   usuario_id!: string;
+  arrayPoemas:any;
+  datos:any;
 
-  arrayPoemas = [
-    {
-      titulo:"Poema1",
-      calificacion: 7,
-      autor:"Autor 1",
-      texto: "1Some quick example text to buildwea<br>2on the card title and make up<br>3the bulk of the card's content.",
-      fecha: "DD/MM/YYYY"
-    },
-    {
-      titulo:"Poema2",
-      calificacion: 2,
-      autor:"Autor 2",
-      texto: "1Some quick example text to buildwea<br>2on the card title and make up<br>3the bulk of the card's content.",
-      fecha: "22/12/2222"
-    },
-    {
-      titulo:"Poema3",
-      calificacion: 2,
-      autor:"Autor 3",
-      texto: "1Some quick example text to buildwea<br>2on the card title and make up<br>3the bulk of the card's content.",
-      fecha: "22/12/2222"
-    },
-    {
-      titulo:"Poema4",
-      calificacion: 2,
-      autor:"Autor 4",
-      texto: "1Some quick example text to buildwea<br>2on the card title and make up<br>3the bulk of the card's content.",
-      fecha: "22/12/2222"
-    },
-    {
-      titulo:"Poema5",
-      calificacion: 2,
-      autor:"Autor 5",
-      texto: "1Some quick example text to buildwea<br>2on the card title and make up<br>3the bulk of the card's content.",
-      fecha: "22/12/2222"
-    }
-  ]
-  
 
   constructor(
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private postPerfilUsuarioService: PostPerfilUsuarioService,
+    private postUsuarioService: PostUsuarioService
   ) { }
 
   ngOnInit(): void {
     this.usuario_id = this.route.snapshot.paramMap.get('id') || ''; 
+
+    this.postPerfilUsuarioService.getUsuarioPoema(this.usuario_id).subscribe((data:any) =>{
+      console.log("JSON data Poemas: ", data)
+      this.arrayPoemas = data.poemas;
+      }
+    )
+    
+    this.postUsuarioService.getUsuario(this.usuario_id).subscribe((data:any) =>{
+      console.log("JSON data datos usuarios: ", data)
+      this.datos = data;
+      }
+    )
   }
 }
-
-

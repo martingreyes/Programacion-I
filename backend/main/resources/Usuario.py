@@ -53,9 +53,8 @@ class Usuarios(Resource):
     #@admin_required
     def get(self):
         pagina = 1
-        por_pagina = 5
-        usuarios = db.session.query(UsuarioModel)
-
+        por_pagina = 100
+        usuarios = db.session.query(UsuarioModel).order_by(UsuarioModel.pendiente.desc(),UsuarioModel.alias)
 
         claves = [
             'pagina',
@@ -75,32 +74,32 @@ class Usuarios(Resource):
         if filtros == {}:
             filtros = {'ordenar_por': 'alias'}
             
-        for clave, valor in filtros.items():
-            if clave == "pagina":
-                pagina = int(valor)
+        # for clave, valor in filtros.items():
+        #     if clave == "pagina":
+        #         pagina = int(valor)
             
-            if clave == "por_pagina":
-                por_pagina = int(valor)
+        #     if clave == "por_pagina":
+        #         por_pagina = int(valor)
             
-            if clave == "alias":
-                usuarios = usuarios.filter(UsuarioModel.alias.like("%"+valor+"%"))
+        #     if clave == "alias":
+        #         usuarios = usuarios.filter(UsuarioModel.alias.like("%"+valor+"%"))
             
-            if clave == "poemas":               #Usuarios que tengan 'valor' o mas poemas.  
-                usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).having(func.count(PoemaModel.poema_id) >= valor)
+        #     if clave == "poemas":               #Usuarios que tengan 'valor' o mas poemas.  
+        #         usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).having(func.count(PoemaModel.poema_id) >= valor)
 
-            if clave == "calificaciones":       #Usuarios que tengan 'valor' o mas calificaciones.  
-                usuarios=usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.usuario_id).having(func.count(CalificacionModel.cal_id) >= valor)
+        #     if clave == "calificaciones":       #Usuarios que tengan 'valor' o mas calificaciones.  
+                # usuarios=usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.usuario_id).having(func.count(CalificacionModel.cal_id) >= valor)
 
-            if clave == "ordenar_por":          #Si no se usa, ordena por id CREO.
-                if valor == "alias[desc]":      #Ordena por alias descendencia. 
-                    usuarios = usuarios.order_by(UsuarioModel.alias.desc())
-                elif valor == "alias":
-                    usuarios = usuarios.order_by(UsuarioModel.alias)
+        #     if clave == "ordenar_por":          #Si no se usa, ordena por id CREO.
+        #         if valor == "alias[desc]":      #Ordena por alias descendencia. 
+        #             usuarios = usuarios.order_by(UsuarioModel.alias.desc())
+        #         elif valor == "alias":
+        #             usuarios = usuarios.order_by(UsuarioModel.alias)
                             
-                elif valor == 'poemas[desc]':   #Por cantidad de poemas(asc,desc). 
-                    usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id).desc())
-                elif valor == "poemas":                        
-                    usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id))
+        #         elif valor == 'poemas[desc]':   #Por cantidad de poemas(asc,desc). 
+        #             usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id).desc())
+        #         elif valor == "poemas":                        
+        #             usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id))
                         
 
         usuarios = usuarios.paginate(pagina, por_pagina, True, 20)
@@ -120,16 +119,13 @@ class Usuarios(Resource):
         return usuario.to_json(), 201
 
 class UsuarioPoema(Resource):
-
     @jwt_required(optional=True)
     def get(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
-        return usuario.to_json_usuario_poema()
+        return usuario.to_json()
 
 class UsuarioCalificacion(Resource):
     @jwt_required(optional=True)
     def get(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
-        return usuario.to_json_usuario_calificacion()
-
-        
+        return usuario.to_json()

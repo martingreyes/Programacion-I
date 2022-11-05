@@ -27,44 +27,59 @@ class Usuario(db.Model):
     def __repr__(self):
         return '<Usuario: %r >' % (self.alias)
 
+    
 
     def to_json(self):
         poemas = [poema.to_json() for poema in self.poemas]
-        calificaciones =[calificacion.to_json_corto() for calificacion in self.calificaciones]
+        suma = 0
+        cont = 0
+        for x in poemas:
+            if  type(x["promedio"]) == float:
+                suma += x["promedio"]
+                cont += 1
+        if cont != 0:
+            promedio = suma / cont
+        else:
+            promedio = 0
+            
+        calificaciones =[calificacion.to_json() for calificacion in self.calificaciones] #Calificaciones que él hizo
         json_str = {
-            # 'usuario_id':self.usuario_id,
             'alias':self.alias,
             'cantidad_poemas': len(poemas),
-            'cantidad_calificacion': len(calificaciones),
+            'poemas':poemas,
             'correo':self.correo,
-            'Usuario_id':self.usuario_id
+            'Usuario_id':self.usuario_id,
+            'Pendiente':self.pendiente,
+            "Promedio_poema": promedio,
+            'cantidad_calificacion': len(calificaciones),
+            "calificaciones": calificaciones
         }
         return json_str
 
-    def to_json_corto(self):
-        json_str = {
-            'usuario_id':self.usuario_id,
-            'alias':self.alias,
-        }
-        return json_str
+    # def to_json_corto(self):
+    #     json_str = {
+    #         'usuario_id':self.usuario_id,
+    #         'alias':self.alias,
+    #     }
+    #     return json_str
 
 
-    def to_json_usuario_poema(self):                #otro get
-        poemas = [poema.to_json() for poema in self.poemas]
-        json_str = {
-            'alias':self.alias,
-            'poemas':poemas
-        }
-        return json_str
+    # def to_json_usuario_poema(self):                #otro get
+    #     poemas = [poema.to_json() for poema in self.poemas]
+    #     json_str = {
+    #         'alias':self.alias,
+    #         'poemas':poemas
+    #     }
+    #     return json_str
 
 
-    def to_json_usuario_calificacion(self):
-        calificaciones = [calificacion.to_json_corto() for calificacion in self.calificaciones]
-        json_str = {
-            'alias':self.alias,
-            'calificaciones': calificaciones
-        }
-        return json_str
+    # def to_json_usuario_calificacion(self):
+    #     calificaciones = [calificacion.to_json() for calificacion in self.calificaciones]
+    #     json_str = {
+    #         'alias':self.alias,
+    #         'calificaciones': calificaciones
+    #     }
+    #     return json_str
     
 
     @staticmethod

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { PostPoemaCalificacionService } from './../../servicios/post.service'
 
 @Component({
   selector: 'app-tarjeta-calificaciones-usuario',
@@ -9,32 +10,49 @@ export class TarjetaCalificacionesUsuarioComponent implements OnInit {
 
   @Input() usuario_id!: string;
 
-  arraycomentarios = [
+  @Input() poema_id!: string;
 
-    {
-      calificacion: 2,
-      usuario:"Autor 5",
-      texto: "sum dolor sit amet. Sit quas harum et iste dolores quo delectus laudantium sit voluptatem eveniet et nesciunt culpa! Hic cupiditate earum et harum incidunt sit aperiam fuga et od",
-    },
-    {
-      calificacion: 10,
-      usuario:"Autor 4",
-      texto: "Non voluptas odit aut quos expedita aut sequi dolorum aut tenetur quis ut velit consequatur. In saepe voluptatem quo optio voluptatem ut sint illo.",
-    },
-    {
-      calificacion: 11,
-      usuario:"Autor 2",
-      texto: "Nam pariatur laudantium eum ducimus aliquam id sapiente illum sed repellat voluptates rem assumenda fugiat.",
-    }
+  arrayPoemaComentarios: any;
 
-  ]
 
-  constructor() { }
+  constructor(
+    private postPoemaCalificacionService: PostPoemaCalificacionService,
+  ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+    this.postPoemaCalificacionService.getPoemaCalificacion(this.poema_id).subscribe((data:any) =>{
+        console.log('JSON data Calificaciones: ', data);
+        this.arrayPoemaComentarios = data.calificaciones;
+      }
+    )
   }
 
-}
+  // arraycomentarios = [
+
+  //   {
+  //     calificacion: 2,
+  //     usuario:"Autor 5",
+  //     texto: "sum dolor sit amet. Sit quas harum et iste dolores quo delectus laudantium sit voluptatem eveniet et nesciunt culpa! Hic cupiditate earum et harum incidunt sit aperiam fuga et od",
+  //   },
+  //   {
+  //     calificacion: 10,
+  //     usuario:"Autor 4",
+  //     texto: "Non voluptas odit aut quos expedita aut sequi dolorum aut tenetur quis ut velit consequatur. In saepe voluptatem quo optio voluptatem ut sint illo.",
+  //   },
+  //   {
+  //     calificacion: 11,
+  //     usuario:"Autor 2",
+  //     texto: "Nam pariatur laudantium eum ducimus aliquam id sapiente illum sed repellat voluptates rem assumenda fugiat.",
+  //   }
+
+  // ]
+
+  // constructor() { }
+
+  // ngOnInit(): void {
+  }
+
+
 
 
 // <Slider Script

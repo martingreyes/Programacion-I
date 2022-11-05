@@ -17,8 +17,8 @@ export class PostService {
     return this.httpClient.get(this.url);
   }
 }
-//No tocar
 
+//No tocar
 @Injectable({
   providedIn: "root",
 })
@@ -31,8 +31,8 @@ export class PostPoemasService {
     private httpClient: HttpClient
   ) { }
   
-  getPoemas() {
-    return this.httpClient.get(this.url);
+  getPoemas(pagina: number = 1) {
+    return this.httpClient.get(this.url + "?pagina=" + pagina);
   } 
 }
 
@@ -85,3 +85,34 @@ export class PostPoemaCalificacionService {
   }  
 }
 
+@Injectable({
+  providedIn: "root",
+})
+
+export class PostPerfilUsuarioService {
+  url = "usuario-poema"
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  getUsuarioPoema(usuario_id: string) { 
+    return this.httpClient.get(this.url + "/" + usuario_id.toString());
+  }  
+}
+
+@Injectable({
+  providedIn: "root",
+})
+
+export class PostUsuarioService {
+  url = "usuario"
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  getUsuario(id_usuario: string) { 
+    return this.httpClient.get(this.url + "/" + id_usuario.toString());
+  }  
+}

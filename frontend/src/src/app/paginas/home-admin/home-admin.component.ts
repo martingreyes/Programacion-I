@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PostPoemasService } from './../../servicios/post.service'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home-admin',
@@ -7,97 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeAdminComponent implements OnInit {
 
-
-  arrayPoemas = [
-    {
-      titulo:"Poema1",
-      calificacion: 7,
-      autor:"Autor 1",
-      texto: `
-      1Some quick example text to buildwea
-      2on the card title and make up
-      3the bulk of the card's content.`,
-      fecha: "DD/MM/YYYY"
-    },
-    {
-      titulo:"Poema2",
-      calificacion: 2,
-      autor:"Autor 3",
-      texto: `
-      1Some quick example text to buildwea
-      2on the card title and make up
-      3the bulk of the card's content.`,
-      fecha: "DD/MM/YYYY"
-    },{
-      titulo:"Poema4",
-      calificacion: 4,
-      autor:"Autor 4",
-      texto: `
-      1Some quick example text to buildwea
-      2on the card title and make up
-      3the bulk of the card's content.`,
-      fecha: "DD/MM/YYYY"
-    },{
-      titulo:"Poema5",
-      calificacion: 5,
-      autor:"Autor 5",
-      texto: `
-      1Some quick example text to buildwea
-      2on the card title and make up
-      3the bulk of the card's content.`,
-      fecha: "DD/MM/YYYY"
-    },{
-      titulo:"Poema6",
-      calificacion: 6,
-      autor:"Autor 6",
-      texto: `
-      1Some quick example text to buildwea
-      2on the card title and make up
-      3the bulk of the card's content.`,
-      fecha: "DD/MM/YYYY"
-    },{
-      titulo:"Poema7",
-      calificacion: 7,
-      autor:"Autor 7",
-      texto: `
-      1Some quick example text to buildwea
-      2on the card title and make up
-      3the bulk of the card's content.`,
-      fecha: "DD/MM/YYYY"
-    },{
-      titulo:"Poema8",
-      calificacion: 8,
-      autor:"Autor 8",
-      texto: `
-      1Some quick example text to buildwea
-      2on the card title and make up
-      3the bulk of the card's content.`,
-      fecha: "DD/MM/YYYY"
-    },{
-      titulo:"Poema9",
-      calificacion: 9,
-      autor:"Autor 9",
-      texto: `
-      1Some quick example text to buildwea
-      2on the card title and make up
-      3the bulk of the card's content.`,
-      fecha: "DD/MM/YYYY"
-    },{
-      titulo:"Poema10",
-      calificacion: 10,
-      autor:"Autor 10",
-      texto: `
-      1Some quick example text to buildwea
-      2on the card title and make up
-      3the bulk of the card's content.`,
-      fecha: "DD/MM/YYYY"
-    },
-  ]
+  arrayPoemas:any;
+  num_paginas:any;
+  pag_actual:any;
+  desde: string = 'homeAdmin';
   
+  pagina!: number;
 
-  constructor() { }
+  constructor(
+    private route:ActivatedRoute,
+    private postPoemasService: PostPoemasService,
+  ) { }
 
   ngOnInit(): void {
+    this.pagina = Number(this.route.snapshot.paramMap.get('pagina') || '1'); 
+    this.postPoemasService.getPoemas(this.pagina).subscribe((data:any) =>{
+        // console.log('JSON data: ', data);
+        this.arrayPoemas = data.Poemas;
+        this.num_paginas = data.Total_de_paginas;
+        this.pag_actual = data.Pagina_actual;
+      }
+    )
   }
 
 }
+
+

@@ -20,9 +20,10 @@ import { VerPoemaUsuarioComponent } from './paginas/ver-poema-usuario/ver-poema-
 
 // Distintas pag dependiendo del link (path)
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'HomeAdmin', component: HomeAdminComponent },
-  { path: 'HomeUsuario/:id', component: HomeUsuarioComponent },
+  { path: '', component:HomeComponent },
+  { path: 'Home/:pagina', component: HomeComponent },
+  { path: 'HomeAdmin/:pagina', component: HomeAdminComponent },
+  { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent },
   { path: 'CrearPoema', component: CrearPoemaComponent },
   { path: 'CrearUsuario', component: CrearUsuarioComponent },
   { path: 'ListaUsuarios', component: ListaUsuariosComponent },

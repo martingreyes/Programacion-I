@@ -1,10 +1,11 @@
 from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
-from main.models import CalificacionModel
+from main.models import CalificacionModel, PoemaModel
 from main.auth.decorators import admin_required  
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 from main.mail.funciones import sendMail
+from sqlalchemy import func 
 
 
 class Calificacion(Resource):

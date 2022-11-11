@@ -17,26 +17,36 @@ import { PerfilAjenoUsuarioComponent } from './paginas/perfil-ajeno-usuario/perf
 import { VerPoemaComponent } from './paginas/ver-poema/ver-poema.component';
 import { VerPoemaAdminComponent } from './paginas/ver-poema-admin/ver-poema-admin.component';
 import { VerPoemaUsuarioComponent } from './paginas/ver-poema-usuario/ver-poema-usuario.component'; 
+import { AuthsessionGuard } from './guardianes/authsession.guard';
+import { AdminGuardGuard } from './guardianes/admin-guard.guard';
 
 // Distintas pag dependiendo del link (path)
+
+//TODO Ver a que paginas ponemos guardianes, 
+//? En las paginas que tengan guardianes activados si no estas logueado (sin token) te redirije a Home/1
 const routes: Routes = [
   { path: '', component:HomeComponent },
   { path: 'Home/:pagina', component: HomeComponent },
-  { path: 'HomeAdmin/:pagina', component: HomeAdminComponent },
-  { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent },
+  { path: 'HomeAdmin/:pagina', component: HomeAdminComponent, canActivate:[AuthsessionGuard]},
+  { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent, canActivate: [AuthsessionGuard]},
+  // { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent},
   { path: 'CrearPoema', component: CrearPoemaComponent },
   { path: 'CrearUsuario', component: CrearUsuarioComponent },
-  { path: 'ListaUsuarios', component: ListaUsuariosComponent },
-  { path: 'ModificarDatosAdmin', component: ModificarDatosAdminComponent },
-  { path: 'ModificarDatos/:id', component: ModificarDatosComponent },
-  { path: 'PerfilGrilla/:id', component: PerfilGrillaComponent },
-  { path: 'PerfilLista/:id', component: PerfilListaComponent },
+  { path: 'ListaUsuarios', component: ListaUsuariosComponent, canActivate:[AdminGuardGuard]}, 
+  { path: 'ModificarDatosAdmin', component: ModificarDatosAdminComponent, canActivate:[AdminGuardGuard]},
+  { path: 'ModificarDatos/:id', component: ModificarDatosComponent , canActivate: [AuthsessionGuard]},
+  { path: 'PerfilGrilla/:id', component: PerfilGrillaComponent, canActivate: [AuthsessionGuard] },
+  { path: 'PerfilLista/:id', component: PerfilListaComponent, canActivate: [AuthsessionGuard] },
+  // { path: 'PerfilGrilla/:id', component: PerfilGrillaComponent},
+  // { path: 'PerfilLista/:id', component: PerfilListaComponent},
+
   { path: 'PerfilAjeno/:id', component: PerfilAjenoComponent },
   { path: 'PerfilAjenoAdmin/:id', component: PerfilAjenoAdminComponent },
   { path: 'PerfilAjenoUsuario/:id', component: PerfilAjenoUsuarioComponent },
   { path: 'VerPoema/:id', component: VerPoemaComponent },
   { path: 'VerPoemaAdmin/:id', component: VerPoemaAdminComponent },
-  { path: 'VerPoemaUsuario/:id', component: VerPoemaUsuarioComponent }
+  { path: 'VerPoemaUsuario/:id', component: VerPoemaUsuarioComponent , canActivate: [AuthsessionGuard]}
+  // { path: 'VerPoemaUsuario/:id', component: VerPoemaUsuarioComponent}
 ];
 
 @NgModule({

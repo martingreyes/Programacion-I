@@ -17,6 +17,8 @@ export class TarjetaPoemaChicaComponent implements OnInit {
 
   @Input() autor!: string;
 
+  @Input() autor_id!: string;
+
   @Input() calificacion!: number;
 
   @Input() texto!: string;

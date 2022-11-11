@@ -2,7 +2,7 @@
             
     <div class="container-fluid" style="background-color: #47B6AF">
         <a class="navbar-brand" href="#"></a>
-        <h1 id="titulo">CHIMICHANGA.NET</h1>
+        <h1 id="titulo"><a routerLink="/Home/1" style="color: white; text-decoration: none">CHIMICHANGA.NET</a></h1>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -40,35 +40,30 @@
 
                 <br>
                     
-                <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif ;" >INGRESAR</h3>
+                <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif ; " >INGRESAR</h3>
                 
                 
 
                 <br>
-                <li class="nav-item">
-                    <input class="form-control me-2" style="border-radius:50px " type="email" placeholder="Email" required>
-                </li>
-        
+                <form [formGroup]="loginForm">
+                    <li class="nav-item">
+                        <input class="form-control me-2" style="border-radius:50px" type="email" placeholder="Correo" formControlName="correo" required>
+                    </li>
+            
+                    <br>
+                    <li class="nav-item">                      
+                        <input class="form-control me-2" style="border-radius:50px; padding-inline-end: 10px;" type="password"  placeholder="Contraseña" formControlName="contra" required>
+                    </li>
+                    <br>
 
-                <br>
-                <li class="nav-item">
-                    <form class="d-flex">
-                        <input class="form-control me-2" style="border-radius:50px; padding-inline-end: 10px; " type="password" id="password" placeholder="Contraseña" required>
-                        <button class="btn  btn-main" style="border-radius: 50px; width:25%;" type="submit" (click)="mostrarContrasena()">
-                            <img src="./assets/Imagenes/contrasena.png"  width="100%" name="contraseña">
-                        </button>
+                    <li class="nav-item" >
+                        <!-- <a class="nav-link" routerLink="/HomeUsuario"><img src="./assets/Imagenes/iniciar_sesion.png" width="15%"  </a> -->
+                        <a class="nav-link" ><img src="./assets/Imagenes/iniciar_sesion.png" width="15%" (click)="submit()" > Iniciar Sesión</a>
+                    </li>
+                    <br>
+                </form>
 
-                    </form>
-                </li>
-                <br>
-                    
-                
-                
 
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="/HomeUsuario"><img src="./assets/Imagenes/iniciar_sesion.png" width="15%" > Iniciar Sesión</a>
-                </li>
-                <br>
 
                 <li class="nav-item">
                     <!-- Esto debe mandar un email -->
@@ -79,7 +74,7 @@
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/CrearUsuario" ><img src="./assets/Imagenes/registrarse.png" width="15%">   Registrarse</a>
                 </li>
-                <br>
+                <br> 
 
             </div>
         </div>

@@ -50,7 +50,7 @@ class Usuario(Resource):
 
 class Usuarios(Resource):
     
-    #@admin_required
+    # @admin_required
     def get(self):
         pagina = 1
         por_pagina = 100

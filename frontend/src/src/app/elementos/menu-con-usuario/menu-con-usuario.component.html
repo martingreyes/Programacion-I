@@ -2,7 +2,7 @@
             
     <div class="container-fluid" style="background-color: #47B6AF">
         <a class="navbar-brand" href="#"></a>
-        <h1 id="titulo">CHIMICHANGA.NET</h1>
+        <h1 id="titulo"><a routerLink="/HomeUsuario/{{usuario_id}}/1" style="color: white; text-decoration: none">CHIMICHANGA.NET</a></h1>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,12 +45,12 @@
                 <img src="./assets/Imagenes/editar.png" width="15%" style="position: absolute; margin-top: 14%;  margin-left: -8%;"></a>   
             </div>
 
-            <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif ;" >Kick Buttowski {{usuario_id}}</h3>
+            <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif ;" >{{alias}}</h3>
             
             
 
             <li class="nav-item">
-                <a class="nav-link" routerLink="/PerfilGrilla"><img src="./assets/Imagenes/mi_perfil.png" width="15%">   Mi Perfil</a>
+                <a class="nav-link" routerLink="/PerfilGrilla/{{usuario_id}}"><img src="./assets/Imagenes/mi_perfil.png" width="15%">   Mi Perfil</a>
             </li>
             <br>
             
@@ -60,7 +60,7 @@
             <br>
             
             <li class="nav-item" style="position: absolute; bottom: 0px; width: 100%;">
-                <a class="nav-link" routerLink="/"><img src="./assets/Imagenes/cerrar_sesion.png" width="15%">  Cerrar sesión</a>
+                <a class="nav-link" (click)="cerrarSesion()"><img src="./assets/Imagenes/cerrar_sesion.png" width="15%" (click)="cerrarSesion()" >  Cerrar sesión</a>
             </li>
             <br>
 

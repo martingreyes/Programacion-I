@@ -13,7 +13,7 @@
                 [autor]="poema.autor" 
                 [titulo]="poema.titulo"  
                 [calificacion]="poema.calificacion"
-                [texto]="poema.texto"
+                [texto]="poema.contenido"
                 [fecha]="poema.fecha">
             </app-tarjeta-poema-grande>
 
@@ -22,7 +22,7 @@
         
 
             <div class="col justify-content-center " id="poema-col" style="height:auto;">
-                <app-tarjeta-calificaciones-usuario [usuario_id]="usuario_id"></app-tarjeta-calificaciones-usuario>
+                <app-tarjeta-calificaciones-usuario [usuario_id]="usuario_id" [poema_id]="poema_id"></app-tarjeta-calificaciones-usuario>
             </div>  
         </div>
     </div>

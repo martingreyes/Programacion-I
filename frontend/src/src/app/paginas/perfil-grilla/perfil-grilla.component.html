@@ -1,22 +1,24 @@
 <app-menu-con-usuario></app-menu-con-usuario>
 
-<app-datos-perfil-usuario [usuario_id]="usuario_id"></app-datos-perfil-usuario>
+<app-datos-perfil-usuario [usuario_id]="usuario_id"  [datos]="arrayDatos"></app-datos-perfil-usuario>
 
-<div class="container-fluid" style="background-color: #4E7079"> 
+<div class="container-fluid" style="background-color: #4E7079">
+
+    <div class="row cols-lg g-4">
     
-    <div class="col justify-content-center " id="poema-col" *ngFor="let poema of arrayPoemas">
+    <div class="col justify-content-center " id="poema-col" *ngFor="let poema of arrayDatos.poemas">
             <app-tarjeta-poema-chica-propio 
-            [autor]="poema.autor" 
             [titulo]="poema.titulo"  
-            [calificacion]="poema.calificacion"
-            [texto]="poema.texto"
-            [fecha]="poema.fecha">
+            [calificacion]="poema.promedio"
+            [texto]="poema.contenido"
+            [fecha]="poema.fecha"
+            [poema_id]="poema.poema_id">
         </app-tarjeta-poema-chica-propio>
         <br>
-        </div>
-
     </div>
 
+    </div>
+</div>
 <app-paginado-de-poemas></app-paginado-de-poemas>
 
 <a routerLink="/PerfilLista/{{usuario_id}}" class="btn-flotante" >

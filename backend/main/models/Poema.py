@@ -32,21 +32,21 @@ class Poema(db.Model):
             'titulo':self.titulo,
             'contenido':self.contenido,
             'autor': self.autor.alias,
+            'autor_id':self.autor_id,
             'fecha': self.fecha.strftime("%Y-%m-%d %H:%M:%S"),
             'promedio': promedio,
-            'calificaciones': calificacion
         }
         return json_str
 
 
 
-    # def to_json_poema_calificacion(self):
-    #     calificaciones = [calificacion.to_json() for calificacion in self.calificaciones]
-    #     json_str = {
-    #         'poema_id': self.poema_id,
-    #         'calificaciones':calificaciones
-    #     }
-    #     return json_str      
+    def to_json_poema_calificacion(self):
+        calificaciones = [calificacion.to_json() for calificacion in self.calificaciones]
+        json_str = {
+            'poema_id': self.poema_id,
+            'calificaciones':calificaciones
+        }
+        return json_str      
 
 
     @staticmethod

@@ -16,6 +16,8 @@ export class TarjetaPoemaChicaPropioComponent implements OnInit {
 
   @Input() texto!: string;
 
+  @Input() poema_id!: string;
+
   @Input() fecha!: string;
   
   constructor() { }

@@ -13,6 +13,7 @@ def login():
         data = {
             'id': str(usuario.usuario_id),
             'correo': usuario.correo,
+            'admin': usuario.admin,
             'access_token': access_token
         }
 

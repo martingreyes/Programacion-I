@@ -45,6 +45,7 @@ class Usuario(db.Model):
         calificaciones =[calificacion.to_json() for calificacion in self.calificaciones] #Calificaciones que él hizo
         json_str = {
             'alias':self.alias,
+            'usuario_id':self.usuario_id,
             'cantidad_poemas': len(poemas),
             'poemas':poemas,
             'correo':self.correo,

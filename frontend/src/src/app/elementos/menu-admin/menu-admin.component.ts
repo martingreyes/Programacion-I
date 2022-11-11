@@ -1,5 +1,5 @@
 import { Component, OnInit , Input} from '@angular/core';
-
+import { AuthService } from './../../servicios/auth.service'
 @Component({
   selector: 'app-menu-admin',
   templateUrl: './menu-admin.component.html',
@@ -9,9 +9,15 @@ export class MenuAdminComponent implements OnInit {
 
   @Input() usuario_id!: string;
 
-  constructor() { }
+  constructor(
+    private authService:AuthService,
+    ) { }
 
   ngOnInit(): void {
   }
+
+  cerrarSesion(){
+    this.authService.logout()
+  } 
 
 }

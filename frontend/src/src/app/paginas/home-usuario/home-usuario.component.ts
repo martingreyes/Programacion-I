@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostPoemasService } from './../../servicios/post.service';
+import { PostUsuarioService } from './../../servicios/post.service';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { PostPoemasService } from './../../servicios/post.service';
 export class HomeUsuarioComponent implements OnInit {
 
   arrayPoemas:any;
+  arrayDatos:any;
 
   usuario_id!: string;
   desde: string = "homeUsuario";
@@ -21,12 +23,18 @@ export class HomeUsuarioComponent implements OnInit {
 
   constructor(
     private route:ActivatedRoute,
-    private postPoemasService: PostPoemasService
+    private postPoemasService: PostPoemasService,
+    private postUsuarioService: PostUsuarioService,
   ) { }
 
   ngOnInit(): void {
     this.usuario_id = this.route.snapshot.paramMap.get('id') || ''; 
-    this.pagina = Number(this.route.snapshot.paramMap.get('pagina') || '1'); 
+    this.pagina = Number(this.route.snapshot.paramMap.get('pagina') || '1');
+
+    this.postUsuarioService.getUsuario(this.usuario_id).subscribe((data:any) =>{
+      console.log('Mi data: ', data);
+      this.arrayDatos = data
+    })
 
     this.postPoemasService.getPoemas(this.pagina).subscribe((data:any) =>{
       console.log('JSON data: ', data);

@@ -9,20 +9,18 @@ import { PostUsuariosService } from './../../servicios/post.service';
 export class ListaUsuariosComponent implements OnInit {
 
   arrayUsuarios:any
-// arrayUsuarios=[
-//   {
-//     'usuario':'u1',
-//     'email':'email`1'
-//   }
-//]
+  token: any
 
+  
   constructor(
     private postUsuariosService: PostUsuariosService,
-  ) { }
-
-  ngOnInit(): void {
-
-    this.postUsuariosService.getUsuarios().subscribe((data:any) =>{
+    ) { }
+    
+    ngOnInit(): void {
+      
+    this.token = localStorage.getItem("token") || undefined
+    
+    this.postUsuariosService.getUsuarios(this.token).subscribe((data:any) =>{
       console.log('JSON data: ', data);
     this.arrayUsuarios = data.Usuarios;})
 

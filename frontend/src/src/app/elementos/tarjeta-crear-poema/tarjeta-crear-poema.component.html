@@ -1,22 +1,40 @@
 <section class="form-post" style="padding: 0px; border-radius: 50px;">
-    <input class="form-control me-2" style="border-top-left-radius:50px;
-                                            border-top-right-radius:50px;
-                                            border: 0px;
-                                            height: 70px; 
-                                            width: 100%; 
-                                            background-color: #47B6AF; 
-                                            color: white; 
-                                            font-size:x-large; 
-                                            text-align: center;"  type="text" placeholder="Titulo" required>
-    <br>
-    <div class="mb-3">
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="8" style="text-align:center; height: 10%; font-size: large; border: 0%; border-color: white;" placeholder="Escribe tu poema aquí..."></textarea>
+    <form [formGroup]="poemaForm">
+        <input 
+            class="form-control me-2"   
+            style="
+                border-top-left-radius:50px;
+                border-top-right-radius:50px;
+                border: 0px;
+                height: 70px; 
+                width: 100%; 
+                background-color: #47B6AF; 
+                color: white; 
+                font-size:x-large; 
+                text-align: center;" 
+            formControlName="titulo"  
+            type="text"     
+            placeholder="Titulo"    
+            required>
+        <br>
+        
+        <div class="mb-3">
+            <textarea   
+                class="form-control" 
+                id="exampleFormControlTextarea1"    
+                rows="8" 
+                style="text-align:center; height: 10%; font-size: large; border: 0%; border-color: white;" 
+                formControlName="poema" 
+                placeholder="Escribe tu poema aquí...">
+            </textarea>
     </div>
 
+    </form>
+
     <br>
     <br>
 
-    <a class="nav-link" routerLink="/HomeUsuario" style="border-radius:50px; background-color: #47B6AF; width: 50%; color: white; margin-left: 80%; margin-top: -13%; font-size: 120%; " ><img src="./assets/Imagenes/enviar_blanco.png" width="25%">  Enviar</a>
+    <a class="nav-link" routerLink="/HomeUsuario" style="border-radius:50px; background-color: #47B6AF; width: 50%; color: white; margin-left: 80%; margin-top: -13%; font-size: 120%; " ><img src="./assets/Imagenes/enviar_blanco.png" width="25%" (click)="submit()" >  Enviar</a>
     <br>
     <a class="nav-link" routerLink="/HomeUsuario" style="border-radius:50px; background-color: #47B6AF; width: 50%; color: white; margin-left: 80%; margin-top: 0%; font-size: 120%;"><img src="./assets/Imagenes/cancelar.png" width="25%" >     Cancelar</a>
     <br>

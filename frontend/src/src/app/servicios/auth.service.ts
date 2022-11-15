@@ -19,7 +19,6 @@ export class AuthService {
 
   login(dataLogin:any): Observable<any> {  
     return this.httpClient.post(this.url + '/login', dataLogin).pipe(take(1))
-
   }
 
   logout() {

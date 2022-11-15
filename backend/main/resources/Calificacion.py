@@ -41,8 +41,6 @@ class Calificacion(Resource):
 class Calificaciones(Resource):
 
     def get(self):
-        pagina = 1 
-        por_pagina = 3
         arg = request.args.get('titulo')
         calificaciones = db.session.query(CalificacionModel).all()
 

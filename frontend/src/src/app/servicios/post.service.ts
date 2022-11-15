@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: "root",
@@ -17,14 +17,14 @@ export class PostService {
     return this.httpClient.get(this.url);
   }
 }
-
 //No tocar
+
+
 @Injectable({
   providedIn: "root",
 })
 
 export class PostPoemasService {
-  // url = 'https://reqres.in/api/users?page=2'
   url = 'poemas'
 
   constructor(
@@ -36,12 +36,12 @@ export class PostPoemasService {
   } 
 }
 
+
 @Injectable({
   providedIn: "root",
 })
 
 export class PostPoemaService {
-  // url = 'https://reqres.in/api/users?page=2'
   url = 'poema'
 
   constructor(
@@ -53,6 +53,7 @@ export class PostPoemaService {
   } 
 }
 
+
 @Injectable({
   providedIn: "root",
 })
@@ -63,11 +64,14 @@ export class PostUsuariosService {
   constructor(
     private httpClient: HttpClient
   ) { }
+
   
-  getUsuarios() { 
-    return this.httpClient.get(this.url);
+  getUsuarios(token: string) { 
+    let heads = new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin', '*').set('Authorization', 'Bearer ' + token)
+    return this.httpClient.get(this.url, {headers: heads});
   }  
 }
+
 
 @Injectable({
   providedIn: "root",
@@ -85,6 +89,7 @@ export class PostPoemaCalificacionService {
   }  
 }
 
+
 @Injectable({
   providedIn: "root",
 })
@@ -101,6 +106,7 @@ export class PostPerfilUsuarioService {
   }  
 }
 
+
 @Injectable({
   providedIn: "root",
 })
@@ -114,5 +120,39 @@ export class PostUsuarioService {
   
   getUsuario(id_usuario: string) { 
     return this.httpClient.get(this.url + "/" + id_usuario.toString());
+  }  
+}
+
+@Injectable({
+  providedIn: "root",
+})
+
+export class PostCrearPoemaService {
+  url = "poemas"
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  postPoema(data:any, token: string) { 
+    let heads = new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin', '*').set('Authorization', 'Bearer ' + token)
+    return this.httpClient.post(this.url, data, {headers: heads})
+  }  
+}
+
+@Injectable({
+  providedIn: "root",
+})
+
+export class PostCrearUsuarioService {
+  url = "usuarios"
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  postUsuario(data:any, token: string) { 
+    let heads = new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin', '*').set('Authorization', 'Bearer ' + token)
+    return this.httpClient.post(this.url, data, {headers: heads})
   }  
 }

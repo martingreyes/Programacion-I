@@ -89,12 +89,12 @@ class Usuario(db.Model):
         alias = json_str.get('alias')
         correo = json_str.get('correo')
         contra = json_str.get('contra')
-        admin = json_str.get('admin')
+        # admin = 0
         return Usuario(
             usuario_id=usuario_id,
             alias=alias,
             correo=correo,
             contra_plana=contra,
-            admin=admin,
+            # admin=admin,
             )
         

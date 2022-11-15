@@ -22,7 +22,7 @@ class Usuario(Resource):
             
 
 
-    # @admin_required
+    @admin_required
     def delete(self,usuario_id):
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
         db.session.delete(usuario)
@@ -50,7 +50,7 @@ class Usuario(Resource):
 
 class Usuarios(Resource):
     
-    # @admin_required
+    @admin_required
     def get(self):
         pagina = 1
         por_pagina = 100
@@ -111,9 +111,9 @@ class Usuarios(Resource):
             })
 
 
-    # @admin_required
     def post(self):
         usuario = UsuarioModel.from_json(request.get_json())
+        # usuario.admin = 0 
         db.session.add(usuario)
         db.session.commit()
         return usuario.to_json(), 201

@@ -27,24 +27,29 @@ import { AdminGuardGuard } from './guardianes/admin-guard.guard';
 const routes: Routes = [
   { path: '', component:HomeComponent },
   { path: 'Home/:pagina', component: HomeComponent },
-  { path: 'HomeAdmin/:pagina', component: HomeAdminComponent, canActivate:[AuthsessionGuard]},
+  { path: 'HomeAdmin/:pagina', component: HomeAdminComponent, canActivate:[AdminGuardGuard]},
+  // { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent, canActivate: [AuthsessionGuard], data: { id:":id" }},
   { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent, canActivate: [AuthsessionGuard]},
-  // { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent},
-  { path: 'CrearPoema', component: CrearPoemaComponent },
-  { path: 'CrearUsuario', component: CrearUsuarioComponent },
+
+  { path: 'CrearPoema', component: CrearPoemaComponent, canActivate: [AuthsessionGuard] },
+  { path: 'CrearUsuario', component: CrearUsuarioComponent},
+
   { path: 'ListaUsuarios', component: ListaUsuariosComponent, canActivate:[AdminGuardGuard]}, 
+  
   { path: 'ModificarDatosAdmin', component: ModificarDatosAdminComponent, canActivate:[AdminGuardGuard]},
-  { path: 'ModificarDatos/:id', component: ModificarDatosComponent , canActivate: [AuthsessionGuard]},
+  { path: 'ModificarDatos/:id', component: ModificarDatosComponent , canActivate: [AuthsessionGuard, AdminGuardGuard]},
+
   { path: 'PerfilGrilla/:id', component: PerfilGrillaComponent, canActivate: [AuthsessionGuard] },
   { path: 'PerfilLista/:id', component: PerfilListaComponent, canActivate: [AuthsessionGuard] },
   // { path: 'PerfilGrilla/:id', component: PerfilGrillaComponent},
   // { path: 'PerfilLista/:id', component: PerfilListaComponent},
 
   { path: 'PerfilAjeno/:id', component: PerfilAjenoComponent },
-  { path: 'PerfilAjenoAdmin/:id', component: PerfilAjenoAdminComponent },
-  { path: 'PerfilAjenoUsuario/:id', component: PerfilAjenoUsuarioComponent },
+  { path: 'PerfilAjenoUsuario/:id', component: PerfilAjenoUsuarioComponent , canActivate: [AuthsessionGuard]},
+  { path: 'PerfilAjenoAdmin/:id', component: PerfilAjenoAdminComponent, canActivate: [AdminGuardGuard] },
+
   { path: 'VerPoema/:id', component: VerPoemaComponent },
-  { path: 'VerPoemaAdmin/:id', component: VerPoemaAdminComponent },
+  { path: 'VerPoemaAdmin/:id', component: VerPoemaAdminComponent, canActivate: [AdminGuardGuard] },
   { path: 'VerPoemaUsuario/:id', component: VerPoemaUsuarioComponent , canActivate: [AuthsessionGuard]}
   // { path: 'VerPoemaUsuario/:id', component: VerPoemaUsuarioComponent}
 ];

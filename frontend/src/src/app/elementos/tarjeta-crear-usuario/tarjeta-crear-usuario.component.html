@@ -9,18 +9,20 @@
 
     <br>
 
-      <input class="form-control me-2" style="border-radius:50px " type="Alias" placeholder="Ingrese Alias" required>
+    <form [formGroup]="usuarioForm">
+      <input class="form-control me-2" style="border-radius:50px "  type="Alias" formControlName="alias"  placeholder="Ingrese Alias" required>
       <br>
-      <input class="form-control me-2" style="border-radius:50px " type="email" placeholder="Ingrese email" required>
+      <input class="form-control me-2" style="border-radius:50px " type="email" formControlName="correo"  placeholder="Ingrese email" required email="true">
       <br>
-      <input class="form-control me-2" style="border-radius:50px " type="password" placeholder="Ingrese password" required>
+      <input class="form-control me-2" style="border-radius:50px " type="password" formControlName="contra" placeholder="Ingrese password" required minlength="5" >
+    </form>
       <br>
       <br>
       <br>
       
     </div>
-    <a class="nav-link" routerLink="/PerfilLista" style="border-radius:50px; background-color: white; width: 50%; color: black; margin-left: 80%; margin-top: -13%; font-size: 125%;" >
-      <img src="./assets/Imagenes/guardar.png" width="25%">    Crear 
+    <a class="nav-link" style="border-radius:50px; background-color: white; width: 50%; color: black; margin-left: 80%; margin-top: -13%; font-size: 125%;" >
+      <img src="./assets/Imagenes/guardar.png" width="25%" (click)="submit()">    Crear 
     </a>
 
     <br>
@@ -30,7 +32,6 @@
     </a>
 </section>
     
-
 
 <app-ventana-cargar-archivo></app-ventana-cargar-archivo>
 <router-outlet></router-outlet>

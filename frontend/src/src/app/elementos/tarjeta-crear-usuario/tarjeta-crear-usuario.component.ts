@@ -24,7 +24,7 @@ export class TarjetaCrearUsuarioComponent implements OnInit {
     this.usuarioForm = this.formBuilder.group({
       alias: ["juan", Validators.required],
       contra: ["12345", Validators.required],
-      correo: ["juan@gmail.com", Validators.required,],
+      correo: ["juan@gmail.com", Validators.required]
     })
   }
   submit() {

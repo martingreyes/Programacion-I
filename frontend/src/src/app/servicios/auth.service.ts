@@ -22,9 +22,11 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("token")
-    localStorage.removeItem('id');
-    localStorage.removeItem('admin');
-    this.router.navigate(["/", "Home/1"])
+    console.log("Cerrando sesion")
+    // localStorage.removeItem("token")
+    // localStorage.removeItem('id');
+    // localStorage.removeItem('admin');
+    localStorage.clear()
+    this.router.navigate(["Home/1"])
   }
 }

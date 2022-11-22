@@ -26,12 +26,11 @@ export class AuthsessionGuard implements CanActivate {
     // let id_usuario2 = route.data["id"] || id_usuario
 
 
-
+    console.log("Guardian: authsession")
     if (token==="false") {
       this.router.navigate(["Home/1"]) //? Si no tenes token generado (no logueado) te redirije a Home/1
       return false} 
     else {
-      // console.log("ANTES DE ENTRAR AL IF DOBLE, id_usuario2: " + id_usuario2)
       // if (rol==="false" && id_usuario===id_usuario2){
       if (rol==="false") {
         console.log("ENTRASTE AL IF DOBLE")

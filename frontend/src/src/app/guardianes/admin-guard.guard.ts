@@ -20,17 +20,17 @@ export class AdminGuardGuard implements CanActivate {
       let id_usuario = localStorage.getItem("id") 
       const token = localStorage.getItem("token")
       console.log("LOCALSTORAGE: ", localStorage)
-
+      console.log("Guardian: admin-guard")
       if (token==="false") {
         this.router.navigate(["Home/1"]) //? Si no tenes token generado (no logueado) te redirije a Home/1
-        return false} 
-      else {
+        return false          
+      } else {
         if (rol==="true"){
           return true
+        } else {
+          this.router.navigate(["Home"])
+          return false
         } 
-        else {
-          this.router.navigate(["HomeUsuario/" + id_usuario + "/1"])
-          return false} 
       }
     }
 }

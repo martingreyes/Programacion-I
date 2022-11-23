@@ -27,24 +27,20 @@ import { AdminGuardGuard } from './guardianes/admin-guard.guard';
 const routes: Routes = [
   { path: '', component:HomeComponent },
   { path: 'Home/:pagina', component: HomeComponent },
-  // { path: 'HomeAdmin/:pagina', component: HomeAdminComponent, canActivate:[AdminGuardGuard]},
-  { path: 'HomeAdmin/:pagina', component: HomeAdminComponent},
-  // { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent, canActivate: [AuthsessionGuard], data: { id:":id" }},
+  { path: 'HomeAdmin/:pagina', component: HomeAdminComponent, canActivate:[AdminGuardGuard]},
   { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent, canActivate: [AuthsessionGuard]},
 
   { path: 'CrearPoema', component: CrearPoemaComponent, canActivate: [AuthsessionGuard] },
   { path: 'CrearUsuario', component: CrearUsuarioComponent},
 
   { path: 'ListaUsuarios', component: ListaUsuariosComponent, canActivate:[AdminGuardGuard]}, 
-  // { path: 'ListaUsuarios', component: ListaUsuariosComponent}, 
   
   { path: 'ModificarDatosAdmin/:id', component: ModificarDatosAdminComponent, canActivate:[AdminGuardGuard]},
   { path: 'ModificarDatos/:id', component: ModificarDatosComponent , canActivate: [AuthsessionGuard]},
 
   { path: 'PerfilGrilla/:id', component: PerfilGrillaComponent, canActivate: [AuthsessionGuard] },
   { path: 'PerfilLista/:id', component: PerfilListaComponent, canActivate: [AuthsessionGuard] },
-  // { path: 'PerfilGrilla/:id', component: PerfilGrillaComponent},
-  // { path: 'PerfilLista/:id', component: PerfilListaComponent},
+
 
   { path: 'PerfilAjeno/:id', component: PerfilAjenoComponent },
   { path: 'PerfilAjenoUsuario/:id', component: PerfilAjenoUsuarioComponent , canActivate: [AuthsessionGuard]},
@@ -53,7 +49,6 @@ const routes: Routes = [
   { path: 'VerPoema/:id', component: VerPoemaComponent },
   { path: 'VerPoemaAdmin/:id', component: VerPoemaAdminComponent, canActivate: [AdminGuardGuard] },
   { path: 'VerPoemaUsuario/:id', component: VerPoemaUsuarioComponent , canActivate: [AuthsessionGuard]}
-  // { path: 'VerPoemaUsuario/:id', component: VerPoemaUsuarioComponent}
 ];
 
 @NgModule({

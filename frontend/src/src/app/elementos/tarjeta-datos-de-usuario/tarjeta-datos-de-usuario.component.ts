@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PostUsuarioService } from './../../servicios/post.service'
 import jwt_decode from 'jwt-decode';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { PostActualizarUsuarioService } from './../../servicios/post.service'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute } from '@angular/router';
+import { delay, timeout } from 'rxjs';
+
 
 @Component({
   selector: 'app-tarjeta-datos-de-usuario',
@@ -12,53 +15,31 @@ import { PostActualizarUsuarioService } from './../../servicios/post.service'
 })
 export class TarjetaDatosDeUsuarioComponent implements OnInit {
 
-  datos:any;
+  datos_usuario:any;
   disponibles:any; 
-  usuarioForm: any;
-  
-  
+  @Input() id!: string;
+  usuario_id!: string;
+  modificarForm: any;
+  pepe = "juan";
+
   constructor(
     private postUsuarioService: PostUsuarioService,
     private postActualizarUsuarioService:PostActualizarUsuarioService,
     private router: Router,
-    private formBuilder: FormBuilder,  
+    private formBuilder: FormBuilder,
+    private route:ActivatedRoute
   ) { }
 
 
   ngOnInit(): void {
-    this.postUsuarioService.getUsuario(this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id).subscribe((data:any) =>{
+    this.usuario_id = this.route.snapshot.paramMap.get('id') || ''; 
+    this.postUsuarioService.getUsuario(this.id).subscribe((data:any) =>{
       console.log("JSON data datos usuarios: ", data)
       data.poemas = data.poemas.length
-      this.datos = data;
+      this.datos_usuario = data;
       this.disponibles = Math.round(data.cantidad_calificacion / data.poemas)
-      }
+    }
     )
-    this.usuarioForm = this.formBuilder.group({
-      alias: [this.datos.alias, Validators.required],
-      contra: ["2", Validators.required],
-    })
-    
-  }
-
-
-  submit() {
-    if(this.usuarioForm.valid) {
-      let alias = this.usuarioForm.value.alias
-      let contra = this.usuarioForm.value.contra
-      
-      console.log("Enviando el contenido: ",  {alias: alias, contra: contra});
-      console.log("Con el token: ", localStorage.getItem("token"))
-      this.postActualizarUsuarioService.putUsuario({alias: alias, contra: contra}, localStorage.getItem("token"), this.datos.usuario_id).subscribe()
-      console.log("Contenido enviado");  
-      alert("Usuario Actualizado!")
-
-      //TODO Ng IF depende del rol (si es HomeAdmin/1 o HomeUsuario/id/1)
-      this.router.navigate(["Home/1"])
-      
-    } 
-  }
-
-
   // "alias": "Pedro",
 	// "usuario_id": 18,
 	// "cantidad_poemas": 7,
@@ -69,6 +50,45 @@ export class TarjetaDatosDeUsuarioComponent implements OnInit {
 	// "Promedio_poema": 0,
 	// "cantidad_calificacion": 0,
 	// "calificaciones": []
+    console.log("+++++++++++++++++ALIAS:++++++++++++++++++++", this.datos_usuario)
+    
+    
+    
+    this.modificarForm = this.formBuilder.group({
+
+      alias: [this.pepe,Validators.required],
+      contra: [, Validators.required]
+    })
+
+   
+    
+  }
+
+    
+  submit() {
+      let alias = this.modificarForm.value.alias
+      let contra = this.modificarForm.value.contra
+
+      let token = localStorage.getItem("token") || undefined 
+      console.log("Enviando el contenido: ",  {alias: alias, contra: contra});
+
+      console.log("Con el token: ", token)
+      this.postActualizarUsuarioService.putUsuario({alias: alias, contra: contra}, token, Number(this.usuario_id)).subscribe()
+      console.log("Contenido enviado");  
+      alert("Usuario Actualizado!")
+      this.router.navigate(["ListaUsuarios"])
+  }
+
+  cancelar() {
+    if (this.getDecodedAccessToken(localStorage.getItem("token")).admin){
+      console.log("VOLVIENDO a ListaUsuarios")
+      this.router.navigate(["ListaUsuarios"]) 
+    } else {
+      console.log("VOLVIENDO a perfilGrilla")
+      this.router.navigate(["PerfilGrilla/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()])
+    }
+  }
+  
 
   getDecodedAccessToken(token: any): any {
     try {
@@ -80,6 +100,5 @@ export class TarjetaDatosDeUsuarioComponent implements OnInit {
       return null;
     }
   }
-
 
 }

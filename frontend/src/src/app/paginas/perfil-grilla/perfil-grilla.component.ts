@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostPerfilUsuarioService } from './../../servicios/post.service'
+import { PostPoemasService } from './../../servicios/post.service'
 import { PostUsuarioService } from './../../servicios/post.service';
 
 @Component({
@@ -15,29 +16,39 @@ export class PerfilGrillaComponent implements OnInit {
   pag_actual:any;
   pagina!: number;
   arrayPoemas:any;
+  desde: string = "perfilGrilla";
+
+  
 
 
   constructor(
     private route:ActivatedRoute,
     private postPerfilUsuarioService: PostPerfilUsuarioService,
     private postUsuarioService: PostUsuarioService,
+    private postPoemasService: PostPoemasService,
+
   ) { }
 
   ngOnInit(): void {
     this.usuario_id = this.route.snapshot.paramMap.get('id') || '';
 
     this.postPerfilUsuarioService.getUsuarioPoema(this.usuario_id).subscribe((data:any) =>{
-      console.log("JSON data Poemas: ", data)
+      console.log("JSON Poemas: ", data)
       this.arrayPoemas = data.poemas;
       }
     )
 
-    this.postUsuarioService.getUsuario(this.usuario_id).subscribe((data:any) =>{
-      console.log('JSON data: ', data);
-    this.arrayDatos = data;
-    // this.num_paginas = data.Total_de_paginas;
-    // this.pag_actual = data.Pagina_actual;
+    this.postUsuarioService.getUsuario(this.usuario_id).subscribe((data2:any) =>{
+      console.log('JSON Usuario: ', data2);
+      this.arrayDatos = data2;
   })
+
+  this.postPoemasService.getPoemas(this.pagina).subscribe((data:any) =>{
+    this.arrayPoemas = data.Poemas;
+    this.num_paginas = data.Total_de_paginas;
+    this.pag_actual = data.Pagina_actual;
+  }
+)
 
   }
 

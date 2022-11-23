@@ -191,3 +191,21 @@ export class PostActualizarUsuarioService {
     return this.httpClient.put(this.url + "/" + id.toString(), data, {headers: heads})
   }  
 }
+
+
+@Injectable({
+  providedIn: "root",
+})
+
+export class PostEliminarPoemaService {
+  url = "poema"
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  deletePoema(token: string, id: number) { 
+    let heads = new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin', '*').set('Authorization', 'Bearer ' + token)
+    return this.httpClient.delete(this.url + "/" + id.toString(), {headers: heads})
+  }  
+}

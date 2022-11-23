@@ -1,15 +1,17 @@
 <app-menu-con-usuario></app-menu-con-usuario>
     
     
-<app-datos-perfil-usuario [usuario_id]="usuario_id"></app-datos-perfil-usuario>
+<app-datos-perfil-usuario [usuario_id]="usuario_id" [datos]="arrayDatos"></app-datos-perfil-usuario>
 
 
 
 <div class="container-fluid" style="background-color: #4E7079"> 
+
     
     <div class="col justify-content-center " id="poema-col" *ngFor="let poema of arrayPoemas">
         <app-capsula-poema
         [autor]="poema.autor" 
+        [poema_id]="poema.id"
         [titulo]="poema.titulo"  
         [calificacion]="poema.calificacion"
         [texto]="poema.texto"

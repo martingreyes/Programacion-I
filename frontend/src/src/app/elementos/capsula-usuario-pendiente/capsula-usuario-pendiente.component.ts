@@ -33,28 +33,20 @@ export class CapsulaUsuarioPendienteComponent implements OnInit {
 
   
   submit() {
-    // if(this.usuarioForm.valid) {
+ 
       this.token = localStorage.getItem("token") || undefined 
       
       console.log("Enviando el contenido: ",  {id: this.id});
       console.log("Con el token: ", this.token)
       this.postEliminarUsuarioService.deleteUsuario(this.token, Number(this.id)).subscribe()
       console.log("Contenido enviado");  
-      // alert("Usuario Eliminado!")
-      // this.router.navigate(["HomeAdmin/1"])
-      // window.location.reload()
+      alert("Usuario Eliminado!")
+ 
       this.reload()
 
       
 
-    // } else {
-    //   console.log("Debe llenar todos los campos.")
-    //   alert(`Verifique que los datos hayan sido ingresados correctamente
-
-    //         El email debe ser de formato: ejemplo@dominio.com 
-    //         Contraseña debe:
-    //             Tener 5 caracteres como minimo`)
-    // }
+ 
   }
 
   getDecodedAccessToken(token: string): any {

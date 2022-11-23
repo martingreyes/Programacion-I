@@ -45,10 +45,19 @@ export class TarjetaCrearPoemaComponent implements OnInit {
       this.postCrearPoemaService.postPoema({titulo: titulo2, contenido: poema},this.token).subscribe()
       console.log("Contenido enviado");  
       alert("Poema Publicado!")
+      this.router.navigate(["HomeUsuario/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()+"/1"])
       
     } else {
       console.log("Debe llenar todos los campos.")
     }
+  }
+
+
+  cancelar() {
+    if(this.poemaForm.valid) {
+      this.router.navigate(["HomeUsuario/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()+"/1"])
+
+  }
   }
 
   getDecodedAccessToken(token: any): any {

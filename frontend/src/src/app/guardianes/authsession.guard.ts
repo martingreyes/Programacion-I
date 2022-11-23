@@ -3,6 +3,8 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } fro
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AdminGuardGuard } from './admin-guard.guard';
+import jwt_decode from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,35 +15,56 @@ export class AuthsessionGuard implements CanActivate {
   ) {}
 
   canActivate( 
-    // next: ActivatedRouteSnapshot,
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const rol = localStorage.getItem("admin")
-    let id_usuario = localStorage.getItem("id")
-    const token = localStorage.getItem("token")
-    console.log("LOCALSTORAGE: ", localStorage)
-
-    // const routeGuards = route.data.id;
-    // let id_usuario2 = route.data["id"] || id_usuario
-
-
     console.log("Guardian: authsession")
-    if (token==="false") {
-      this.router.navigate(["Home/1"]) //? Si no tenes token generado (no logueado) te redirije a Home/1
-      return false} 
-    else {
-      // if (rol==="false" && id_usuario===id_usuario2){
-      if (rol==="false") {
-        console.log("ENTRASTE AL IF DOBLE")
+    console.log("LOCALSTORAGE: ", localStorage)
+    let token = localStorage.getItem("token")
+    console.log("TOKEN:", token)
+    console.log("INFOTOKEN:", this.getDecodedAccessToken(token))
+
+    if (token === null) {
+      console.log("++++++++++++++++++ No tenes token +++++++++++++++++++")
+      this.router.navigate(["Home/1"]) 
+      return false 
+
+    } else {
+      console.log("++++++++++++++++++ SI tenes token +++++++++++++++++++")
+      let rol = this.getDecodedAccessToken(token).admin
+      let id_usuario = this.getDecodedAccessToken(token).usuario_id
+
+      if (rol===false) {
+        console.log("++++++++++++++++++ Sos usuario normal +++++++++++++++++++")
         return true
-      } 
-      else {
+      
+      } else {
+        console.log("++++++++++++++++++ Sos admin +++++++++++++++++++")
         this.router.navigate(["HomeAdmin/1"])
         return false
       } 
     }
   }
+
+
+
+  
+
+
+
+
+  getDecodedAccessToken(token: any): any {
+    try {
+      return jwt_decode(token);
+            // "admin": true,
+            // "usuario_id": 14,
+            // "correo": "elAdmin2@gmail.com"
+    } catch(Error) {
+      return null;
+    }
+  }
+
+
 }
 
 

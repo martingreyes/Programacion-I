@@ -11,6 +11,8 @@ export class CapsulaUsuarioComponent implements OnInit {
 
   @Input() email!: string;
 
+  @Input() id!: any;
+
   constructor() { }
 
   ngOnInit(): void {

@@ -11,6 +11,13 @@ export class ListaUsuariosComponent implements OnInit {
   arrayUsuarios:any
   token: any
 
+  get reloadFunc() {
+    return this.reload.bind(this);
+  }
+  
+  reload() {
+    window.location.reload()
+  }
   
   constructor(
     private postUsuariosService: PostUsuariosService,

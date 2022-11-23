@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-paginado-de-poemas',
@@ -8,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PaginadoDePoemasComponent implements OnInit {
 
   @Input() desde!: string;
-  
+  id: any;
   @Input() num!: number;
   @Input() actual!: number;
   arrayNum : any;
@@ -17,6 +18,7 @@ export class PaginadoDePoemasComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.id = this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id
   }
 
   array() {
@@ -27,4 +29,15 @@ export class PaginadoDePoemasComponent implements OnInit {
     return this.actual === i;
   }
 
+
+  getDecodedAccessToken(token: any): any {
+    try {
+      return jwt_decode(token);
+            // "admin": true,
+            // "usuario_id": 14,
+            // "correo": "elAdmin2@gmail.com"
+    } catch(Error) {
+      return null;
+    }
+  }
 }

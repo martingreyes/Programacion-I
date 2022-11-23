@@ -2,6 +2,8 @@ import { Component, OnInit, Type } from '@angular/core';
 import { AuthService } from './../../servicios/auth.service'
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import jwt_decode from 'jwt-decode';
+
 
 
 @Component({
@@ -20,27 +22,27 @@ export class MenuSinUsuarioComponent implements OnInit {
     private router: Router
 
   ) { }
- 
+
+
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      correo: ["elAdmin1@gmail.com", Validators.required], 
+      correo: ["elAdmin2@gmail.com", Validators.required], 
       contra: ["12345", Validators.required]
     })
   }
 
-  
+
   login(dataLogin:any) {
 
     console.log('Comprobando credenciales...');
     this.authService.login(dataLogin).subscribe({
       
       next: (rta) => {
-        localStorage.setItem('token', rta.access_token);
-        localStorage.setItem('id', rta.id);
-        localStorage.setItem('admin', rta.admin);
-        localStorage.setItem('correo', rta.correo);
-        this.id_usuario = rta.id
-        this.admin = rta.admin 
+        localStorage.setItem('token', rta.access_token) ;
+
+        this.id_usuario = this.getDecodedAccessToken(rta.access_token).usuario_id
+        this.admin = this.getDecodedAccessToken(rta.access_token).admin
+
         if(this.admin){
           this.router.navigate(["HomeAdmin/1"])
         } else {
@@ -74,6 +76,7 @@ export class MenuSinUsuarioComponent implements OnInit {
     }
   }
 
+
   get isToken() {
     return localStorage.getItem("token") || undefined
   }
@@ -84,15 +87,18 @@ export class MenuSinUsuarioComponent implements OnInit {
 
 
   // Estos son atributos de la clase MenuSinUsuarioComponent
-  tipo = document.getElementById("password");
-  num = 50;
+  // tipo = document.getElementById("password");
+  // num = 50;
 
-
-  // var tipo = document.getElementById("password");
-  // if(tipo.type == "password"){
-  //     tipo.type = "text";
-  // }else{
-  //     tipo.type = "password";
-  // }
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+            // "admin": true,
+            // "usuario_id": 14,
+            // "correo": "elAdmin2@gmail.com"
+    } catch(Error) {
+      return null;
+    }
+  }
 
 }

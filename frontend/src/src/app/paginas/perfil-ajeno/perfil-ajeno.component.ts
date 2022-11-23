@@ -33,6 +33,7 @@ export class PerfilAjenoComponent implements OnInit {
     
     this.postUsuarioService.getUsuario(this.usuario_id).subscribe((data:any) =>{
       console.log("JSON data datos usuarios: ", data)
+      data.poemas = data.poemas.length
       this.datos = data;
       }
     )

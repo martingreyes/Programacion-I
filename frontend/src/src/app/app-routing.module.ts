@@ -27,7 +27,8 @@ import { AdminGuardGuard } from './guardianes/admin-guard.guard';
 const routes: Routes = [
   { path: '', component:HomeComponent },
   { path: 'Home/:pagina', component: HomeComponent },
-  { path: 'HomeAdmin/:pagina', component: HomeAdminComponent, canActivate:[AdminGuardGuard]},
+  // { path: 'HomeAdmin/:pagina', component: HomeAdminComponent, canActivate:[AdminGuardGuard]},
+  { path: 'HomeAdmin/:pagina', component: HomeAdminComponent},
   // { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent, canActivate: [AuthsessionGuard], data: { id:":id" }},
   { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent, canActivate: [AuthsessionGuard]},
 
@@ -35,9 +36,10 @@ const routes: Routes = [
   { path: 'CrearUsuario', component: CrearUsuarioComponent},
 
   { path: 'ListaUsuarios', component: ListaUsuariosComponent, canActivate:[AdminGuardGuard]}, 
+  // { path: 'ListaUsuarios', component: ListaUsuariosComponent}, 
   
-  { path: 'ModificarDatosAdmin', component: ModificarDatosAdminComponent, canActivate:[AdminGuardGuard]},
-  { path: 'ModificarDatos/:id', component: ModificarDatosComponent , canActivate: [AuthsessionGuard, AdminGuardGuard]},
+  { path: 'ModificarDatosAdmin/:id', component: ModificarDatosAdminComponent, canActivate:[AdminGuardGuard]},
+  { path: 'ModificarDatos/:id', component: ModificarDatosComponent , canActivate: [AuthsessionGuard]},
 
   { path: 'PerfilGrilla/:id', component: PerfilGrillaComponent, canActivate: [AuthsessionGuard] },
   { path: 'PerfilLista/:id', component: PerfilListaComponent, canActivate: [AuthsessionGuard] },

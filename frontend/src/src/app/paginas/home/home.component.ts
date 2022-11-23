@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostPoemasService } from './../../servicios/post.service'
 import { ActivatedRoute } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-home',
@@ -13,17 +14,17 @@ export class HomeComponent implements OnInit {
   num_paginas:any;
   pag_actual:any;
   desde: string = "home";
-  
+  id:any;
+  admin: any; 
   pagina!: number;
 
-  
 
   constructor(
     private route:ActivatedRoute,
     private postPoemasService: PostPoemasService,
-  ) { }
-
-  ngOnInit(): void {
+    ) { }
+    
+    ngOnInit(): void {
     this.pagina = Number(this.route.snapshot.paramMap.get('pagina') || '1'); 
 
     this.postPoemasService.getPoemas(this.pagina).subscribe((data:any) =>{

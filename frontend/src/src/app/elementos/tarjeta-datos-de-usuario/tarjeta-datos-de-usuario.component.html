@@ -8,40 +8,50 @@
             <div class="card" id="poema-card">
                 
                 <div id="#poema-card-body" style="padding-bottom: 15px">
+
+
+                    <form [formGroup]="usuarioForm">
+
+                        <div class = "card-title" style="padding-bottom: 10px ; padding-top: 10px">
+                            <table width="100%" height="80px">
+                                <tr>
+                                    
+                                    
+                                    <td style="width:140px ; height: 100px;" rowspan="2">
+                                    <div style="position: relative">
+                                        <img style="border-radius: 50%; margin-left: 10px;" src="./assets/Imagenes/FotoPerfilKick.png" height="110px"> 
+                                        <input class="nav-link"  data-bs-toggle="modal" data-bs-target="#exampleModal" type=image style="border-radius: 50%; margin-top: -25%; margin-left: 67%; background-color: transparent;" src="./assets/Imagenes/editar.png" width="40%">
+    
+                                    </div>
+                                    </td>
+                                
+                                    
+                                    <td width="auto" style="padding-left: 10px;">
+                                      
+                                            <input class="form-control me-2" style="border-radius:50px; padding-inline-end: 10px;" type="text" id="text" formControlName="alias" placeholder="Alias">
+                                      
+                                    </td>
+                                    
+                                    <td style="width:100px ; height: 100px; text-align: center;" rowspan="2">
+                                    </td>
+    
+    
+                                </tr>
+                                <tr>
+                                    <td style="height: 50px; padding-left: 10px;">
+                                    
+                                            <input class="form-control me-2" style="border-radius:50px; padding-inline-end: 10px; " type="password" id="password" formControlName="contra" placeholder="Contraseña" required>
+                                  
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </form>
                 
-                    <div class = "card-title" style="padding-bottom: 10px ; padding-top: 10px">
-                        <table width="100%" height="80px">
-                            <tr>
 
-                                <td style="width:140px ; height: 100px;" rowspan="2">
-                                <div style="position: relative">
-                                    <img style="border-radius: 50%; margin-left: 10px;" src="./assets/Imagenes/FotoPerfilKick.png" height="110px"> 
-                                    <input class="nav-link"  data-bs-toggle="modal" data-bs-target="#exampleModal" type=image style="border-radius: 50%; margin-top: -25%; margin-left: 67%; background-color: transparent;" src="./assets/Imagenes/editar.png" width="40%">
 
-                                </div>
-                                </td>
-                            
-                                
-                                <td width="auto" style="padding-left: 10px;">
-                                    <form class="d-flex">
-                                        <input class="form-control me-2" style="border-radius:50px; padding-inline-end: 10px;" type="text" id="text" placeholder="Ingrese nombre de usuario">
-                                    </form> 
-                                </td>
-                                
-                                <td style="width:100px ; height: 100px; text-align: center;" rowspan="2">
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td style="height: 50px; padding-left: 10px;">
-                                    <form class="d-flex">
-                                        <input class="form-control me-2" style="border-radius:50px; padding-inline-end: 10px; " type="password" id="password" placeholder="Contraseña" required>
-                                        <button class="btn  btn-main" style="border-radius: 50px; width:25%;"  onclick="mostrarContrasena()" ><img src="./assets/Imagenes/contrasena.png"  width="100%" name="contraseña" ></button>
-                                    </form>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                    
                     
                     <div id="module" class="container">
                         <div style="height: 100% ;
@@ -51,23 +61,22 @@
                                     align-content: center;" >
 
                             <div class="count-data text-center" id="datacell" style="background-color: #47B6AF">
-                                <h6 class="count h2" data-to="500" data-speed="500">500</h6>
+                                <h6 class="count h2" data-to="500" data-speed="500">{{datos.poemas}}</h6>
                                 <p class="m-0px font-w-600">Poemas</p>
                             </div>
                             <div class="count-data text-center" id="datacell" style="background-color: #47B6AF">
-                                <h6 class="count h2" data-to="850"  data-speed="850">850</h6>
+                                <h6 class="count h2" data-to="850"  data-speed="850">{{datos.cantidad_calificacion}}</h6>
                                 <p class="m-0px font-w-600">Calificaciones hechas</p>
                             </div>
                             <div class="count-data text-center" id="datacell" style="background-color: #47B6AF">
-                                <h6 class="count h2" data-to="190" data-speed="190">190</h6>
-                                <p class="m-0px font-w-600">Calificaciones recibidas</p>
-                            </div>
-                            <div class="count-data text-center" id="datacell" style="background-color: #47B6AF">
-                                <h6 class="count h2" data-to="150" data-speed="150"> <img src="./assets/Imagenes/promedio.png" width="7%" alt=""> 7.5 <img src="./assets/Imagenes/promedio.png" width="7%" alt=""></h6>
+                                <h6 class="count h2" data-to="150" data-speed="150"> <img src="./assets/Imagenes/promedio.png" width="7%" alt=""> 
+                                    {{datos.Promedio_poema}} 
+                                    <img src="./assets/Imagenes/promedio.png" width="7%" alt="">
+                                </h6>
                                 <p class="m-0px font-w-600">Promedio</p>
                             </div>
                             <div class="count-data text-center" id="datacell" style="background-color: #47B6AF">
-                                <h6 class="count h2" data-to="3" data-speed="3">3 </h6>
+                                <h6 class="count h2" data-to="3" data-speed="3"> {{disponibles}} </h6>
                                 <p class="m-0px font-w-600">Poemas disponibles</p>
                             </div>
 

@@ -34,9 +34,14 @@
     <br>
     <br>
 
-    <a class="nav-link" routerLink="/HomeUsuario" style="border-radius:50px; background-color: #47B6AF; width: 50%; color: white; margin-left: 80%; margin-top: -13%; font-size: 120%; " ><img src="./assets/Imagenes/enviar_blanco.png" width="25%" (click)="submit()" >  Enviar</a>
+    <a class="nav-link" routerLink="/HomeUsuario/{{id}}/1" style="border-radius:50px; background-color: #47B6AF; width: 50%; color: white; margin-left: 80%; margin-top: -13%; font-size: 120%; " >
+        <img src="./assets/Imagenes/enviar_blanco.png" width="25%" (click)="submit()" >  Enviar
+    </a>
     <br>
-    <a class="nav-link" routerLink="/HomeUsuario" style="border-radius:50px; background-color: #47B6AF; width: 50%; color: white; margin-left: 80%; margin-top: 0%; font-size: 120%;"><img src="./assets/Imagenes/cancelar.png" width="25%" >     Cancelar</a>
+    
+    <a class="nav-link" routerLink="/HomeUsuario/{{id}}/1" style="border-radius:50px; background-color: #47B6AF; width: 50%; color: white; margin-left: 80%; margin-top: 0%; font-size: 120%;">
+        <img src="./assets/Imagenes/cancelar.png" width="25%" >     Cancelar
+    </a>
     <br>
 </section>
 

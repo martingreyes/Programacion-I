@@ -11,11 +11,11 @@
             <div class="col" id="capsula-col">
 
                 <div *ngIf="usuarios.Pendiente; else elseBlock">
-                    <app-capsula-usuario-pendiente [usuario]="usuarios.alias" [email]="usuarios.correo"></app-capsula-usuario-pendiente>
+                    <app-capsula-usuario-pendiente [usuario]="usuarios.alias" [email]="usuarios.correo" [id]="usuarios.usuario_id" [reload]="reloadFunc"></app-capsula-usuario-pendiente>
                 </div>
 
                 <ng-template #elseBlock>
-                    <app-capsula-usuario [usuario]="usuarios.alias" [email]="usuarios.correo"> </app-capsula-usuario>
+                    <app-capsula-usuario [usuario]="usuarios.alias" [email]="usuarios.correo" [id]="usuarios.usuario_id"> </app-capsula-usuario>
                 </ng-template>
 
             </div>

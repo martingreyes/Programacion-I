@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { PostCrearPoemaService } from './../../servicios/post.service'
+import jwt_decode from 'jwt-decode';
 
 
 @Component({
@@ -11,8 +12,9 @@ import { PostCrearPoemaService } from './../../servicios/post.service'
 })
 export class TarjetaCrearPoemaComponent implements OnInit {
   
-  poemaForm: any
-  token: any
+  poemaForm: any;
+  token: any;
+  id: any;
 
 
   constructor(
@@ -27,6 +29,8 @@ export class TarjetaCrearPoemaComponent implements OnInit {
       titulo: ["El pepe", Validators.required],
       poema: ["el poema del pepe", Validators.required]
     })
+
+    this.id = this.getDecodedAccessToken(this.token).usuario_id
   }
 
 
@@ -41,12 +45,23 @@ export class TarjetaCrearPoemaComponent implements OnInit {
       this.postCrearPoemaService.postPoema({titulo: titulo2, contenido: poema},this.token).subscribe()
       console.log("Contenido enviado");  
       alert("Poema Publicado!")
-      // this.router.navigate(["HomeUsuario/" + localStorage.getItem("id") + "/1"])
       
     } else {
       console.log("Debe llenar todos los campos.")
     }
   }
+
+  getDecodedAccessToken(token: any): any {
+    try {
+      return jwt_decode(token);
+            // "admin": true,
+            // "usuario_id": 14,
+            // "correo": "elAdmin2@gmail.com"
+    } catch(Error) {
+      return null;
+    }
+  }
+
 }
 
 

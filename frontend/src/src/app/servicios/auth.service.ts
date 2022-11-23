@@ -23,9 +23,6 @@ export class AuthService {
 
   logout() {
     console.log("Cerrando sesion")
-    // localStorage.removeItem("token")
-    // localStorage.removeItem('id');
-    // localStorage.removeItem('admin');
     localStorage.clear()
     this.router.navigate(["Home/1"])
   }

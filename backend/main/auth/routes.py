@@ -11,9 +11,9 @@ def login():
     if usuario.validacion_contra(request.get_json().get("contra")):
         access_token = create_access_token(identity=usuario)
         data = {
-            'id': str(usuario.usuario_id),
-            'correo': usuario.correo,
-            'admin': usuario.admin,
+            # 'id': str(usuario.usuario_id),
+            # 'correo': usuario.correo,
+            # 'admin': usuario.admin,
             'access_token': access_token
         }
 

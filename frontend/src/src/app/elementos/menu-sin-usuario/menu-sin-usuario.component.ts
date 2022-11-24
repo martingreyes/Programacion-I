@@ -26,7 +26,7 @@ export class MenuSinUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      correo: ["elAdmin2@gmail.com", Validators.required], 
+      correo: ["juan@gmail.com", Validators.required], 
       contra: ["12345", Validators.required]
     })
   }

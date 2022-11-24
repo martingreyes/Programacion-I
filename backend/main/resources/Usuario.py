@@ -53,7 +53,7 @@ class Usuarios(Resource):
     @admin_required
     def get(self):
         pagina = 1
-        por_pagina = 100
+        por_pagina = 8
         usuarios = db.session.query(UsuarioModel).order_by(UsuarioModel.pendiente.desc(),UsuarioModel.alias)
 
         claves = [
@@ -74,12 +74,12 @@ class Usuarios(Resource):
         if filtros == {}:
             filtros = {'ordenar_por': 'alias'}
             
-        # for clave, valor in filtros.items():
-        #     if clave == "pagina":
-        #         pagina = int(valor)
+        for clave, valor in filtros.items():
+            if clave == "pagina":
+                pagina = int(valor)
             
-        #     if clave == "por_pagina":
-        #         por_pagina = int(valor)
+            if clave == "por_pagina":
+                por_pagina = int(valor)
             
         #     if clave == "alias":
         #         usuarios = usuarios.filter(UsuarioModel.alias.like("%"+valor+"%"))
@@ -107,7 +107,7 @@ class Usuarios(Resource):
                 'Usuarios': [usuario.to_json() for usuario in usuarios.items],
                 'Total_de_usuarios': usuarios.total, 
                 'Total_de_paginas': usuarios.pages,
-                'Pagina-actual': pagina, 
+                'Pagina_actual': pagina, 
             })
 
 

@@ -19,6 +19,8 @@ import { VerPoemaAdminComponent } from './paginas/ver-poema-admin/ver-poema-admi
 import { VerPoemaUsuarioComponent } from './paginas/ver-poema-usuario/ver-poema-usuario.component'; 
 import { AuthsessionGuard } from './guardianes/authsession.guard';
 import { AdminGuardGuard } from './guardianes/admin-guard.guard';
+import { ActualizarPoemaComponent } from './paginas/actualizar-poema/actualizar-poema.component';
+
 
 // Distintas pag dependiendo del link (path)
 
@@ -33,7 +35,7 @@ const routes: Routes = [
   { path: 'CrearPoema', component: CrearPoemaComponent, canActivate: [AuthsessionGuard] },
   { path: 'CrearUsuario', component: CrearUsuarioComponent},
 
-  { path: 'ListaUsuarios', component: ListaUsuariosComponent, canActivate:[AdminGuardGuard]}, 
+  { path: 'ListaUsuarios/:pagina', component: ListaUsuariosComponent, canActivate:[AdminGuardGuard]}, 
   
   { path: 'ModificarDatosAdmin/:id', component: ModificarDatosAdminComponent, canActivate:[AdminGuardGuard]},
   { path: 'ModificarDatos/:id', component: ModificarDatosComponent , canActivate: [AuthsessionGuard]},
@@ -42,13 +44,16 @@ const routes: Routes = [
   { path: 'PerfilLista/:id', component: PerfilListaComponent, canActivate: [AuthsessionGuard] },
 
 
-  { path: 'PerfilAjeno/:id', component: PerfilAjenoComponent },
-  { path: 'PerfilAjenoUsuario/:id', component: PerfilAjenoUsuarioComponent , canActivate: [AuthsessionGuard]},
-  { path: 'PerfilAjenoAdmin/:id', component: PerfilAjenoAdminComponent, canActivate: [AdminGuardGuard] },
+  { path: 'PerfilAjeno/:id', component: PerfilAjenoComponent},
+  // { path: 'PerfilAjenoUsuario/:id', component: PerfilAjenoUsuarioComponent , canActivate: [AuthsessionGuard]},
+  // { path: 'PerfilAjenoAdmin/:id', component: PerfilAjenoAdminComponent, canActivate: [AdminGuardGuard] },
 
   { path: 'VerPoema/:id', component: VerPoemaComponent },
   { path: 'VerPoemaAdmin/:id', component: VerPoemaAdminComponent, canActivate: [AdminGuardGuard] },
-  { path: 'VerPoemaUsuario/:id', component: VerPoemaUsuarioComponent , canActivate: [AuthsessionGuard]}
+  { path: 'VerPoemaUsuario/:id', component: VerPoemaUsuarioComponent , canActivate: [AuthsessionGuard]},
+  { path: 'ActualizarPoema/:id', component: ActualizarPoemaComponent , canActivate: [AuthsessionGuard]},
+
+
 ];
 
 @NgModule({

@@ -16,11 +16,12 @@ import { delay, timeout } from 'rxjs';
 export class TarjetaDatosDeUsuarioComponent implements OnInit {
 
   datos_usuario:any;
-  disponibles:any; 
   @Input() id!: string;
+  @Input() alias!: string;
   usuario_id!: string;
   modificarForm: any;
-  pepe = "juan";
+
+  
 
   constructor(
     private postUsuarioService: PostUsuarioService,
@@ -35,33 +36,15 @@ export class TarjetaDatosDeUsuarioComponent implements OnInit {
     this.usuario_id = this.route.snapshot.paramMap.get('id') || ''; 
     this.postUsuarioService.getUsuario(this.id).subscribe((data:any) =>{
       console.log("JSON data datos usuarios: ", data)
-      data.poemas = data.poemas.length
       this.datos_usuario = data;
-      this.disponibles = Math.round(data.cantidad_calificacion / data.poemas)
     }
     )
-  // "alias": "Pedro",
-	// "usuario_id": 18,
-	// "cantidad_poemas": 7,
-	// "poemas": []
-	// "correo": "pedro@gmail.com",
-	// "Usuario_id": 18,
-	// "Pendiente": true,
-	// "Promedio_poema": 0,
-	// "cantidad_calificacion": 0,
-	// "calificaciones": []
-    console.log("+++++++++++++++++ALIAS:++++++++++++++++++++", this.datos_usuario)
-    
-    
-    
-    this.modificarForm = this.formBuilder.group({
 
-      alias: [this.pepe,Validators.required],
-      contra: [, Validators.required]
+    this.modificarForm = this.formBuilder.group({
+      alias: ["",Validators.required],
+      contra: ["", Validators.required]
     })
 
-   
-    
   }
 
     
@@ -70,13 +53,42 @@ export class TarjetaDatosDeUsuarioComponent implements OnInit {
       let contra = this.modificarForm.value.contra
 
       let token = localStorage.getItem("token") || undefined 
-      console.log("Enviando el contenido: ",  {alias: alias, contra: contra});
 
-      console.log("Con el token: ", token)
-      this.postActualizarUsuarioService.putUsuario({alias: alias, contra: contra}, token, Number(this.usuario_id)).subscribe()
+      let datos = {}
+
+      console.log("Alias original: ", this.alias) 
+      console.log("Alias new: ", alias)
+      console.log("Contra new: ", contra)  
+      
+      
+      if (alias !== "" &&  contra === "") {
+        datos = {"alias": alias}
+      } 
+      
+      if (alias === "" &&  contra !== "") {
+        datos = {"contra": contra}
+      }
+      
+      if (alias !== "" &&  contra !== "") {
+        datos = {"alias": alias, "contra": contra}
+      }
+
+      console.log("DATOS: ", datos)
+
+      this.postActualizarUsuarioService.putUsuario(datos, token, Number(this.usuario_id)).subscribe()
+
+
       console.log("Contenido enviado");  
       alert("Usuario Actualizado!")
-      this.router.navigate(["ListaUsuarios"])
+
+      if (this.getDecodedAccessToken(localStorage.getItem("token")).admin){
+        console.log("VOLVIENDO a ListaUsuarios")
+        this.router.navigate(["ListaUsuarios"]) 
+      } else {
+        console.log("VOLVIENDO a perfilGrilla")
+        this.router.navigate(["PerfilGrilla/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()])
+      }
+  
   }
 
   cancelar() {

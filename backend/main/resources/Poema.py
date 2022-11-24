@@ -62,7 +62,7 @@ class Poemas(Resource):
     def get(self):
         # http://127.0.0.1:5000/poemas?ordenar_por=titulo&pagina=1&autor=emaperez1
         pagina = 1 
-        por_pagina = 5
+        por_pagina = 6
         poemas = db.session.query(PoemaModel)
         
         claves = [

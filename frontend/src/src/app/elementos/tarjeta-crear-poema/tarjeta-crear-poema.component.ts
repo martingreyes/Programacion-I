@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { PostCrearPoemaService } from './../../servicios/post.service'
@@ -16,21 +16,29 @@ export class TarjetaCrearPoemaComponent implements OnInit {
   token: any;
   id: any;
 
+  @Input() titulo!: string;
+  @Input() contenido!: string;
+
+
+
+  
 
   constructor(
     private postCrearPoemaService:PostCrearPoemaService,
+
     private router: Router,
     private formBuilder: FormBuilder,
 
   ) { }
-
+    
   ngOnInit(): void {
+    this.id = this.getDecodedAccessToken(this.token).usuario_id
+
     this.poemaForm = this.formBuilder.group({
       titulo: ["El pepe", Validators.required],
       poema: ["el poema del pepe", Validators.required]
-    })
-
-    this.id = this.getDecodedAccessToken(this.token).usuario_id
+      }
+    )
   }
 
 

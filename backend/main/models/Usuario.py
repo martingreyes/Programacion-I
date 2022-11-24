@@ -1,4 +1,5 @@
 from .. import db
+import math
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class Usuario(db.Model):
@@ -33,6 +34,7 @@ class Usuario(db.Model):
         poemas = [poema.to_json() for poema in self.poemas]
         suma = 0
         cont = 0
+        
         for x in poemas:
             if  type(x["promedio"]) == float:
                 suma += x["promedio"]
@@ -43,6 +45,14 @@ class Usuario(db.Model):
             promedio = 0
             
         calificaciones =[calificacion.to_json() for calificacion in self.calificaciones] #Calificaciones que él hizo
+        
+    
+        
+        if len(calificaciones) == 0 :
+            poemas_disponibles = 0
+        else :
+            poemas_disponibles = math.floor( (len(calificaciones) / 3 ) - len(poemas))
+        
         json_str = {
             'usuario_id':self.usuario_id,
             'alias':self.alias,
@@ -55,6 +65,8 @@ class Usuario(db.Model):
             
             "calificaciones": calificaciones,
             'cantidad_calificacion': len(calificaciones),
+            
+            "poemas_disponibles": poemas_disponibles,
         }
         return json_str
 
@@ -99,3 +111,4 @@ class Usuario(db.Model):
             # admin=admin,
             )
         
+

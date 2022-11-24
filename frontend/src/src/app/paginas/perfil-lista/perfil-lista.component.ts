@@ -15,7 +15,15 @@ export class PerfilListaComponent implements OnInit {
   pag_actual:any;
   pagina!: number;
   arrayPoemas:any;
+  desde: string = "perfilLista";
 
+  get reloadFunc() {
+    return this.reload.bind(this);
+  }
+  
+  reload() {
+    window.location.reload()
+  }
 
     // {
     //   titulo:"Poema1",
@@ -32,6 +40,7 @@ export class PerfilListaComponent implements OnInit {
     private postUsuarioService: PostUsuarioService,
     ) { }
 
+
     ngOnInit(): void {
       this.usuario_id = this.route.snapshot.paramMap.get('id') || '';
   
@@ -43,14 +52,11 @@ export class PerfilListaComponent implements OnInit {
   
       this.postUsuarioService.getUsuario(this.usuario_id).subscribe((data:any) =>{
         console.log('JSON data: ', data);
-        data.poemas = data.poemas.length
         this.arrayDatos = data;
-      // this.num_paginas = data.Total_de_paginas;
-      // this.pag_actual = data.Pagina_actual;
+        this.num_paginas = data.Total_de_paginas;
+        this.pag_actual = data.Pagina_actual;
     })
   
     }
-
-
 
 }

@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PostPoemaCalificacionService } from './../../servicios/post.service'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Router } from '@angular/router';
+import { PostCrearCalificacionService } from './../../servicios/post.service'
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-tarjeta-calificaciones-usuario',
@@ -14,9 +18,17 @@ export class TarjetaCalificacionesUsuarioComponent implements OnInit {
 
   arrayPoemaComentarios: any;
 
+  @Input() reload!: Function;
+
+  calificacionForm: any;
+  token: any;
+  id: any;
 
   constructor(
     private postPoemaCalificacionService: PostPoemaCalificacionService,
+    private postCrearCalificacionService:PostCrearCalificacionService,
+    private router: Router,
+    private formBuilder: FormBuilder,
   ) { }
 
   ngOnInit(): void {    
@@ -25,32 +37,50 @@ export class TarjetaCalificacionesUsuarioComponent implements OnInit {
         this.arrayPoemaComentarios = data.calificaciones;
       }
     )
+
+    this.calificacionForm = this.formBuilder.group({
+      puntaje: ["2", Validators.required],
+      comentario: ["Muy Bueno",Validators.required]
+    })
+
+  
   }
 
-  // arraycomentarios = [
+  submit() {
+    if(this.calificacionForm.valid) {
+      let poema_id = this.poema_id
+      let puntaje = this.calificacionForm.value.puntaje
+      let comentario = this.calificacionForm.value.comentario
+      this.token = localStorage.getItem("token") || undefined
+      
+      console.log("Enviando el contenido: ", {poema_id: poema_id, puntaje: puntaje, comentario: comentario});
+      console.log("Con el token: ", this.token)
+      this.postCrearCalificacionService.postCalificacion({poema_id: poema_id, puntaje: puntaje, comentario: comentario},this.token).subscribe()
+      console.log("Contenido enviado");  
+      alert("Comentario Publicado!")
+      this.reload()
+      
+      
+    } else {
+      console.log("Debe llenar todos los campos.")
 
-  //   {
-  //     calificacion: 2,
-  //     usuario:"Autor 5",
-  //     texto: "sum dolor sit amet. Sit quas harum et iste dolores quo delectus laudantium sit voluptatem eveniet et nesciunt culpa! Hic cupiditate earum et harum incidunt sit aperiam fuga et od",
-  //   },
-  //   {
-  //     calificacion: 10,
-  //     usuario:"Autor 4",
-  //     texto: "Non voluptas odit aut quos expedita aut sequi dolorum aut tenetur quis ut velit consequatur. In saepe voluptatem quo optio voluptatem ut sint illo.",
-  //   },
-  //   {
-  //     calificacion: 11,
-  //     usuario:"Autor 2",
-  //     texto: "Nam pariatur laudantium eum ducimus aliquam id sapiente illum sed repellat voluptates rem assumenda fugiat.",
-  //   }
-
-  // ]
-
-  // constructor() { }
-
-  // ngOnInit(): void {
+    }
   }
+
+  getDecodedAccessToken(token: any): any {
+    try {
+      return jwt_decode(token);
+            // "admin": true,
+            // "usuario_id": 14,
+            // "correo": "elAdmin2@gmail.com"
+    } catch(Error) {
+      return null;
+    }
+  }
+
+
+  }
+
 
 
 

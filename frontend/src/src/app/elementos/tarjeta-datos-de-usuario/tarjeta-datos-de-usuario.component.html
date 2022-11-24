@@ -30,7 +30,7 @@
                                             
                                         </div>
                                     </td>
-                                    
+                             
                                     <td width="auto" style="padding-left: 10px;">
                                       
                                             <input class="form-control me-2" 
@@ -38,8 +38,10 @@
                               
                                                     type="text" 
                                                     id="text"
-                                                    placeholder="Alias"
-                                                    formControlName="alias" >
+                                                    placeholder="{{alias}}"
+                                                    formControlName="alias" 
+                                                    value="{{alias}}"
+                                                    >
                                                     
                                                     
                                    
@@ -55,9 +57,10 @@
                                                 style="border-radius:50px; padding-inline-end: 10px; " 
                                                 type="password" 
                                                 id="password"   
+                        
                                                 placeholder="Ingrese nueva contraseña (opcional)"
                                                 formControlName="contra"  
-                                            
+                                                value=""
                                                 required>
                                     </td>
                                 </tr>
@@ -95,7 +98,7 @@
                                 <p class="m-0px font-w-600">Promedio</p>
                             </div>
                             <div class="count-data text-center" id="datacell" style="background-color: #47B6AF">
-                                <h6 class="count h2" data-to="3" data-speed="3"> {{disponibles}} </h6>
+                                <h6 class="count h2" data-to="3" data-speed="3"> {{datos_usuario.poemas_disponibles}} </h6>
                                 <p class="m-0px font-w-600">Poemas disponibles</p>
                             </div>
 

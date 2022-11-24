@@ -7,7 +7,7 @@
         <div  *ngFor="let usuarios of arrayUsuarios">
 
             
-
+ 
             <div class="col" id="capsula-col">
 
                 <div *ngIf="usuarios.Pendiente; else elseBlock">
@@ -23,3 +23,5 @@
     </div>
 
 </div>
+
+<app-paginado-de-usuarios [num]="num_paginas" [actual]="pag_actual" ></app-paginado-de-usuarios>

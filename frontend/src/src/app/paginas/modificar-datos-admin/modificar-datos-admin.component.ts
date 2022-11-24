@@ -3,6 +3,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostActualizarUsuarioService } from './../../servicios/post.service'
 import { ActivatedRoute } from '@angular/router';
+import { PostUsuarioService } from './../../servicios/post.service';
+
 
 
 @Component({
@@ -14,13 +16,15 @@ export class ModificarDatosAdminComponent implements OnInit {
 
   // usuarioForm: any
   usuario_id!: string;
-  token: any
+  token: any;
+  arrayDatos:any;
   
   @Input() usuario!: string;
 
   constructor(
   
     private postActualizarUsuarioService:PostActualizarUsuarioService,
+    private postUsuarioService: PostUsuarioService,
     private router: Router,
     // private formBuilder: FormBuilder,  
     private route:ActivatedRoute
@@ -28,7 +32,12 @@ export class ModificarDatosAdminComponent implements OnInit {
   ) {}
   
   ngOnInit(): void {
-    this.usuario_id = this.route.snapshot.paramMap.get('id') || ''; 
+    this.usuario_id = this.route.snapshot.paramMap.get('id') || '';
+
+    this.postUsuarioService.getUsuario(this.usuario_id).subscribe((data:any) =>{
+      console.log('JSON data: ', data);
+      this.arrayDatos = data;
+  })
 
     // this.usuarioForm = this.formBuilder.group({
     //   alias: [this.usuario, Validators.required],

@@ -14,6 +14,14 @@ export class VerPoemaUsuarioComponent implements OnInit {
   poema_id!: string;
   poema!: any;
 
+  get reloadFunc() {
+    return this.reload.bind(this);
+  }
+  
+  reload() {
+    window.location.reload()
+  }
+
 
   constructor(
     private route:ActivatedRoute,

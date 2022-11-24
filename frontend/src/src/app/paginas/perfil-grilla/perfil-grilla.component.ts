@@ -18,8 +18,13 @@ export class PerfilGrillaComponent implements OnInit {
   arrayPoemas:any;
   desde: string = "perfilGrilla";
 
+  get reloadFunc() {
+    return this.reload.bind(this);
+  }
   
-
+  reload() {
+    window.location.reload()
+  }
 
   constructor(
     private route:ActivatedRoute,

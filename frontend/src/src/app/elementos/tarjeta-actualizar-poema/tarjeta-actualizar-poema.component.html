@@ -1,5 +1,5 @@
 <section class="form-post" style="padding: 0px; border-radius: 50px;">
-    <form [formGroup]="poemaForm">
+    <form [formGroup]="modificarForm">
         <input 
             class="form-control me-2"   
             style="
@@ -11,11 +11,11 @@
                 background-color: #47B6AF; 
                 color: white; 
                 font-size:x-large; 
-                text-align: center;" 
-            formControlName="titulo"  
+                text-align: center;"  
             type="text"     
-            placeholder="Titulo"    
-            required>
+            formControlName="titulo" 
+            value="{{poema.titulo}}"
+            >
         <br>
         
         <div class="mb-3">
@@ -24,8 +24,9 @@
                 id="exampleFormControlTextarea1"    
                 rows="8" 
                 style="text-align:center; height: 10%; font-size: large; border: 0%; border-color: white;" 
-                formControlName="poema" 
-                placeholder="Escribe tu poema aquí...">
+                formControlName="contenido" 
+                value="{{poema.contenido}}"
+                >
             </textarea>
         </div>
     </form>
@@ -39,9 +40,6 @@
     </a>
     <br>
     
-    <a class="nav-link" style="border-radius:50px; background-color: #47B6AF; width: 50%; color: white; margin-left: 80%; margin-top: 0%; font-size: 120%;">
-        <img src="./assets/Imagenes/cancelar.png" width="25%" (click)="cancelar()">     Cancelar
-    </a>
     <br>
 </section>
 

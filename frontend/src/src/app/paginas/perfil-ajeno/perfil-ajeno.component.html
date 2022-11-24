@@ -1,25 +1,20 @@
-
-<!-- Sin login -->
-<div *ngIf=" 1 === 1">
+<div *ngIf="login==false">
     <app-menu-sin-usuario></app-menu-sin-usuario>    
 </div>
-
-<!-- Con login -->
-<!-- <div *ngIf="condition">
-    <app-menu-con-usuario></app-menu-con-usuario>    
-</div> -->
-
-<!-- Admin -->
-<!-- <div *ngIf="condition">
-    <app-menu-admin></app-menu-admin>    
-</div> -->
-
+<div *ngIf="login==true">
+    <div *ngIf="admin==false">
+        <app-menu-con-usuario></app-menu-con-usuario>
+    </div>
+    <div *ngIf="admin==true">
+        <app-menu-admin></app-menu-admin>
+    </div>
+</div>
 
 <app-datos-perfil-usuario-ajeno [datos]="datos"></app-datos-perfil-usuario-ajeno>
 
 <div class="container-fluid" style="background-color: #4E7079"> 
+    
     <div class="row cols-lg g-4">  
-
 
         <div class="col justify-content-center " id="poema-col" *ngFor="let poema of arrayPoemas">
             <app-tarjeta-poema-mediana 
@@ -28,6 +23,7 @@
             [calificacion]="poema.promedio"
             [texto]="poema.contenido"
             [fecha]="poema.fecha"
+            [poema_id]="poema.poema_id"
             >
             </app-tarjeta-poema-mediana>
         </div>

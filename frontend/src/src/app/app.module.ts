@@ -50,6 +50,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { PaginadoDeUsuariosComponent } from './elementos/paginado-de-usuarios/paginado-de-usuarios.component';
+import { TarjetaActualizarPoemaComponent } from './elementos/tarjeta-actualizar-poema/tarjeta-actualizar-poema.component';
+import { ActualizarPoemaComponent } from './paginas/actualizar-poema/actualizar-poema.component';
 
 
 @NgModule({
@@ -92,7 +95,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     TarjetaPoemaChicaPropioComponent,
     TarjetaPoemaMedianaComponent,
     ComentarioComponent,
-    TarjetaCalificacionesUsuarioComponent
+    TarjetaCalificacionesUsuarioComponent,
+    PaginadoDeUsuariosComponent,
+    TarjetaActualizarPoemaComponent,
+    ActualizarPoemaComponent
   ],
   imports: [
     BrowserModule,

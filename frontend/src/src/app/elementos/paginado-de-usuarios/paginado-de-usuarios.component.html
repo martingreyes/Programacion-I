@@ -1,0 +1,20 @@
+<div class="text-center" id="paginacion-fondo">
+    <div class="capsula" id="capsula-paginacion" >
+
+        <ul class="pagination d-flex justify-content-center flex-wrap pagination-rounded-flat pagination-success" id="paginacion">
+            
+            <!-- <li class="page-item"><a class="page-link" href="/Home/" data-abc="true"><</a></li> -->
+
+            <li class="page-item" *ngFor="let i of array()">
+                <div *ngIf="i === actual; else elseBlock">
+                    <a class="page-link" data-abc="true">
+                        Pagina {{i}}
+                    </a>
+                </div>
+                <ng-template #elseBlock>
+                    <a class="page-link" href="/ListaUsuarios/{{i}}" data-abc="true">{{i}}</a>
+                </ng-template>
+            </li>
+        </ul>
+    </div> 
+</div>

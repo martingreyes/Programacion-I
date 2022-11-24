@@ -67,9 +67,9 @@ export class PostUsuariosService {
   ) { }
 
   
-  getUsuarios(token: string) { 
+  getUsuarios(token: string, pag: any) { 
     let heads = new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin', '*').set('Authorization', 'Bearer ' + token)
-    return this.httpClient.get(this.url, {headers: heads});
+    return this.httpClient.get(this.url + "?pagina=" + pag, {headers: heads});
   }  
 }
 
@@ -207,5 +207,44 @@ export class PostEliminarPoemaService {
   deletePoema(token: string, id: number) { 
     let heads = new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin', '*').set('Authorization', 'Bearer ' + token)
     return this.httpClient.delete(this.url + "/" + id.toString(), {headers: heads})
+  }  
+}
+
+
+@Injectable({
+  providedIn: "root",
+})
+
+export class PostCrearCalificacionService {
+  url = "calificaciones"
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  postCalificacion(data:any, token: string) { 
+    let heads = new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin', '*').set('Authorization', 'Bearer ' + token)
+    return this.httpClient.post(this.url, data, {headers: heads})
+  }  
+}
+
+
+
+
+
+@Injectable({
+  providedIn: "root",
+})
+
+export class PostActualizarPoemaService {
+  url = "poema"
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  putPoema(data:any, token: any, id: number) { 
+    let heads = new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Origin', '*').set('Authorization', 'Bearer ' + token)
+    return this.httpClient.put(this.url + "/" + id.toString(), data, {headers: heads})
   }  
 }

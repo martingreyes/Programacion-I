@@ -61,6 +61,9 @@ class Poemas(Resource):
     @jwt_required(optional=True)        #No hace falta estar logueado
     def get(self):
         # http://127.0.0.1:5000/poemas?ordenar_por=titulo&pagina=1&autor=emaperez1
+        # http://127.0.0.1:5000/poemas?ordenar_por=titulo
+        # http://127.0.0.1:5000/poemas?autor=emaperez1
+        
         pagina = 1 
         por_pagina = 6
         poemas = db.session.query(PoemaModel)
@@ -168,3 +171,4 @@ class PoemasCalificacion(Resource):
     def get(self,poema_id):
         poema = db.session.query(PoemaModel).get_or_404(poema_id)
         return poema.to_json_poema_calificacion()
+        

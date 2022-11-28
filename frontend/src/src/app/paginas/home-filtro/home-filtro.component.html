@@ -1,5 +1,15 @@
+<div *ngIf="login==false">
+    <app-menu-sin-usuario></app-menu-sin-usuario>    
+</div>
+<div *ngIf="login==true">
+    <div *ngIf="admin==false">
+        <app-menu-con-usuario></app-menu-con-usuario>
+    </div>
+    <div *ngIf="admin==true">
+        <app-menu-admin></app-menu-admin>
+    </div>
+</div>
 
-<app-menu-sin-usuario></app-menu-sin-usuario>
 <div class="container-lg" style="background-color: #4E7079; height: 20px;"> 
             
     <div class="row cols-lg g-4">  

@@ -83,7 +83,7 @@ export class TarjetaDatosDeUsuarioComponent implements OnInit {
 
       if (this.getDecodedAccessToken(localStorage.getItem("token")).admin){
         console.log("VOLVIENDO a ListaUsuarios")
-        this.router.navigate(["ListaUsuarios"]) 
+        this.router.navigate(["ListaUsuarios/1"]) 
       } else {
         console.log("VOLVIENDO a perfilGrilla")
         this.router.navigate(["PerfilGrilla/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()])
@@ -94,7 +94,7 @@ export class TarjetaDatosDeUsuarioComponent implements OnInit {
   cancelar() {
     if (this.getDecodedAccessToken(localStorage.getItem("token")).admin){
       console.log("VOLVIENDO a ListaUsuarios")
-      this.router.navigate(["ListaUsuarios"]) 
+      this.router.navigate(["ListaUsuarios/1"]) 
     } else {
       console.log("VOLVIENDO a perfilGrilla")
       this.router.navigate(["PerfilGrilla/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()])

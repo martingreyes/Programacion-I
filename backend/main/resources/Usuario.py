@@ -81,25 +81,25 @@ class Usuarios(Resource):
             if clave == "por_pagina":
                 por_pagina = int(valor)
             
-        #     if clave == "alias":
-        #         usuarios = usuarios.filter(UsuarioModel.alias.like("%"+valor+"%"))
+            if clave == "alias":
+                usuarios = usuarios.filter(UsuarioModel.alias.like("%"+valor+"%"))
             
-        #     if clave == "poemas":               #Usuarios que tengan 'valor' o mas poemas.  
-        #         usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).having(func.count(PoemaModel.poema_id) >= valor)
+            if clave == "poemas":               #Usuarios que tengan 'valor' o mas poemas.  
+                usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).having(func.count(PoemaModel.poema_id) >= valor)
 
-        #     if clave == "calificaciones":       #Usuarios que tengan 'valor' o mas calificaciones.  
-                # usuarios=usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.usuario_id).having(func.count(CalificacionModel.cal_id) >= valor)
+            if clave == "calificaciones":       #Usuarios que tengan 'valor' o mas calificaciones.  
+                usuarios=usuarios.outerjoin(UsuarioModel.calificaciones).group_by(UsuarioModel.usuario_id).having(func.count(CalificacionModel.cal_id) >= valor)
 
-        #     if clave == "ordenar_por":          #Si no se usa, ordena por id CREO.
-        #         if valor == "alias[desc]":      #Ordena por alias descendencia. 
-        #             usuarios = usuarios.order_by(UsuarioModel.alias.desc())
-        #         elif valor == "alias":
-        #             usuarios = usuarios.order_by(UsuarioModel.alias)
+            if clave == "ordenar_por":          #Si no se usa, ordena por id CREO.
+                if valor == "alias[desc]":      #Ordena por alias descendencia. 
+                    usuarios = usuarios.order_by(UsuarioModel.alias.desc())
+                elif valor == "alias":
+                    usuarios = usuarios.order_by(UsuarioModel.alias)
                             
-        #         elif valor == 'poemas[desc]':   #Por cantidad de poemas(asc,desc). 
-        #             usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id).desc())
-        #         elif valor == "poemas":                        
-        #             usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id))
+                elif valor == 'poemas[desc]':   #Por cantidad de poemas(asc,desc). 
+                    usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id).desc())
+                elif valor == "poemas":                        
+                    usuarios = usuarios.outerjoin(UsuarioModel.poemas).group_by(UsuarioModel.usuario_id).order_by(func.count(PoemaModel.autor_id))
                         
 
         usuarios = usuarios.paginate(pagina, por_pagina, True, 20)

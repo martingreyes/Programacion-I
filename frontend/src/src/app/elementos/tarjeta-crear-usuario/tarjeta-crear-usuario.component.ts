@@ -34,10 +34,11 @@ export class TarjetaCrearUsuarioComponent implements OnInit {
       let correo = this.usuarioForm.value.correo
       let admin = this.usuarioForm.value.admin
       this.token = localStorage.getItem("token") || undefined 
+
       
       console.log("Enviando el contenido: ",  {alias: alias, contra: contra, correo: correo, admin: admin});
       console.log("Con el token: ", this.token)
-      this.postCrearUsuarioService.postUsuario({alias: alias, contra: contra, correo: correo, admin: admin},this.token).subscribe()
+      this.postCrearUsuarioService.postUsuario({alias: alias, contra: contra, correo: correo, admin: admin}, this.token).subscribe()
       console.log("Contenido enviado");  
       alert("Usuario Publicado!")
       this.router.navigate(["Home/1"])

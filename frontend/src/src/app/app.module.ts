@@ -53,6 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PaginadoDeUsuariosComponent } from './elementos/paginado-de-usuarios/paginado-de-usuarios.component';
 import { TarjetaActualizarPoemaComponent } from './elementos/tarjeta-actualizar-poema/tarjeta-actualizar-poema.component';
 import { ActualizarPoemaComponent } from './paginas/actualizar-poema/actualizar-poema.component';
+import { HomeFiltroComponent } from './paginas/home-filtro/home-filtro.component';
 
 
 @NgModule({
@@ -98,7 +99,8 @@ import { ActualizarPoemaComponent } from './paginas/actualizar-poema/actualizar-
     TarjetaCalificacionesUsuarioComponent,
     PaginadoDeUsuariosComponent,
     TarjetaActualizarPoemaComponent,
-    ActualizarPoemaComponent
+    ActualizarPoemaComponent,
+    HomeFiltroComponent
   ],
   imports: [
     BrowserModule,

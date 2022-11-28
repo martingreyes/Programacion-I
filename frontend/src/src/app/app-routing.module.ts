@@ -17,6 +17,8 @@ import { PerfilAjenoUsuarioComponent } from './paginas/perfil-ajeno-usuario/perf
 import { VerPoemaComponent } from './paginas/ver-poema/ver-poema.component';
 import { VerPoemaAdminComponent } from './paginas/ver-poema-admin/ver-poema-admin.component';
 import { VerPoemaUsuarioComponent } from './paginas/ver-poema-usuario/ver-poema-usuario.component'; 
+import { HomeFiltroComponent } from './paginas/home-filtro/home-filtro.component'; 
+
 import { AuthsessionGuard } from './guardianes/authsession.guard';
 import { AdminGuardGuard } from './guardianes/admin-guard.guard';
 import { ActualizarPoemaComponent } from './paginas/actualizar-poema/actualizar-poema.component';
@@ -31,6 +33,7 @@ const routes: Routes = [
   { path: 'Home/:pagina', component: HomeComponent },
   { path: 'HomeAdmin/:pagina', component: HomeAdminComponent, canActivate:[AdminGuardGuard]},
   { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent, canActivate: [AuthsessionGuard]},
+  { path: 'HomeFiltro/:pagina/:filtro', component: HomeFiltroComponent},
 
   { path: 'CrearPoema', component: CrearPoemaComponent, canActivate: [AuthsessionGuard] },
   { path: 'CrearUsuario', component: CrearUsuarioComponent},

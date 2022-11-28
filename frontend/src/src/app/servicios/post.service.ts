@@ -248,3 +248,25 @@ export class PostActualizarPoemaService {
     return this.httpClient.put(this.url + "/" + id.toString(), data, {headers: heads})
   }  
 }
+
+
+
+
+
+
+@Injectable({
+  providedIn: "root",
+})
+
+export class PostPoemasFiltroService {
+  url = 'poemas'
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  postPoemasFiltro(filtro: any , pagina: number = 1) {
+    return this.httpClient.get(this.url + "?pagina=" + pagina + "&" + filtro);
+  } 
+}
+

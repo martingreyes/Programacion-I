@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { PostCrearPoemaService } from './../../servicios/post.service'
 import jwt_decode from 'jwt-decode';
@@ -20,34 +20,29 @@ export class TarjetaCrearPoemaComponent implements OnInit {
   @Input() contenido!: string;
 
 
-
-  
-
   constructor(
     private postCrearPoemaService:PostCrearPoemaService,
 
     private router: Router,
     private formBuilder: FormBuilder,
 
-  ) { }
-    
-  ngOnInit(): void {
-    this.id = this.getDecodedAccessToken(this.token).usuario_id
-
+  ) {
     this.poemaForm = this.formBuilder.group({
       titulo: ["El pepe", Validators.required],
       poema: ["el poema del pepe", Validators.required]
       }
     )
   }
-
+    
+  ngOnInit(): void {
+    this.id = this.getDecodedAccessToken(this.token).usuario_id
+  }
 
   submit() {
     if(this.poemaForm.valid) {
       let poema = this.poemaForm.value.poema
       let titulo2 = this.poemaForm.value.titulo
       this.token = localStorage.getItem("token") || undefined
-      
       console.log("Enviando el contenido: ", {titulo: titulo2, contenido: poema});
       console.log("Con el token: ", this.token)
       this.postCrearPoemaService.postPoema({titulo: titulo2, contenido: poema},this.token).subscribe()

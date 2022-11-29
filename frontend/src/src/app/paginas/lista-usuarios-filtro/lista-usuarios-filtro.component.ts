@@ -24,8 +24,7 @@ export class ListaUsuariosFiltroComponent implements OnInit {
   reload() {
     window.location.reload()
   }
-  
-  
+
   constructor(
     private route:ActivatedRoute,
     private postUsuariosFiltroService: PostUsuariosFiltroService,

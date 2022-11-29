@@ -24,7 +24,7 @@ class Poema(db.Model):
         if len(calificaciones) > 0:
             for calificacion in calificaciones:
                 puntaje_total += calificacion["puntaje"]
-            promedio = puntaje_total / len(calificaciones)
+            promedio = round(puntaje_total / len(calificaciones), 1)
         else: 
             promedio = "-"
         json_str = {

@@ -12,6 +12,7 @@ export class PaginadoDePoemasComponent implements OnInit {
   id: any;
   @Input() num!: number;
   @Input() actual!: number;
+  @Input() filtro!: string;
   arrayNum : any;
   
   constructor() {

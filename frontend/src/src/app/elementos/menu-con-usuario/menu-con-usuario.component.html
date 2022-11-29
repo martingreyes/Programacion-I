@@ -17,20 +17,22 @@
         <div class="offcanvas-body" style="background-color: #47B6AF; padding: 0;">
             
             <form class="d-flex" role="search" style="padding-inline: 5%; padding-top: 10px ;">
-                <input class="form-control me-2" style="border-radius:50px; padding-inline-end: 5px; border-color: #4E7079; " type="text" placeholder="Buscar poema o autor">
-                
+            
 
-                <div class="btn-group dropstart">
+                <div class="btn-group dropstart" style="width: 90% ; margin-top: 20%">
+
+
+                    <h4 style="width: 100%; margin-right: 5%;">Buscar poema: </h4>
                     
                     <button type="button" 
                                 id="btn-abrir-popup" 
                                 class="btn btn primary"                         
                                 data-bs-toggle="modal" 
                                 data-bs-target="#ModalFiltros"
-                                style="background: white; border-radius: 50px"
+                                style="background: white; border-radius: 50px; padding-right: auto; "
                                 data-toggle="dropdown">
 
-                            <img src="./assets/Imagenes/Filtro.png"  width="40" href="">
+                            <img src="./assets/Imagenes/lupa.png"  width="40" href="">
                         
                     </button>
 
@@ -49,14 +51,13 @@
 
             <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="text-align: center; font-family:Verdana, Geneva, Tahoma, sans-serif ;" >
                 {{alias}}
-                <br>
-                ID: {{usuario_id}}
+        
             </h3>
             
-            
+            <br>
 
             <li class="nav-item">
-                <a class="nav-link" routerLink="/PerfilGrilla/{{usuario_id}}"><img src="./assets/Imagenes/mi_perfil.png" width="15%">   Mi Perfil</a>
+                <a class="nav-link" routerLink="/PerfilGrilla/{{usuario_id}}/1"><img src="./assets/Imagenes/mi_perfil.png" width="15%">   Mi Perfil</a>
             </li>
             <br>
             

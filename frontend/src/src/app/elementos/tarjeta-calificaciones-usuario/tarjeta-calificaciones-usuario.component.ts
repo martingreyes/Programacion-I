@@ -12,8 +12,8 @@ import jwt_decode from 'jwt-decode';
 })
 export class TarjetaCalificacionesUsuarioComponent implements OnInit {
 
-  @Input() usuario_id!: string;
-
+  // @Input() usuario_id!: string;
+  alias: any;
   @Input() poema_id!: string;
 
   arrayPoemaComentarios: any;
@@ -37,10 +37,12 @@ export class TarjetaCalificacionesUsuarioComponent implements OnInit {
         this.arrayPoemaComentarios = data.calificaciones;
       }
     )
+    
+    this.alias = this.getDecodedAccessToken(localStorage.getItem("token")).alias
 
     this.calificacionForm = this.formBuilder.group({
-      puntaje: ["2", Validators.required],
-      comentario: ["Muy Bueno",Validators.required]
+      puntaje: ["", Validators.required],
+      comentario: ["",Validators.required]
     })
 
   

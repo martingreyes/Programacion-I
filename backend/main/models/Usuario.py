@@ -40,7 +40,7 @@ class Usuario(db.Model):
                 suma += x["promedio"]
                 cont += 1
         if cont != 0:
-            promedio = suma / cont
+            promedio = round(suma / cont)
         else:
             promedio = 0
             
@@ -78,13 +78,13 @@ class Usuario(db.Model):
     #     return json_str
 
 
-    # def to_json_usuario_poema(self):                #otro get
-    #     poemas = [poema.to_json() for poema in self.poemas]
-    #     json_str = {
-    #         'alias':self.alias,
-    #         'poemas':poemas
-    #     }
-    #     return json_str
+    def to_json_usuario_poema(self):                #otro get
+        poemas = [poema.to_json() for poema in self.poemas]
+        json_str = {
+            'alias':self.alias,
+            'poemas':poemas
+        }
+        return json_str
 
 
     # def to_json_usuario_calificacion(self):

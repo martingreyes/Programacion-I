@@ -13,7 +13,7 @@ export class HomeFiltroComponent implements OnInit {
   arrayPoemas:any;
   num_paginas:any;
   pag_actual:any;
-  desde: string = "home";
+  desde: string = "homeFiltro";
   id:any;
   pagina!: number;
   filtro!: string;

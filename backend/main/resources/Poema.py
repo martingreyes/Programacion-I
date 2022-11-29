@@ -33,14 +33,6 @@ class Poema(Resource):
         else:
             return poema.to_json(), 201
 
-    # @jwt_required()
-    # def post(self):
-    #     poema = PoemaModel.from_json(request.get_json())
-    #     usuario_id = get_jwt_identity()
-        
-    #     poema.autor_id = usuario_id
-    #     db.session.add(poema)
-    #     db.session.commit()
 
     @jwt_required()
     #Hay que usar el id del usuario en el token
@@ -56,6 +48,7 @@ class Poema(Resource):
             return 'Poema eliminado',204
         else:
             return 'Error de autenticacion', 403
+            
 
 class Poemas(Resource):
     @jwt_required(optional=True)        #No hace falta estar logueado
@@ -149,21 +142,19 @@ class Poemas(Resource):
         db.session.add(poema)
         db.session.commit()
         
-        return poema.to_json(), 201
-        
-        # usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
-        # cantidad_poema = len(usuario.poemas)                #REvisar usario.poemas
-        # cantidad_comentarios = len(usuario.calificaciones)
+        usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
+        cantidad_poema = len(usuario.poemas)                #REvisar usario.poemas
+        cantidad_comentarios = len(usuario.calificaciones)
 
-        # if cantidad_poema != 0:
-        #     div = cantidad_comentarios/cantidad_poema
+        if cantidad_poema != 0:
+            div = cantidad_comentarios/cantidad_poema
         
-        # if cantidad_poema == 0 or div >= 3:
-        #     db.session.add(poema)
-        #     db.session.commit()
-        #     return poema.to_json(), 201
-        # else:
-        #     return 'No permitido', 405
+        if cantidad_poema == 0 or div >= 3:
+            db.session.add(poema)
+            db.session.commit()
+            return poema.to_json(), 201
+        else:
+            return 'No permitido', 405
         
 
 class PoemasCalificacion(Resource):

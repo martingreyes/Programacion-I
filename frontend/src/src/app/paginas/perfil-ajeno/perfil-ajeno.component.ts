@@ -15,6 +15,11 @@ export class PerfilAjenoComponent implements OnInit {
   usuario_id!: string;
   arrayPoemas:any;
   datos:any;
+  num_paginas:any;
+  pag_actual = 1;
+  desde: string = "perfilAjeno";
+
+  
 
   login = false;
   admin = false;
@@ -28,12 +33,16 @@ export class PerfilAjenoComponent implements OnInit {
   
   ngOnInit(): void {
     this.usuario_id = this.route.snapshot.paramMap.get('id') || ''; 
+    this.pag_actual = Number(this.route.snapshot.paramMap.get('pagina') || '1');
 
-    this.postPerfilUsuarioService.getUsuarioPoema(this.usuario_id).subscribe((data:any) =>{
-      console.log("JSON data Poemas: ", data)
-      this.arrayPoemas = data.poemas;
-      }
-    )
+
+    this.postPerfilUsuarioService.getUsuarioPoema(this.pag_actual, this.usuario_id).subscribe((data:any) =>{
+      console.log('JSON Poemas: ', data);
+      this.arrayPoemas = data.Poemas;
+      this.num_paginas = data.Total_de_paginas;
+      this.pag_actual = data.Pagina_actual;
+    }
+  )
     
     this.postUsuarioService.getUsuario(this.usuario_id).subscribe((data:any) =>{
       console.log("JSON data datos usuarios: ", data)
@@ -46,9 +55,6 @@ export class PerfilAjenoComponent implements OnInit {
       this.login = true
       this.admin = this.getDecodedAccessToken(localStorage.getItem("token")).admin
     }
-
-    console.log("/ / / / / / / / / / / / / / / / login:", this.login)
-    console.log("/ / / / / / / / / / / / / / / / admin:", this.admin)
   }
 
   getDecodedAccessToken(token: any): any {

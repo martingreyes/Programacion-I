@@ -17,40 +17,36 @@
         
     </div>
     <form [formGroup]="calificacionForm">
-        <div style="background-color: #2D9994; margin: auto; width: 100%; height:150px; padding: 10px">
+        <div style="background-color: #2D9994; margin: auto; width: 100%; height:150px">
             <!-- <app-paginado-de-calificaciones></app-paginado-de-calificaciones> -->
 
         <table class="tabla1" width="100%" height="80px" style="position: absolute; bottom: 0px"> 
-            <tr>  
-                <td style="width:80px ; height: 80px; text-align: center;" rowspan="1"><img style="border-radius: 50%;" src="./assets/Imagenes/FotoPerfilKick.png" height="65px"></td> 
-            
-                <td width="auto" style="text-align:justify; color: white; padding-left: 4%;"rowspan="1" colspan="2">
+            <tr>              
+                <td width="auto" style="text-align:justify; color: white;"rowspan="1" colspan="2">
                   
-                        <input class="form-control me-2" style="border-radius:50px; padding-inline-end: 10px; height: 50px; margin: left ;width:75%; " type="text" id="text" formControlName="comentario"  placeholder="Escribe tu comentario aquí ..." >
-                        <button class="btn  btn-main" style="border-radius: 50px; width:25%;" >
-                            <img src="./assets/Imagenes/enviar_blanco.png"  width="80%" (click)="submit()">
-                        </button>
-                         
+                        <input class="form-control me-2" style="border-radius:50px; height: 50px; margin: left ;width:99%; margin-left: 5px; " type="text" id="text" formControlName="comentario"  placeholder="Escribe tu comentario aquí ..." >
+                        
+                    </td>
+                    <td style="width:50px">
+                        <div class="container" style=" align-items: left">
+                            <!-- <input style="margin-right: 0%;" type="range" min = "1" max="10" value="6" class="slider" id="myRange"> -->
+                            <input  type="number" id="num-input" min="1" max="10" value="6" formControlName="puntaje" style="background-color: white; border-radius: 50px; width:50px;height:50px; font-size: 20px; text-align: center;">
+                        </div>
+                    </td>
+
+                    <td style="width:80px">
+                    <button class="btn  btn-main" style="border-radius: 50px; width:80px;" >
+                        <img src="./assets/Imagenes/enviar_blanco.png"  style="width:50px ; height: 50px" (click)="submit()">
+                    </button>
                 </td>
-
-            
-
             </tr>
-            <tr >
-                <td style="color: white; font-size:small;"><b> Kick Buttowski {{usuario_id}}</b></td> 
-                <td style="color: white; font-size:small"></td>
-                <td>
-                    <div class="container" style=" align-items: left">
-                        <!-- <input style="margin-right: 0%;" type="range" min = "1" max="10" value="6" class="slider" id="myRange"> -->
-                        <input type="number"  min="1" max="10" value="6" formControlName="puntaje" style="background-color: white; border-radius: 20px; width:8%; font-size: 20px; text-align: center;">
-                    </div>
-                </td>
+
+
                 <!-- <td style="width:50px ;">
                     <div class="range-slider">
                         <span class="rs-label" id="demo">5</span>  
                     </div>
                 </td>   -->
-            </tr>
         </table>
         <br>
         </div>

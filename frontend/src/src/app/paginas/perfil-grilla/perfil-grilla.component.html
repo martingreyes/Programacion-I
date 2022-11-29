@@ -6,7 +6,7 @@
 
     <div class="row cols-lg g-4">
     
-    <div class="col justify-content-center " id="poema-col" *ngFor="let poema of arrayDatos.poemas">
+    <div class="col justify-content-center " id="poema-col" *ngFor="let poema of arrayPoemas">
             <app-tarjeta-poema-chica-propio 
             [titulo]="poema.titulo"  
             [calificacion]="poema.promedio"
@@ -24,7 +24,7 @@
 </div>
 <app-paginado-de-poemas [num]="num_paginas" [actual]="pag_actual" [desde]="desde" ></app-paginado-de-poemas>
 
-<a routerLink="/PerfilLista/{{usuario_id}}" class="btn-flotante" >
+<a routerLink="/PerfilLista/{{usuario_id}}/1" class="btn-flotante" >
     <img src="./assets/Imagenes/lista.png" width="30%"> Lista
 </a>
 

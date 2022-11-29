@@ -2,6 +2,8 @@ import { Component, OnInit , Input} from '@angular/core';
 import { AuthService } from './../../servicios/auth.service'
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-menu-admin',
@@ -12,11 +14,35 @@ export class MenuAdminComponent implements OnInit {
   
   usuario_id: any;
   alias: any;
+  aliasForm: any;
+  filtro = ""
 
   constructor(
     private authService:AuthService,
-    private router: Router
-    ) { }
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private route:ActivatedRoute,
+
+    ) {
+      this.aliasForm = this.formBuilder.group({
+        alias: ["", Validators.required]                     
+        }
+      )
+    }
+
+    buscar() {
+
+      let filtro = ""
+
+      let alias = this.aliasForm.value.alias
+
+      filtro = filtro + "alias=" + alias + "&"
+    
+      console.log("ALIAS FILTRO:", filtro)
+
+      this.router.navigate(["ListaUsuariosFiltro/1/" + filtro])   
+
+  }
 
   ngOnInit(): void {
     this.usuario_id = this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id 
@@ -30,6 +56,8 @@ export class MenuAdminComponent implements OnInit {
     this.router.navigate(["Home/1"])
     this.authService.logout()
   } 
+
+
 
   getDecodedAccessToken(token: any): any {
     try {

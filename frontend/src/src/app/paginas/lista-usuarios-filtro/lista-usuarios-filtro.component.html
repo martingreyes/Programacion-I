@@ -1,0 +1,26 @@
+<app-menu-admin></app-menu-admin>
+
+
+<div class="container-fluid" style="background-color: #4E7079"> 
+        
+    <div class="row cols-lg g-4">
+        <div  *ngFor="let usuarios of arrayUsuarios">
+
+            
+            <div class="col" id="capsula-col">
+
+                <div *ngIf="usuarios.Pendiente; else elseBlock">
+                    <app-capsula-usuario-pendiente [usuario]="usuarios.alias" [email]="usuarios.correo" [id]="usuarios.usuario_id" [reload]="reloadFunc"></app-capsula-usuario-pendiente>
+                </div>
+
+                <ng-template #elseBlock>
+                    <app-capsula-usuario [usuario]="usuarios.alias" [email]="usuarios.correo" [id]="usuarios.usuario_id"> </app-capsula-usuario>
+                </ng-template>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<app-paginado-de-usuarios [num]="num_paginas" [actual]="pag_actual" [desde]="desde" [filtro]="filtro"></app-paginado-de-usuarios>

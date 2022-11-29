@@ -102,8 +102,8 @@ export class PostPerfilUsuarioService {
     private httpClient: HttpClient
   ) { }
   
-  getUsuarioPoema(usuario_id: string) { 
-    return this.httpClient.get(this.url + "/" + usuario_id.toString());
+  getUsuarioPoema(pagina: any, usuario_id: any) { 
+    return this.httpClient.get(this.url + "/" + usuario_id + "?pagina=" + pagina);
   }  
 }
 
@@ -270,3 +270,20 @@ export class PostPoemasFiltroService {
   } 
 }
 
+
+
+@Injectable({
+  providedIn: "root",
+})
+
+export class PostUsuariosFiltroService {
+  url = 'usuarios'
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+  
+  postUsuariosFiltro(filtro: any , pagina: number = 1) {
+    return this.httpClient.get(this.url + "?pagina=" + pagina + "&" + filtro);
+  } 
+}

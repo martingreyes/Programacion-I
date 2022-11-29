@@ -31,8 +31,7 @@ import { ModificarDatosComponent } from './paginas/modificar-datos/modificar-dat
 import { PerfilGrillaComponent } from './paginas/perfil-grilla/perfil-grilla.component';
 import { PerfilListaComponent } from './paginas/perfil-lista/perfil-lista.component';
 import { PerfilAjenoComponent } from './paginas/perfil-ajeno/perfil-ajeno.component';
-import { PerfilAjenoAdminComponent } from './paginas/perfil-ajeno-admin/perfil-ajeno-admin.component';
-import { PerfilAjenoUsuarioComponent } from './paginas/perfil-ajeno-usuario/perfil-ajeno-usuario.component';
+
 import { VerPoemaComponent } from './paginas/ver-poema/ver-poema.component';
 import { VerPoemaAdminComponent } from './paginas/ver-poema-admin/ver-poema-admin.component';
 import { VerPoemaUsuarioComponent } from './paginas/ver-poema-usuario/ver-poema-usuario.component';
@@ -54,6 +53,7 @@ import { PaginadoDeUsuariosComponent } from './elementos/paginado-de-usuarios/pa
 import { TarjetaActualizarPoemaComponent } from './elementos/tarjeta-actualizar-poema/tarjeta-actualizar-poema.component';
 import { ActualizarPoemaComponent } from './paginas/actualizar-poema/actualizar-poema.component';
 import { HomeFiltroComponent } from './paginas/home-filtro/home-filtro.component';
+import { ListaUsuariosFiltroComponent } from './paginas/lista-usuarios-filtro/lista-usuarios-filtro.component';
 
 
 @NgModule({
@@ -84,8 +84,6 @@ import { HomeFiltroComponent } from './paginas/home-filtro/home-filtro.component
     PerfilGrillaComponent,
     PerfilListaComponent,
     PerfilAjenoComponent,
-    PerfilAjenoAdminComponent,
-    PerfilAjenoUsuarioComponent,
     VerPoemaComponent,
     VerPoemaAdminComponent,
     VerPoemaUsuarioComponent,
@@ -100,7 +98,8 @@ import { HomeFiltroComponent } from './paginas/home-filtro/home-filtro.component
     PaginadoDeUsuariosComponent,
     TarjetaActualizarPoemaComponent,
     ActualizarPoemaComponent,
-    HomeFiltroComponent
+    HomeFiltroComponent,
+    ListaUsuariosFiltroComponent
   ],
   imports: [
     BrowserModule,

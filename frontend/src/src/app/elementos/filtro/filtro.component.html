@@ -5,7 +5,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-
             <form [formGroup]="filtroForm">
                 
                 <div class="modal-body">
@@ -83,9 +82,10 @@
                                             <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="number" placeholder="Ingrese número" >
                                     </form>
                                     </li>  -->
+                                    <br>
                                 </div>
                             
-                          
+                                
                                 <br>
                                 <div class="col">                           
                                     <h3>Ordernar Por:</h3> 
@@ -165,10 +165,11 @@
                 </div>
 
             </form>
-         
-            <a class="nav-link" style="border-radius:50px; background-color: #47B6AF; width: 50%; color: white; margin-left: 85%; margin-top: 0%; font-size: 120%;">
+         <button (click)="submit()" style="width: 35%; font-size: large ; margin-left: 60%; background-color: #2D9994; color: aliceblue ; border-radius: 50px; " >Aplicar  </button>
+
+            <!-- <a class="nav-link" style="border-radius:50px; background-color: #47B6AF; width: 60%; color: white; margin-left: 85%; margin-top: 0%; font-size: 120%;">
                 <img src="./assets/Imagenes/confirmar.png" width="15%"  (click)="submit()">     Aplicar
-            </a>
+            </a> -->
             <br>
         </div>
         

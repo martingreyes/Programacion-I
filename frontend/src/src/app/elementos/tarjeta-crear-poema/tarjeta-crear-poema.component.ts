@@ -28,8 +28,8 @@ export class TarjetaCrearPoemaComponent implements OnInit {
 
   ) {
     this.poemaForm = this.formBuilder.group({
-      titulo: ["El pepe", Validators.required],
-      poema: ["el poema del pepe", Validators.required]
+      titulo: ["", Validators.required],
+      poema: ["", Validators.required]
       }
     )
   }

@@ -4,6 +4,19 @@
     min-width: 410px;
 }
 
+  /* .tabla1 td {
+    border: black 2px solid;
+  }
+  
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+  input[type=number]{
+    -moz-appearance: textfield;
+} */
+
 .card-title {
     background-color: #47B6AF;
     border-top-right-radius:50px;

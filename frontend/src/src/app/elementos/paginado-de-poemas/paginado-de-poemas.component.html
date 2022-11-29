@@ -11,6 +11,7 @@
                     <a class="page-link" data-abc="true">
                         Pagina {{i}}
                     </a>
+
                 </div>
                 <ng-template #elseBlock>
                     <div *ngIf="desde === 'home'">
@@ -22,6 +23,19 @@
                     <div *ngIf="desde === 'homeUsuario'">
                         <a class="page-link" href="/HomeUsuario/{{id}}/{{i}}" data-abc="true">{{i}}</a>
                     </div>
+                    <div *ngIf="desde === 'perfilGrilla'">
+                        <a class="page-link" href="/PerfilGrilla/{{id}}/{{i}}" data-abc="true">{{i}}</a>
+                    </div>
+                    <div *ngIf="desde === 'perfilLista'">
+                        <a class="page-link" href="/PerfilLista/{{id}}/{{i}}" data-abc="true">{{i}}</a>
+                    </div>
+                    <div *ngIf="desde === 'perfilAjeno'">
+                        <a class="page-link" href="/PerfilAjeno/{{id}}/{{i}}" data-abc="true">{{i}}</a>
+                    </div>
+                    <div *ngIf="desde === 'homeFiltro'">
+                        <a class="page-link" href="/HomeFiltro/{{i}}/{{filtro}}" data-abc="true">{{i}}</a>
+                    </div>
+                    
                 </ng-template>
                 
             </li>

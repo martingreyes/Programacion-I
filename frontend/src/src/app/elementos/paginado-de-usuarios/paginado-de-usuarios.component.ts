@@ -1,3 +1,4 @@
+import { provideCloudflareLoader } from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -9,12 +10,17 @@ export class PaginadoDeUsuariosComponent implements OnInit {
 
   @Input() num!: number;
   @Input() actual!: number;
+  @Input() filtro!: string;
+  @Input() desde!: string;
+  
   arrayNum : any;
   
 
   constructor() { }
 
   ngOnInit(): void {
+
+
   }
 
   array() {

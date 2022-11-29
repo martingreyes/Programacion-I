@@ -12,12 +12,12 @@ import { ModificarDatosComponent } from './paginas/modificar-datos/modificar-dat
 import { PerfilGrillaComponent } from './paginas/perfil-grilla/perfil-grilla.component';
 import { PerfilListaComponent } from './paginas/perfil-lista/perfil-lista.component';
 import { PerfilAjenoComponent } from './paginas/perfil-ajeno/perfil-ajeno.component';
-import { PerfilAjenoAdminComponent } from './paginas/perfil-ajeno-admin/perfil-ajeno-admin.component';
-import { PerfilAjenoUsuarioComponent } from './paginas/perfil-ajeno-usuario/perfil-ajeno-usuario.component';
 import { VerPoemaComponent } from './paginas/ver-poema/ver-poema.component';
 import { VerPoemaAdminComponent } from './paginas/ver-poema-admin/ver-poema-admin.component';
 import { VerPoemaUsuarioComponent } from './paginas/ver-poema-usuario/ver-poema-usuario.component'; 
 import { HomeFiltroComponent } from './paginas/home-filtro/home-filtro.component'; 
+
+import { ListaUsuariosFiltroComponent } from './paginas/lista-usuarios-filtro/lista-usuarios-filtro.component'; 
 
 import { AuthsessionGuard } from './guardianes/authsession.guard';
 import { AdminGuardGuard } from './guardianes/admin-guard.guard';
@@ -39,17 +39,16 @@ const routes: Routes = [
   { path: 'CrearUsuario', component: CrearUsuarioComponent},
 
   { path: 'ListaUsuarios/:pagina', component: ListaUsuariosComponent, canActivate:[AdminGuardGuard]}, 
+
+  { path: 'ListaUsuariosFiltro/:pagina/:filtro', component: ListaUsuariosFiltroComponent, canActivate:[AdminGuardGuard]}, 
   
   { path: 'ModificarDatosAdmin/:id', component: ModificarDatosAdminComponent, canActivate:[AdminGuardGuard]},
   { path: 'ModificarDatos/:id', component: ModificarDatosComponent , canActivate: [AuthsessionGuard]},
 
-  { path: 'PerfilGrilla/:id', component: PerfilGrillaComponent, canActivate: [AuthsessionGuard] },
-  { path: 'PerfilLista/:id', component: PerfilListaComponent, canActivate: [AuthsessionGuard] },
+  { path: 'PerfilGrilla/:id/:pagina', component: PerfilGrillaComponent, canActivate: [AuthsessionGuard] },
+  { path: 'PerfilLista/:id/:pagina', component: PerfilListaComponent, canActivate: [AuthsessionGuard] },
 
-
-  { path: 'PerfilAjeno/:id', component: PerfilAjenoComponent},
-  // { path: 'PerfilAjenoUsuario/:id', component: PerfilAjenoUsuarioComponent , canActivate: [AuthsessionGuard]},
-  // { path: 'PerfilAjenoAdmin/:id', component: PerfilAjenoAdminComponent, canActivate: [AdminGuardGuard] },
+  { path: 'PerfilAjeno/:id/:pagina', component: PerfilAjenoComponent},
 
   { path: 'VerPoema/:id', component: VerPoemaComponent },
   { path: 'VerPoemaAdmin/:id', component: VerPoemaAdminComponent, canActivate: [AdminGuardGuard] },

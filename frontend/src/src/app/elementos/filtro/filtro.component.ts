@@ -118,8 +118,8 @@ export class FiltroComponent implements OnInit {
       this.router.navigate(["HomeFiltro/1/" + this.filtro])
  
 
-      
-      // http://127.0.0.1:5000/poemas?ordenar_por=titulo&pagina=1&
+  
+
 
   }
 

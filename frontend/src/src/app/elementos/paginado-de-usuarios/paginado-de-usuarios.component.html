@@ -9,6 +9,7 @@
                 <div *ngIf="i === actual; else elseBlock">
                     <a class="page-link" data-abc="true">
                         Pagina {{i}}
+                        FIltro: {{filtro}}
                     </a>
 
     
@@ -16,7 +17,7 @@
                 <ng-template #elseBlock>
                     <div *ngIf="desde === 'ListaUsuariosFiltro'">
                         
-                        <a class="page-link" href="/ListaUsuariosFiltro/{{i}}/{{filtro}}" data-abc="true">{{i}}</a>
+                        <a class="page-link" href="./ListaUsuariosFiltro/{{i}}/{{filtro}}" data-abc="true">{{i}}</a>
                     </div>
                     <div *ngIf="desde === 'ListaUsuarios'">
                         <a class="page-link" href="/ListaUsuarios/{{i}}" data-abc="true">{{i}}</a>

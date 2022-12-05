@@ -5,6 +5,7 @@ from .. import db
 from main.models import PoemaModel,UsuarioModel, CalificacionModel
 from sqlalchemy import func 
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
+import math
 
 
 class Poema(Resource):
@@ -146,10 +147,9 @@ class Poemas(Resource):
         cantidad_poema = len(usuario.poemas)                #REvisar usario.poemas
         cantidad_comentarios = len(usuario.calificaciones)
 
-        if cantidad_poema != 0:
-            div = cantidad_comentarios/cantidad_poema
-        
-        if cantidad_poema == 0 or div >= 3:
+        div = math.floor((3 - cantidad_poema) + (cantidad_comentarios/3))
+            
+        if div >= 1:
             db.session.add(poema)
             db.session.commit()
             return poema.to_json(), 201

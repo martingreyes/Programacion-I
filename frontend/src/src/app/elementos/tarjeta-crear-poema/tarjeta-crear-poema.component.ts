@@ -45,7 +45,11 @@ export class TarjetaCrearPoemaComponent implements OnInit {
       this.token = localStorage.getItem("token") || undefined
       console.log("Enviando el contenido: ", {titulo: titulo2, contenido: poema});
       console.log("Con el token: ", this.token)
-      this.postCrearPoemaService.postPoema({titulo: titulo2, contenido: poema},this.token).subscribe()
+      this.postCrearPoemaService.postPoema({titulo: titulo2, contenido: poema},this.token).subscribe(rta=>{
+        console.log("++++++++++++++++++RESPUESTA: ", rta)
+      }, error=>{
+        console.log("+++++++++++++++++ERROR: ", error)
+      })
       console.log("Contenido enviado");  
       alert("Poema Publicado!")
       this.router.navigate(["HomeUsuario/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()+"/1"])

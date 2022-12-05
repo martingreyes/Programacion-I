@@ -82,7 +82,8 @@ export class FiltroComponent implements OnInit {
         this.filtro = this.filtro + "fecha=" + fecha + "&"
         }
 
-      //Orfenar por
+        
+      //Ordenar por
       let fecha_asc = this.filtroForm.value.fecha_asc
       if (fecha_asc) {
         this.filtro = this.filtro + "ordenar_por=fecha&"
@@ -116,10 +117,6 @@ export class FiltroComponent implements OnInit {
       console.log("FILTRO:", this.filtro)
 
       this.router.navigate(["HomeFiltro/1/" + this.filtro])
- 
-
-  
-
 
   }
 

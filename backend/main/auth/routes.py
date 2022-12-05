@@ -9,15 +9,18 @@ auth = Blueprint('auth', __name__, url_prefix='/auth')
 def login():
     usuario = db.session.query(UsuarioModel).filter(UsuarioModel.correo == request.get_json().get("correo")).first_or_404()
     if usuario.validacion_contra(request.get_json().get("contra")):
-        access_token = create_access_token(identity=usuario)
-        data = {
+        if not usuario.pendiente:
+            access_token = create_access_token(identity=usuario)
+            data = {
             # 'id': str(usuario.usuario_id),
             # 'correo': usuario.correo,
             # 'admin': usuario.admin,
-            'access_token': access_token
-        }
+                'access_token': access_token
+            }
+            return data, 200
+        else:
+            return 'Usuario Pendiente de Aceptación', 401
 
-        return data, 200
     else:
         return 'Incorrect password', 401
 

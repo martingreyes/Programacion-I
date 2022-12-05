@@ -40,7 +40,7 @@ class Usuario(db.Model):
                 suma += x["promedio"]
                 cont += 1
         if cont != 0:
-            promedio = round(suma / cont)
+            promedio = round((suma / cont),1)
         else:
             promedio = 0
             
@@ -49,9 +49,9 @@ class Usuario(db.Model):
     
         
         if len(calificaciones) == 0 :
-            poemas_disponibles = 0
+            poemas_disponibles = 3
         else :
-            poemas_disponibles = math.floor( (len(calificaciones) / 3 ) - len(poemas))
+            poemas_disponibles = math.floor( (len(calificaciones) / 3 ) + (3 - len(poemas)))
         
         json_str = {
             'usuario_id':self.usuario_id,

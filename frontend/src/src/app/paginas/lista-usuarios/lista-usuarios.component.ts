@@ -15,6 +15,7 @@ export class ListaUsuariosComponent implements OnInit {
   pag_actual:any;
   pagina!: number;
   token: any;
+  desde = "ListaUsuarios";
 
   get reloadFunc() {
     return this.reload.bind(this);

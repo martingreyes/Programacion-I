@@ -14,8 +14,8 @@ export class ListaUsuariosFiltroComponent implements OnInit {
   pag_actual:any;
   pagina!: number;
   token: any;
-  filtro!: string;
-  desde = "ListaUsuariosFiltro"
+  desde = "ListaUsuariosFiltro";
+  filtro: any
 
   get reloadFunc() {
     return this.reload.bind(this);
@@ -33,10 +33,9 @@ export class ListaUsuariosFiltroComponent implements OnInit {
     ngOnInit(): void {
     this.pagina = Number(this.route.snapshot.paramMap.get('pagina') || '1'); 
     this.token = localStorage.getItem("token") || undefined  
-    this.filtro = this.route.snapshot.paramMap.get('filtro') || '';
-    console.log("<<<<<<<<<<<<<<<<VIEJO", this.filtro)
+    
+    this.filtro = localStorage.getItem("filtro")
 
-    console.log('>>>>>>>>>>>>>>>NUEVO',(decodeURIComponent(this.filtro)))
    
     this.postUsuariosFiltroService.postUsuariosFiltro(this.filtro, this.pagina).subscribe((data:any) =>{
       console.log('JSON data: ', data);

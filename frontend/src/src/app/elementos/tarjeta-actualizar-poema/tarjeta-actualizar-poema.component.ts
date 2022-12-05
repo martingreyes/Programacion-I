@@ -51,31 +51,27 @@ export class TarjetaActualizarPoemaComponent implements OnInit {
 
   submit() {
 
-    // if(this.modificarForm.valid) {
-    let titulo = this.modificarForm.value.titulo
-    let contenido = this.modificarForm.value.contenido
+    if(this.modificarForm.valid) {
+      let titulo = this.modificarForm.value.titulo
+      let contenido = this.modificarForm.value.contenido
 
-    let token = localStorage.getItem("token") || undefined 
-
-
-    console.log("DATOS: ", {titulo: titulo, contenido: contenido})
-
-    this.postActualizarPoemaService.putPoema({titulo: titulo, contenido: contenido}, token, Number(this.poema_id)).subscribe()
+      let token = localStorage.getItem("token") || undefined 
 
 
-    console.log("Contenido enviado");  
-    alert("Poema Actualizado!")
+      console.log("DATOS: ", {titulo: titulo, contenido: contenido})
 
-    this.router.navigate(["VerPoemaUsuario/" + this.poema_id])
-  
-// }
+      this.postActualizarPoemaService.putPoema({titulo: titulo, contenido: contenido}, token, Number(this.poema_id)).subscribe()
+
+
+      console.log("Contenido enviado");  
+      alert("Poema Actualizado!")
+
+      this.router.navigate(["PerfilGrilla/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString() + "/1"])
+    }
 }
 
 cancelar() {
-  // if(this.modificarForm.valid) {
-    this.router.navigate(["PerfilGrilla/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()])
-
-// }
+  this.router.navigate(["PerfilGrilla/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString() + "/1"])
 }
 
   getDecodedAccessToken(token: any): any {

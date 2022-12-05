@@ -86,7 +86,7 @@ export class TarjetaDatosDeUsuarioComponent implements OnInit {
         this.router.navigate(["ListaUsuarios/1"]) 
       } else {
         console.log("VOLVIENDO a perfilGrilla")
-        this.router.navigate(["PerfilGrilla/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()])
+        this.router.navigate(["PerfilGrilla/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()+ "/1"])
       }
   
   }
@@ -97,7 +97,7 @@ export class TarjetaDatosDeUsuarioComponent implements OnInit {
       this.router.navigate(["ListaUsuarios/1"]) 
     } else {
       console.log("VOLVIENDO a perfilGrilla")
-      this.router.navigate(["PerfilGrilla/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()])
+      this.router.navigate(["PerfilGrilla/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()+ "/1"])
     }
   }
   

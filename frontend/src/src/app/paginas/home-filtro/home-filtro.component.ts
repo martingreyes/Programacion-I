@@ -13,14 +13,12 @@ export class HomeFiltroComponent implements OnInit {
   arrayPoemas:any;
   num_paginas:any;
   pag_actual:any;
-  desde: string = "homeFiltro";
+  desde:any; 
   id:any;
   pagina!: number;
-  filtro!: string;
-
+  filtro: any;
   login = false;
   admin = false;
-
 
 
   constructor(
@@ -30,11 +28,11 @@ export class HomeFiltroComponent implements OnInit {
     
   
   ngOnInit(): void {
+
       
     this.pagina = Number(this.route.snapshot.paramMap.get('pagina') || '1'); 
-    this.filtro = this.route.snapshot.paramMap.get('filtro') || '';
-    
-    console.log("JAJAJAJAAJ", this.filtro)
+
+    this.filtro = localStorage.getItem("filtropoema")
 
     this.postPoemasFiltroService.postPoemasFiltro(this.filtro, this.pagina).subscribe((data:any) =>{
         this.arrayPoemas = data.Poemas;
@@ -49,7 +47,7 @@ export class HomeFiltroComponent implements OnInit {
       this.admin = this.getDecodedAccessToken(localStorage.getItem("token")).admin
     }
 
-  
+  this.desde = "homeFiltro/" + this.login + "/" + this.admin
 
     
   }

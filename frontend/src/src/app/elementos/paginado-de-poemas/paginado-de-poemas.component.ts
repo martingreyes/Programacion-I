@@ -12,7 +12,7 @@ export class PaginadoDePoemasComponent implements OnInit {
   id: any;
   @Input() num!: number;
   @Input() actual!: number;
-  @Input() filtro!: string;
+  filtro: any;
   arrayNum : any;
   
   constructor() {
@@ -21,6 +21,7 @@ export class PaginadoDePoemasComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id
+    this.filtro = localStorage.getItem("filtropoema")
   }
 
   array() {

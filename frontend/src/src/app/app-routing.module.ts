@@ -33,14 +33,13 @@ const routes: Routes = [
   { path: 'Home/:pagina', component: HomeComponent },
   { path: 'HomeAdmin/:pagina', component: HomeAdminComponent, canActivate:[AdminGuardGuard]},
   { path: 'HomeUsuario/:id/:pagina', component: HomeUsuarioComponent, canActivate: [AuthsessionGuard]},
-  { path: 'HomeFiltro/:pagina/:filtro', component: HomeFiltroComponent},
+  { path: 'HomeFiltro/:pagina', component: HomeFiltroComponent},
 
   { path: 'CrearPoema', component: CrearPoemaComponent, canActivate: [AuthsessionGuard] },
   { path: 'CrearUsuario', component: CrearUsuarioComponent},
 
   { path: 'ListaUsuarios/:pagina', component: ListaUsuariosComponent, canActivate:[AdminGuardGuard]}, 
-
-  { path: 'ListaUsuariosFiltro/:pagina/:filtro', component: ListaUsuariosFiltroComponent, canActivate:[AdminGuardGuard]}, 
+  { path: 'ListaUsuariosFiltro/:pagina', component: ListaUsuariosFiltroComponent, canActivate:[AdminGuardGuard]}, 
   
   { path: 'ModificarDatosAdmin/:id', component: ModificarDatosAdminComponent, canActivate:[AdminGuardGuard]},
   { path: 'ModificarDatos/:id', component: ModificarDatosComponent , canActivate: [AuthsessionGuard]},

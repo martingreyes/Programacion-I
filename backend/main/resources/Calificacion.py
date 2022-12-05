@@ -50,23 +50,38 @@ class Calificaciones(Resource):
 
 
 
+
     @jwt_required()
-    #El mismo usario no puede hacer 2 calificaciones a un mismo poema. 
     def post(self):
         calificacion_nueva = CalificacionModel.from_json(request.get_json())
+
         calificacion_nueva.usuario_id = get_jwt_identity()
 
-        calificaciones = db.session.query(CalificacionModel).all()
-        for calificacion in calificaciones:
-            if calificacion.usuario_id == get_jwt_identity() and calificacion.poema_id == calificacion_nueva.poema_id :
-                return "Ya comentaste este poema",403
+
+        
+        poem = db.session.query(PoemaModel).get(calificacion_nueva.poema_id)
+
+        calificaciones = db.session.query(CalificacionModel).filter(CalificacionModel.poema_id == calificacion_nueva.poema_id)
+
+
+        calificaciones_usuario = [calificacion_vieja.to_json() for calificacion_vieja in calificaciones if calificacion_vieja.usuario_id == get_jwt_identity()]
+
+
+        if poem.autor_id == get_jwt_identity():
+            return 'No se permite comentar un poema propio', 403
+
+
+        elif len(calificaciones_usuario) > 0:
+            return 'Ya comentaste este poema', 403
 
         try:
             db.session.add(calificacion_nueva)
             db.session.commit()
-            result = sendMail([calificacion_nueva.poema.autor.correo], "Nueva calificacion!", "nuevo_comentario", calificacion = calificacion_nueva )
+            # result = sendMail([calificacion_nueva.poema.autor.correo], "Nueva calificacion!", "nuevo_comentario", calificacion = calificacion_nueva )
             return calificacion_nueva.to_json(), 201
+
         except Exception as error:
-            # db.session.rollback()   
-            return str(error), 409
-        
+            return str(error), 400
+
+    
+    

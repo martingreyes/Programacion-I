@@ -140,8 +140,7 @@ class Poemas(Resource):
         usuario_id = get_jwt_identity()
         
         poema.autor_id = usuario_id
-        db.session.add(poema)
-        db.session.commit()
+
         
         usuario = db.session.query(UsuarioModel).get_or_404(usuario_id)
         cantidad_poema = len(usuario.poemas)                #REvisar usario.poemas

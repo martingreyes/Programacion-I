@@ -10,16 +10,16 @@ export class PaginadoDeUsuariosComponent implements OnInit {
 
   @Input() num!: number;
   @Input() actual!: number;
-  @Input() filtro!: string;
   @Input() desde!: string;
   
   arrayNum : any;
-  
+  filtro:any; 
 
   constructor() { }
 
   ngOnInit(): void {
-
+    this.filtro = localStorage.getItem("filtro")
+    console.log("-------", this.filtro)
 
   }
 

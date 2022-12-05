@@ -12,9 +12,6 @@ def login():
         if not usuario.pendiente:
             access_token = create_access_token(identity=usuario)
             data = {
-            # 'id': str(usuario.usuario_id),
-            # 'correo': usuario.correo,
-            # 'admin': usuario.admin,
                 'access_token': access_token
             }
             return data, 200
@@ -29,6 +26,7 @@ def login():
 def register():
     usuario = UsuarioModel.from_json(request.get_json())
     exists = db.session.query(UsuarioModel).filter(UsuarioModel.correo == usuario.correo).scalar() is not None
+    
     if exists:
         return 'Duplicated mail', 409
     else:
@@ -39,3 +37,4 @@ def register():
             db.session.rollback()
             return str(error), 409
         return usuario.to_json() , 201
+        

@@ -116,7 +116,9 @@ export class FiltroComponent implements OnInit {
 
       console.log("FILTRO:", this.filtro)
 
-      this.router.navigate(["HomeFiltro/1/" + this.filtro])
+      localStorage.setItem("filtropoema", this.filtro)
+
+      this.router.navigate(["HomeFiltro/1/"])
 
   }
 

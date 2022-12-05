@@ -15,7 +15,8 @@ export class TarjetaCrearPoemaComponent implements OnInit {
   poemaForm: any;
   token: any;
   id: any;
-
+  rta1 = false
+  error1 = false
   @Input() titulo!: string;
   @Input() contenido!: string;
 
@@ -45,13 +46,21 @@ export class TarjetaCrearPoemaComponent implements OnInit {
       this.token = localStorage.getItem("token") || undefined
       console.log("Enviando el contenido: ", {titulo: titulo2, contenido: poema});
       console.log("Con el token: ", this.token)
-      this.postCrearPoemaService.postPoema({titulo: titulo2, contenido: poema},this.token).subscribe(rta=>{
-        console.log("++++++++++++++++++RESPUESTA: ", rta)
-      }, error=>{
-        console.log("+++++++++++++++++ERROR: ", error)
-      })
+
+      
+      this.postCrearPoemaService.postPoema({titulo: titulo2, contenido: poema},this.token).subscribe(
+        (rta)=>{    
+          alert("Poema Publicado!")
+          console.log("####################################################RTA", rta)
+
+        }, (error) =>{
+          alert("No tenes poemas disponibles!")
+          console.log("####################################################ERROR", error)
+
+        }
+      )
+      
       console.log("Contenido enviado");  
-      alert("Poema Publicado!")
       this.router.navigate(["HomeUsuario/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()+"/1"])
       
     } else {
@@ -59,12 +68,12 @@ export class TarjetaCrearPoemaComponent implements OnInit {
     }
   }
 
+  
+
+  
 
   cancelar() {
-    if(this.poemaForm.valid) {
-      this.router.navigate(["HomeUsuario/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()+"/1"])
-
-  }
+    this.router.navigate(["HomeUsuario/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()+"/1"])
   }
 
   getDecodedAccessToken(token: any): any {

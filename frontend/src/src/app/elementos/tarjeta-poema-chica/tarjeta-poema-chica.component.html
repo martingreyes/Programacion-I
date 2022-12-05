@@ -57,6 +57,28 @@
                         </button> 
                     </div>
 
+                
+                    <div *ngIf="desde === 'homeFiltro/false/false'">
+
+                        <button type="button" routerLink="/VerPoema/{{poema_id}}" class="btn" role="button" style="background-color: none ; border: none ; color: black;">
+                            Ver mas
+                        </button> 
+                    </div>
+
+                    <div *ngIf="desde === 'homeFiltro/true/false'">
+
+                        <button type="button" routerLink="/VerPoemaUsuario/{{poema_id}}" class="btn" role="button" style="background-color: none ; border: none ; color: black;">
+                            Ver mas
+                        </button> 
+                    </div>
+
+                    <div *ngIf="desde === 'homeFiltro/true/true'">
+
+                        <button type="button" routerLink="/VerPoemaAdmin/{{poema_id}}" class="btn" role="button" style="background-color: none ; border: none ; color: black;">
+                            Ver mas
+                        </button> 
+                    </div>
+
 
                     <br>
                 </tr>

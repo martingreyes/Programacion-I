@@ -57,16 +57,44 @@ export class TarjetaCalificacionesUsuarioComponent implements OnInit {
       
       console.log("Enviando el contenido: ", {poema_id: poema_id, puntaje: puntaje, comentario: comentario});
       console.log("Con el token: ", this.token)
-      this.postCrearCalificacionService.postCalificacion({poema_id: poema_id, puntaje: puntaje, comentario: comentario},this.token).subscribe()
+
+
+
+
+      this.postCrearCalificacionService.postCalificacion({poema_id: poema_id, puntaje: puntaje, comentario: comentario},this.token).subscribe(
+        (rta)=> {
+          console.log("####################################### RTA", rta)
+          alert("Comentario Publicado!")
+
+        }, (error)=> {
+          console.log("####################################### ERROR", error)
+          if (error.error === 'No se permite comentar un poema propio' ) {
+            alert('No Se permite comentar un poema propio')
+
+          } else if (error.error === 'Ya comentaste este poema') {
+            alert("Ya comentaste este poema")
+          }
+
+
+        }
+      ) 
+      
       console.log("Contenido enviado");  
-      alert("Comentario Publicado!")
-      this.reload()
+      // this.reload()
       
       
     } else {
       console.log("Debe llenar todos los campos.")
 
     }
+
+
+
+
+
+
+
+
   }
 
   getDecodedAccessToken(token: any): any {

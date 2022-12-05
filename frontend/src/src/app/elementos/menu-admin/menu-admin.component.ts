@@ -40,7 +40,9 @@ export class MenuAdminComponent implements OnInit {
     
       console.log("ALIAS FILTRO:", filtro)
 
-      this.router.navigate(["ListaUsuariosFiltro/1/" + filtro])   
+      localStorage.setItem("filtro", filtro) 
+      
+      this.router.navigate(["ListaUsuariosFiltro/1/"])   
 
   }
 

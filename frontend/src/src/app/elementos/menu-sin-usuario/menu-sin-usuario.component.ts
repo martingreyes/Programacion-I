@@ -51,9 +51,20 @@ export class MenuSinUsuarioComponent implements OnInit {
       }, 
       
       error: (error) =>{
-        alert('Credenciales incorrectas');
-        console.log('Error: ', error);
-        localStorage.removeItem('token');
+
+        if (error.error === 'Usuario Pendiente de Aceptación') {
+          alert("Todavia no estas aceptado")
+        }
+
+        else {
+
+          alert('Credenciales incorrectas');
+          console.log('Error: ', error);
+          localStorage.removeItem('token');
+
+        }
+
+
       }, 
       
       complete: () => {
@@ -61,6 +72,33 @@ export class MenuSinUsuarioComponent implements OnInit {
       }
     })
   }
+
+
+
+//   this.postCrearPoemaService.postPoema({titulo: titulo2, contenido: poema},this.token).subscribe(
+//     (rta)=>{    
+//       alert("Poema Publicado!"+rta)
+//       console.log("####################################################RTA", rta)
+
+//     }, (error) =>{
+//       alert("No tenes poemas disponibles!" + error)
+//       console.log("####################################################ERROR", error)
+
+//     }
+//   )
+  
+//   console.log("Contenido enviado");  
+//   this.router.navigate(["HomeUsuario/" + this.getDecodedAccessToken(localStorage.getItem("token")).usuario_id.toString()+"/1"])
+  
+// } else {
+//   console.log("Debe llenar todos los campos.")
+// }
+// }
+
+
+
+
+
 
 
   submit() {

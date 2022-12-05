@@ -46,12 +46,8 @@ class Usuario(db.Model):
             
         calificaciones =[calificacion.to_json() for calificacion in self.calificaciones] #Calificaciones que él hizo
         
-    
         
-        if len(calificaciones) == 0 :
-            poemas_disponibles = 3
-        else :
-            poemas_disponibles = math.floor( (len(calificaciones) / 3 ) + (3 - len(poemas)))
+        poemas_disponibles = math.floor( (len(calificaciones) / 3 ) + (3 - len(poemas)))
         
         json_str = {
             'usuario_id':self.usuario_id,

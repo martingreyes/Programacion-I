@@ -4,16 +4,13 @@
   <div class="row  justify-content-center" >
     <div class="row row row-cols-1 row-cols-xl-2 g-3" style="text-align: center;padding-left: 15%; padding-right: 15%;">
 
- 
-      <div class="col" id="poema-col" style="padding: 0;">
-        <app-tarjeta-poema-grande
+      <app-tarjeta-poema-grande
         [autor]="poema.autor" 
         [titulo]="poema.titulo"  
         [calificacion]="poema.promedio"
         [texto]="poema.contenido"
         [fecha]="poema.fecha">
       </app-tarjeta-poema-grande>
-      </div>
 
       <div class="col justify-content-center " id="poema-col" style="height:auto;">
         <app-tarjeta-calificaciones [poema_id]="poema_id"></app-tarjeta-calificaciones>

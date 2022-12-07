@@ -78,8 +78,6 @@ export class TarjetaCalificacionesUsuarioComponent implements OnInit {
 
         }
       ) 
-      
-      console.log("Contenido enviado");  
       // this.reload()
       
       

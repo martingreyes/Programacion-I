@@ -20,6 +20,13 @@ export class HomeFiltroComponent implements OnInit {
   login = false;
   admin = false;
 
+  get reloadFunc() {
+    return this.reload.bind(this);
+  }
+  
+  reload() {
+    window.location.reload()
+  }
 
   constructor(
     private route:ActivatedRoute,
@@ -34,22 +41,25 @@ export class HomeFiltroComponent implements OnInit {
 
     this.filtro = localStorage.getItem("filtropoema")
 
+    console.log("++++++++++++++++++++++++++++", this.filtro)
+
     this.postPoemasFiltroService.postPoemasFiltro(this.filtro, this.pagina).subscribe((data:any) =>{
+        console.log("DATA:", data)
         this.arrayPoemas = data.Poemas;
         this.num_paginas = data.Total_de_paginas;
         this.pag_actual = data.Pagina_actual;
+        console.log("Array:", this.arrayPoemas)
+
       }
     )
-
 
     if (this.getDecodedAccessToken(localStorage.getItem("token")) !== null) {
       this.login = true
       this.admin = this.getDecodedAccessToken(localStorage.getItem("token")).admin
     }
 
-  this.desde = "homeFiltro/" + this.login + "/" + this.admin
+  this.desde = "HomeFiltro"
 
-    
   }
 
   getDecodedAccessToken(token: any): any {

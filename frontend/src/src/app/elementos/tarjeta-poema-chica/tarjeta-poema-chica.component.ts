@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-tarjeta-poema-chica',
@@ -27,8 +28,26 @@ export class TarjetaPoemaChicaComponent implements OnInit {
   
   @Input() link_foto!: string;
 
+  login = false;
+  admin = false;
+
   constructor() { }
 
-  ngOnInit(): void { }
-
+  ngOnInit(): void {
+    if (this.getDecodedAccessToken(localStorage.getItem("token")) !== null) {
+      this.login = true
+      this.admin = this.getDecodedAccessToken(localStorage.getItem("token")).admin
+    }
+  }
+  
+  getDecodedAccessToken(token: any): any {
+    try {
+      return jwt_decode(token);
+            // "admin": true,
+            // "usuario_id": 14,
+            // "correo": "elAdmin2@gmail.com"
+    } catch(Error) {
+      return null;
+    }
+  }
 }

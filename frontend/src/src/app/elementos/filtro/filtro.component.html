@@ -1,5 +1,5 @@
 <div class="modal fade" id="ModalFiltros" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="width: 100%;">
-    <div class="modal-dialog" style="width: 100% ; max-width: 50%;">
+    <div class="modal-dialog" style="width: 100% ; max-width: 50%; min-width: 400px;">
         <div class="modal-content" style="width: 100% ;">
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -21,7 +21,7 @@
                             
                                             <input class="form-check-input me-1" id="ModalCheck" type="checkbox" value="" formControlName="titulobox"  >
                                             <label class="form-check-label" id="ModalText" for="titulo" >Titulo:</label>    
-                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="text" placeholder="Ingrese título" formControlName="titulo"  >
+                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 95%; " type="text" placeholder="Ingrese título" formControlName="titulo"  >
                                 
 
                                     </li>
@@ -32,7 +32,7 @@
                                 
                                             <input class="form-check-input me-1" id="ModalCheck" type="checkbox" value="" formControlName="autorbox">
                                             <label class="form-check-label" id="ModalText" for="autor">Autor:</label>  
-                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="text" placeholder="Ingrese autor" formControlName="autor" >
+                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 95%; " type="text" placeholder="Ingrese autor" formControlName="autor" >
                         
             
                                     </li>
@@ -43,7 +43,7 @@
                                     
                                             <input class="form-check-input me-1" id="ModalCheck" type="checkbox" value="" formControlName="promediobox">
                                             <label class="form-check-label" id="ModalText" for="promedio">Promedio:</label>
-                                            <input class="form-control me-2"  id="ModalInput" style="border-radius:50px ; width: 50%; " type="number" placeholder="Ingrese promedio" formControlName="promedio">
+                                            <input class="form-control me-2"  id="ModalInput" style="border-radius:50px ; width: 95%; " type="number" placeholder="Ingrese promedio" formControlName="promedio">
                             
 
                                     </li>
@@ -54,34 +54,12 @@
                                 
                                             <input class="form-check-input me-1" id="ModalCheck"  type="checkbox" value="" formControlName="fechabox">
                                             <label class="form-check-label" id="ModalText" for="fecha">Fecha:</label>
-                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="date" placeholder="Ingrese fecha" formControlName="fecha">
+                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 95%; " type="date" placeholder="Ingrese fecha" formControlName="fecha">
                     
 
                                     </li>
 
-                                    <!-- <li class="list-group-item">
-                                        <form class="d-flex">
-                                            <input class="form-check-input me-1" id="ModalCheck"  type="checkbox" value="">
-                                            <label class="form-check-label" id="ModalText" for="alias">Alias:</label> 
-                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="text" placeholder="Ingrese alias" > 
-                                        </form>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <form class="d-flex">
-                                            <input class="form-check-input me-1" id="ModalCheck" type="checkbox" value="">
-                                            <label class="form-check-label" id="ModalText" for="min_cantidad_poemas">Minima cantidad de poemas:</label>
-                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="number" placeholder="Ingrese número" >
-                                        </form>
 
-                                    </li>
-                    
-                                    <li class="list-group-item">
-                                        <form class="d-flex">
-                                            <input class="form-check-input me-1" id="ModalCheck"  type="checkbox" value="" id="min_cantidad_cal">
-                                            <label class="form-check-label" id="ModalText" for="min_cantidad_cal">Minima cantidad de calificaciones</label>
-                                            <input class="form-control me-2" id="ModalInput" style="border-radius:50px ; width: 50%; " type="number" placeholder="Ingrese número" >
-                                    </form>
-                                    </li>  -->
                                     <br>
                                 </div>
                             
@@ -120,44 +98,16 @@
 
                                     <li class="list-group-item">
                                         <input class="form-check-input me-1" type="checkbox" value="" id="proemdio_asc" name="options" formControlName="promedio_asc" type="radio">
-                                        <label class="form-check-label" for="titulo_asc">Promedio ascendente</label> 
+                                        <label class="form-check-label" for="titulo_asc">Cantidad de Comentarios ascendente</label> 
                                     </li>
 
                                     <br>
                                     
                                     <li class="list-group-item">
                                         <input class="form-check-input me-1" type="checkbox" value="" id="promedio_des" name="options" formControlName="promedio_des" type="radio">
-                                        <label class="form-check-label" for="titulo_des">Promedio descendente</label>
+                                        <label class="form-check-label" for="titulo_des">Cantidad de Comentarios descendente</label>
                                     </li>
                                     
-                                    <!-- <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="" id="cal_asc">
-                                            <label class="form-check-label" for="cal_asc">Cantidad de calificaciones ascendente</label>    
-                                    </li>
-                                    
-                                    <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="" id="cal_des">
-                                            <label class="form-check-label" for="cal_des">Cantidad de calificaciones descendente</label>  
-                                    </li> 
-                    
-                                    <li class="list-group-item">
-                                            <input class="form-check-input me-1" type="checkbox" value="" id="alias_asc">
-                                            <label class="form-check-label" for="alias_asc">Alias ascendente</label>
-                                    </li>
-
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="" id="alias_des">
-                                        <label class="form-check-label" for="alias_des">Alias descendente</label>
-                                    </li>
-
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="" id="cant_asc">
-                                        <label class="form-check-label" for="cant_asc">Cantidad de poemas ascendente</label>  
-                                    </li>
-                                    <li class="list-group-item">
-                                        <input class="form-check-input me-1" type="checkbox" value="" id="cant_des">
-                                        <label class="form-check-label" for="cant_des">Cantidad de poemas descendente</label>  
-                                    </li> -->
                                 </div>
                             </div>
                         </div>
@@ -165,11 +115,9 @@
                 </div>
 
             </form>
-         <button (click)="submit()" style="width: 35%; font-size: large ; margin-left: 60%; background-color: #2D9994; color: aliceblue ; border-radius: 50px; " >Aplicar  </button>
+         <button (click)="submit()" (click)="reload()" style="width: 35%; font-size: large ; margin-left: 60%; background-color: #2D9994; color: aliceblue ; border-radius: 50px; " >Aplicar  </button>
 
-            <!-- <a class="nav-link" style="border-radius:50px; background-color: #47B6AF; width: 60%; color: white; margin-left: 85%; margin-top: 0%; font-size: 120%;">
-                <img src="./assets/Imagenes/confirmar.png" width="15%"  (click)="submit()">     Aplicar
-            </a> -->
+    
             <br>
         </div>
         

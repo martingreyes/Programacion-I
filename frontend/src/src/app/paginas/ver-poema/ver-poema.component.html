@@ -1,29 +1,23 @@
 <app-menu-sin-usuario></app-menu-sin-usuario>
-      
-<!-- <a class="nav-link" routerLink="" style="border-radius:50px; background-color: #47B6AF; width: 10%; margin-left: 2% ; color: white; margin-top: 0%; font-size: 100%; ">
-  <img src="./assets/Imagenes/volver.png" width="30%" > Volver 
-</a> -->
 
 <div class="container-fluid">
   <div class="row row-cols-1 row-cols-xl-2 g-3" style="min-height:700px;text-align: center; padding-left: 10%; padding-right: 10%;">
 
-      <div class="col" id="poema-col" style="padding: 0;">
-        <app-tarjeta-poema-grande
-          [autor]="poema.autor" 
-          [titulo]="poema.titulo"  
-          [calificacion]="poema.promedio"
-          [texto]="poema.contenido"
-          [fecha]="poema.fecha">
-        </app-tarjeta-poema-grande>
-      </div>
+    <app-tarjeta-poema-grande
+      [autor]="poema.autor" 
+      [titulo]="poema.titulo"  
+      [calificacion]="poema.promedio"
+      [texto]="poema.contenido"
+      [fecha]="poema.fecha">
+    </app-tarjeta-poema-grande>
 
-      <div class="col justify-content-center " id="poema-col" style="height:auto;">
+    <div class="col justify-content-center " id="poema-col" style="height:auto;">
 
-        <app-tarjeta-calificaciones [poema_id]="poema_id"></app-tarjeta-calificaciones>
+      <app-tarjeta-calificaciones [poema_id]="poema_id"></app-tarjeta-calificaciones>
 
-      </div>
     </div>
   </div>
+</div>
 <br>
 <br>
 <br>

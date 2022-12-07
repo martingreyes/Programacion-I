@@ -8,10 +8,10 @@ import jwt_decode from 'jwt-decode';
 })
 export class PaginadoDePoemasComponent implements OnInit {
 
-  @Input() desde!: string;
-  id: any;
   @Input() num!: number;
   @Input() actual!: number;
+  @Input() desde!: string;
+  id: any;
   filtro: any;
   arrayNum : any;
   

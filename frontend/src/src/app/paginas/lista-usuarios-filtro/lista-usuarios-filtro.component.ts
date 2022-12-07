@@ -42,8 +42,10 @@ export class ListaUsuariosFiltroComponent implements OnInit {
       this.arrayUsuarios = data.Usuarios;
       this.num_paginas = data.Total_de_paginas;
       this.pag_actual = data.Pagina_actual;
-    
+
     })
+
+    
     
 
 

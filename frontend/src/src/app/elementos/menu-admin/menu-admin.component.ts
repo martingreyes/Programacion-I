@@ -17,6 +17,14 @@ export class MenuAdminComponent implements OnInit {
   aliasForm: any;
   filtro = ""
 
+  get reloadFunc() {
+    return this.reload.bind(this);
+  }
+  
+  reload() {
+    window.location.reload()
+  }
+
   constructor(
     private authService:AuthService,
     private router: Router,

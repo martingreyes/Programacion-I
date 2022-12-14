@@ -59,12 +59,11 @@ export class TarjetaCalificacionesUsuarioComponent implements OnInit {
       console.log("Con el token: ", this.token)
 
 
-
-
       this.postCrearCalificacionService.postCalificacion({poema_id: poema_id, puntaje: puntaje, comentario: comentario},this.token).subscribe(
         (rta)=> {
           console.log("####################################### RTA", rta)
           alert("Comentario Publicado!")
+          this.reload()
 
         }, (error)=> {
           console.log("####################################### ERROR", error)
@@ -72,26 +71,17 @@ export class TarjetaCalificacionesUsuarioComponent implements OnInit {
             alert('No Se permite comentar un poema propio')
 
           } else if (error.error === 'Ya comentaste este poema') {
-            alert("Ya comentaste este poema")
+            alert(   "Ya comentaste este poema")
           }
-
 
         }
       ) 
       // this.reload()
       
-      
     } else {
       console.log("Debe llenar todos los campos.")
 
     }
-
-
-
-
-
-
-
 
   }
 

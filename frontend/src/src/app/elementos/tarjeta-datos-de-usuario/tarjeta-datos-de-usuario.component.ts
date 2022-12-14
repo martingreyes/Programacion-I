@@ -105,9 +105,10 @@ export class TarjetaDatosDeUsuarioComponent implements OnInit {
   getDecodedAccessToken(token: any): any {
     try {
       return jwt_decode(token);
-            // "admin": true,
-            // "usuario_id": 14,
-            // "correo": "elAdmin2@gmail.com"
+            // "admin"
+            // "usuario_id"
+            // "correo":
+            // alias
     } catch(Error) {
       return null;
     }

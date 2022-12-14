@@ -70,7 +70,6 @@ class Calificaciones(Resource):
         if poem.autor_id == get_jwt_identity():
             return 'No se permite comentar un poema propio', 403
 
-
         elif len(calificaciones_usuario) > 0:
             return 'Ya comentaste este poema', 403
 

@@ -22,9 +22,9 @@ export class TarjetaCrearUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioForm = this.formBuilder.group({
-      alias: ["juan", Validators.required],
+      alias: ["", Validators.required],
       contra: ["12345", Validators.required],
-      correo: ["juan@gmail.com", Validators.required]
+      correo: ["", Validators.required]
     })
   }
   submit() {

@@ -32,10 +32,6 @@ export class FiltroComponent implements OnInit {
       titulo: ["", Validators.required],
       autorbox: [false, Validators.required],
       autor: ["", Validators.required],
-      promediobox: [false, Validators.required],
-      promedio: ["", Validators.required],
-      fechabox: [false, Validators.required],
-      fecha: ["", Validators.required],
       fecha_asc: [false, Validators.required],
       fecha_des: [false, Validators.required],
       titulo_asc: [false, Validators.required],
@@ -65,22 +61,6 @@ export class FiltroComponent implements OnInit {
       if (autorbox) {
       this.filtro = this.filtro + "autor=" + autor + "&"
       }
-
-
-      let promediobox = this.filtroForm.value.promediobox
-      let promedio = this.filtroForm.value.promedio
-
-      if (promediobox) {
-        this.filtro = this.filtro + "promedio=" + promedio + "&"
-        }
-      
-      let fechabox = this.filtroForm.value.fechabox
-      let fecha = this.filtroForm.value.fecha
-      
-
-      if (fecha) {
-        this.filtro = this.filtro + "fecha=" + fecha + "&"
-        }
 
         
       //Ordenar por

@@ -96,17 +96,6 @@ class Poemas(Resource):
             if clave == 'autor':                        #Los poemas que tienen el 'valor' autor.
                 poemas = poemas.outerjoin(PoemaModel.autor).filter(UsuarioModel.alias.like("%"+valor+"%"))         
 
-            if clave == "calificacion[menor]":
-                poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.autor_id).having(func.avg(CalificacionModel.puntaje) <= valor)
-            
-            if clave == "calificacion[mayor]":
-                poemas = poemas.outerjoin(PoemaModel.calificaciones).group_by(PoemaModel.autor_id).having(func.avg(CalificacionModel.puntaje) >= valor)
-
-            if clave == "fecha[antes]":
-                poemas = poemas.filter(PoemaModel.fecha <= datetime.strptime(valor, '%Y-%m-%d') + timedelta(days=1))
-
-            if clave == "fecha[despues]":
-                poemas = poemas.filter(PoemaModel.fecha >= datetime.strptime(valor, '%Y-%m-%d')) 
                 
             if clave == "ordenar_por":                  #Si no se usa, ordena por id
                 if valor == "calificacion[desc]":       #Ordena por calificacion descendencia. 

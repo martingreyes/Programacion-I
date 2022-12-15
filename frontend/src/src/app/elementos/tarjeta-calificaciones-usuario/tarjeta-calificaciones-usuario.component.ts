@@ -76,7 +76,6 @@ export class TarjetaCalificacionesUsuarioComponent implements OnInit {
 
         }
       ) 
-      // this.reload()
       
     } else {
       console.log("Debe llenar todos los campos.")

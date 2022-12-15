@@ -27,3 +27,4 @@ export class AuthService {
     this.router.navigate(["Home/1"])
   }
 }
+

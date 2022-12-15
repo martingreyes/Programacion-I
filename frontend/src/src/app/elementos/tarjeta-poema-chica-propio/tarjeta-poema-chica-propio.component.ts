@@ -28,7 +28,6 @@ export class TarjetaPoemaChicaPropioComponent implements OnInit {
 
   token: any
 
-  
   constructor(
     private postEliminarPoemaService:PostEliminarPoemaService,
   ) { }

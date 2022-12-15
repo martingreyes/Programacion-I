@@ -38,6 +38,7 @@ export class PerfilGrillaComponent implements OnInit {
 
   ) { }
 
+  
   ngOnInit(): void {
     this.usuario_id = this.route.snapshot.paramMap.get('id') || '';
     this.pag_actual = Number(this.route.snapshot.paramMap.get('pagina') || '1');

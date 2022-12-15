@@ -45,11 +45,10 @@ export class TarjetaCrearUsuarioComponent implements OnInit {
       
     } else {
       console.log("Debe llenar todos los campos.")
-      alert(`Verifique que los datos hayan sido ingresados correctamente
+      alert(`Verifique que los datos hayan sido ingresados correctamente:
 
-            El email debe ser de formato: ejemplo@dominio.com 
-            Contraseña debe:
-                Tener 5 caracteres como minimo`)
+      - El email debe ser de formato: ejemplo@dominio.com 
+      - La contraseña debe tener 5 caracteres como minimo`)
     }
   }
 }
